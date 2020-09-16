@@ -50,6 +50,8 @@ export class RegisterComponent implements OnInit {
   public currentStatus = 1;
   //para el formulario
   registerForm: FormGroup;
+  // para la validacion del email
+  emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
   //inyectar el servicio rgistros servis encargada de la bd 
   constructor( private registrosServiceF : RegistrosService,
@@ -73,7 +75,7 @@ export class RegisterComponent implements OnInit {
       nombres: new FormControl('', [Validators.required]),
       apellidos: new FormControl('', [Validators.required]),
       cedula: new FormControl('', [Validators.required, this.validarCedula]),
-      email: new FormControl('', [Validators.required, Validators.email, this.validarEmail]),
+      email: new FormControl('', [Validators.required, Validators.email, Validators.pattern(this.emailPattern), this.validarEmail]),
       fechaNacimiento: new FormControl('', [Validators.required]),
       direccion: new FormControl('', [Validators.required]),
       ciudad: new FormControl('', [Validators.required]),
@@ -220,7 +222,7 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.controls.cedula.hasError('ms')) {
       return 'El número de cedula ya ha sido registrado';
     }
-    
+    return this.registerForm.controls.email.hasError('pattern') ? 'Email no válido' : '';
   }         
 
 //retorna un array con la filtracion para los autocompletados
