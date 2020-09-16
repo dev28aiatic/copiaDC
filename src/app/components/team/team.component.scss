@@ -1,16 +1,22 @@
     img{
+
         max-width: 200px;
         margin: auto auto auto;
-        float:left
+        float:left;
+
     }
+
     p{
-        
         text-align: justify;
-        padding-left: 30px;
-        padding-right: 30px;
-        padding-top: 20px;
-        
     }
-   
-   
+
+
+@media screen and (max-width:800px){
+
+  p{
+    bottom: 3em;
+  }
+}
+
+
 
