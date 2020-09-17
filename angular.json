@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "dc": {
+    "mafaldos": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -67,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "dc:build"
+            "browserTarget": "mafaldos:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "dc:build:production"
+              "browserTarget": "mafaldos:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "dc:build"
+            "browserTarget": "mafaldos:build"
           }
         },
         "test": {
@@ -116,18 +116,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "dc:serve"
+            "devServerTarget": "mafaldos:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "dc:serve:production"
+              "devServerTarget": "mafaldos:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "dc",
+  "defaultProject": "mafaldos",
   "cli": {
     "analytics": false
   }
