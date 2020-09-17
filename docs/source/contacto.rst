@@ -2,339 +2,345 @@ Contacto
 ==================
 
 
-En este módulo creamos el formulario y los métodos necesarios para enviar un correo de contacto entre un usuario interesado en los servicios de Marvel Project y su CEO, a través de un correo electrónico el CEO recibirá toda la información que será proporcionada por el usuario/visitante de la página.
-La estructura del Modulo es la siguiente:
-
-.. image :: ../images/ContactoDoc01.png
-
-Dentro de estos archivos, el routing module & contacto.spec.ts no son modificados y son generados automáticamente por el Angular CLI.
-La estructura HMTL del formulario y la página de contacto es la siguiente
-
-.. code-block::
-   
-   <div class="container">
-   <div class="column">
-   <form
-      [formGroup]="contactanosForm"
-      (ngSubmit)="guardar()"
-      method="POST"
-      class="formxD">
-      <p>
-        <mat-form-field
-          appearance="outline"
-          style="text-align: center"
-          class="formItem">
-          <label class="label">Nombre</label>
-          <input
-            formControlName="nombre"
-            type="text"
-            matInput
-            placeholder="Tu nombre completo"
-            required
-          />
-        </mat-form-field>
-      </p>
-
-      <p>
-        <mat-form-field
-          appearance="outline"
-          style="text-align: center"
-          class="formItem"
-        >
-          <label class="label">Correo electronico</label>
-          <input
-            formControlName="email"
-            type="text"
-            matInput
-            placeholder="Tu correo electronico"
-            required
-            (change)="change()"
-          />
-          <mat-error
-            *ngIf="
-              contactanosForm.get('email').hasError('pattern') &&
-              !contactanosForm.get('email').hasError('required')
-            "
-          >
-            Por favor digita un correo electronico valido
-          </mat-error>
-          <mat-error *ngIf="contactanosForm.get('email').hasError('required')">
-            El email es <strong>requerido</strong>
-          </mat-error>
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field
-          appearance="outline"
-          class="formItem"
-          style="text-align: center"
-        >
-          <mat-label class="titulo">Motivo</mat-label>
-          <br />
-          <mat-form-field style="text-align: center; width: 90%">
-            <mat-label>Tu motivo</mat-label>
-            <mat-select formControlName="motivo" matInput required>
-              <mat-option [disabled]="true">Seleccionar</mat-option>
-              <mat-option *ngFor="let motivo of motivos" [value]="motivo">{{
-                motivo
-              }}</mat-option>
-            </mat-select>
-            <mat-hint></mat-hint>
-          </mat-form-field>
-        </mat-form-field>
-      </p>
-      <br />
-      <br />
-      <p>
-        <mat-form-field
-          appearance="outline"
-          style="text-align: center"
-          class="formItem"
-        >
-          <mat-label class="titulo">Mensaje</mat-label>
-          <mat-form-field style="width: 90%">
-            <mat-label>Tu mensaje</mat-label>
-            <textarea
-              name="mensaje"
-              class="textDesc"
-              formControlName="mensaje"
-              matInput
-              placeholder="Tu mensaje"
-              required
-            >
-            </textarea>
-          </mat-form-field>
-        </mat-form-field>
-      </p>
-
-      <div class="btnRegister">
-        <button
-          mat-button
-          class="botonRegis"
-          type="submit"
-          [disabled]="contactanosForm.invalid"
-        >
-          <mat-icon class="loginIcon">send</mat-icon><span> Enviar</span>
-        </button>
-        </div>
-        </form>
-        </div>
-        <div class="column">
-         <img src="../../../../assets/CONTACTO.png" class="imagen" />
-      </div>
-     </div>
+.. image :: ../images/contacto.JPG
+Contacto en versión web
 
 
-Como se puede observar en el código HTML, hacemos la creación de la tabla, con sus respectivos Inputs, su dropdown y la sección de mensaje, junto con las condicionales requeridas para el funcionamiento del correo; y por último el botón de enviar que estará inhabilitado a menos de que todos los campos estén debidamente diligenciados.
-
-A continuación se van a diligenciar todas las reglas de css que le dan estilo a nuestro fomulario:
-
-.. code-block::
-   
-   .column {
-     position: relative;
-     height: auto;
-     width: 100%;
-     top: 0;
-     display: block;
-     margin: auto;
-     margin-bottom: 50px;
-     margin-top: 50px;
-     //background-color: rgba($color: #d37130, $alpha: 0.2);}
-
-   .btnRegister {
-      text-align: center;
-      margin-bottom: 70px;}
-
-   .formItem .titulo {
-      color: black;}
-
-   .container {
-     background-color: rgba($color: #d37130, $alpha: 0.2);
-     position: relative;
-     height: 100%;
-     width: 100%;
-     top: 0;
-  //display: block;
-     margin: auto;
-     display: inline-flex;
-     justify-content: center;
-     align-items: center;
-     align-content: center;
-     overflow-y: auto;
-     margin-bottom: 0;}
-
-   .imagen {
-     margin-top: 0.5%;
-     margin-right: 0;
-     height: 99%;
-     width: 99%;
-     border-radius: 25px;
-     background-color: rgba($color: #d37130, $alpha: 0.2);}
-
-   .formxD {
-   //padding: 35px 135px 135px 35px;
-    height: 100%;
-    width: 90%;
-    margin-top: 30px;
-    margin-left: 5%; }
-   .formItem {
-    //margin-top: 20px;
-     margin-bottom: 1%;
-     font-size: 18px;
-     width: 100%;
-    //height: 100%;}
-
-    @media only screen and (max-width: 768px) and (max-height: 849px) {
-     .imagen {
-       height: 0px;
-       width: 0px;  } }
-
-   @media only screen and (max-width: 768px) {
-     .container {
-       display: block;
-       margin: auto;  }
-
-     .column {
-       display: block;
-       margin: auto;  }
-    .imagen {
-      height: auto;
-      display: block;
-      position: relative;
-      margin-top: 100px;  }}
-
-Se definen todas las reglas para nuestro formulario tanto en versión web como en versión responsiva.
-Pasaremos a explicar de manera breve cada uno de las partes que componen el Contacto.Component.ts, este archivo contiene todas importaciones necesarias para crear el formulario y poder trabajar con el Modelo de Contacto, enviar el formulario a la base de datos y usar la Api de Elasticemail para enviar el correo al CEO cada vez que alguien quiera hacer un contacto para discutir sobre nuestros servicios y oportunidades en Marvel Project.
-
-A la par de esto, en nuestro Contacto.Module.ts, hacemos una importanción de todos las librerias y clases que usaremos para trabajar de manera efectiva en contacto.
-
-.. code-block::
-
-   import { Component, OnInit } from '@angular/core';
-   import { RequiredValidator, Validators } from '@angular/forms';
-   import { FormControl } from '@angular/forms';
-   import { FormGroup } from '@angular/forms';
-   import { Contactanos } from 'src/app/models/contacto/contactanos.model';
-   import { DataBaseService}  from '../../../services/data-base.service';
-   import '../../../../assets/js/smtp.js';
-   declare let Email: any;
+.. image :: ../images/contactomovil.JPG
+Contactos en versión movil
 
 
-   @Component({
-    selector: 'app-contacto',
-    templateUrl: './contacto.component.html',
-    styleUrls: ['./contacto.component.scss'],
-  })
-
-   export class ContactoComponent implements OnInit {
-     contactanosForm= new FormGroup({
-      nombre: new FormControl(''),
-      email:new FormControl('', [/*Validators.email*/,Validators.pattern(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),
-      motivo: new FormControl(''),
-      mensaje: new FormControl(''),
-    },);
-
-    motivos=['Contratos', 'Proyectos', 'Cobranzas'];
+* Descripción
+    En este módulo creamos el formulario y los métodos necesarios para enviar un correo de contacto entre un usuario interesado en los servicios de Marvel Project y su CEO, a través de un correo electrónico el CEO recibirá toda la información que será proporcionada por el usuario/visitante de la página.
 
 
+* Importaciones
+    Importamos todas las librerías necesarias en nuestro componente de contacto, como lo son los Form y los validators, el primero se encargará de poder crear un formulario que nos permita trabajar con los datos otorgados por el usuario final, junto con el contact service que nos provee de todos los métodos para trabajar estos datos en nuestra base de datos
 
-    constructor(private db: DataBaseService) {
+    .. code-block::
 
-    }
+      import { Component, OnInit } from    '@angular/core';
+      import { FormBuilder, FormControl, FormGroup,   Validators } from '@angular/forms';
 
-    ngOnInit(): void {
-    }
-    change(){
-      console.log(this.contactanosForm);
-    }
-    //servidor de correos Elasticemail
+      // servicio para el manejo de la bd de    contactos
+      import {ContactosService} from    'src/app/services/contactos.service'
+      // para el manejo de enviar email del nuevo    contacto
+      import 'src/assets/smtp.js';
+
+    .Desarrollos
+    -------------
+
+    Los archivos son generados automáticamente por el Angular CLI.
+    La estructura HMTL del formulario y la página de contacto es la siguiente
+
+    .. code-block::
+      
+      <mat-card >
+      <mat-card-content  fxLayout="column"  >
+        <mat-card-title>Contacto</mat-card-title>
+        <br>
+        <p>Diligencia el siguiente formulario para ponernos en contacto contigo 
+          y atender tu solicitud.
+        </p>
+
+        <form (ngSubmit)="oncreate(contactForm.value)" [formGroup]="contactForm" >
+
+          <div class="contenedor"  >
+
+            <label>Nombre Completo</label>
+            <mat-form-field appearance="outline">
+              
+              <input matInput type="text" formControlName="nombreCompleto" placeholder="Pepito Perez">
+              <mat-error *ngIf="contactForm.controls.nombreCompleto.invalid">Ingrese un nombre</mat-error>
+            </mat-form-field>
+
+            <label>Email</label> 
+            <mat-form-field appearance="outline">                
+                <input matInput placeholder="example@example.com" formControlName="email" required>            
+                <mat-error *ngIf="contactForm.controls.email.errors">{{errorEmail()}}</mat-error>
+            </mat-form-field >        
+          
+
+              <label>Motivo</label>
+              <mat-form-field appearance="outline">
     
-    guardar(){
-      const {nombre, email, motivo, mensaje} = this.contactanosForm.value;
-      const asunto:string = 'Nos ha contactado '+nombre+' desde Marvel-Project';
-      const cuerpo:string = '<table style="width: 900px; margin: auto; border: 1px solid black; table-layout: fixed;"><tr>      <th colspan="2" style="border-bottom:       1px solid black;border-collapse: collapse;">        Contacto desde Marvel-Project      </th>    </tr>    <tr>      <td style="border-right: 1px solid black;       border-bottom: 1px solid black; border-collapse: collapse;  text-align: justify;">Nombre:</td>      <td style=" border-bottom: 1px solid black; border-collapse: collapse;  text-align: justify; word-wrap: break-word;">'+nombre+'</td>    </tr>    <tr>      <td style="border-right: 1px solid black; border-bottom: 1px solid black; border-collapse: collapse;  text-align: justify;">Correo electronico:</td>      <td style="border-bottom: 1px solid black; border-collapse: collapse;  text-align: justify; word-wrap: break-word;">'+email+'</td>    </tr>    <tr>      <td style="border-right: 1px solid black; border-bottom: 1px solid black; border-collapse: collapse;  text-align: justify;">Motivo:</td>      <td style="border-bottom: 1px solid black;  border-collapse: collapse;  text-align: justify; word-wrap: break-word;">'+motivo+'</td>    </tr>    <tr>      <td style="border-right: 1px solid black; border-collapse: collapse;  text-align: justify;">Mensaje:</td>      <td style="border-collapse: collapse;  text-align: justify; word-wrap: break-word;">'+mensaje+'</td>    </tr>  </table>';
-      var datos = new Contactanos();
-      datos.nombre = nombre;
-      datos.email = email;
-      datos.motivo = motivo;
-      datos.mensaje = mensaje;
-      this.db.crearContactanos(datos).then(r=>{
-        if (r){
-          Email.send({
-            Host: 'smtp.elasticemail.com',
-            Username: 'dev17@aiatic.com',
-            Password: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-            To: 'ceo@aiatic.com',
-            From: 'dev17@aiatic.com',
-            Subject: asunto,
-            Body: cuerpo
-          }).then(message =>{
-            alert('m'+ message);
-          });
-          console.log('si');
-        }else{
-          console.log('no');
+              <mat-select formControlName="motivo" name="Motivos" placeholder="Escoja un motivo">
+                <mat-option *ngFor="let mot of motivos" [value]="mot.value" >
+                  {{mot.value}}
+                </mat-option>
+              </mat-select>
+
+              <mat-error *ngIf="contactForm.controls.motivo.invalid">Ingrese una motivo</mat-error>
+            </mat-form-field>  
+
+            <label>Mensaje</label>        
+            <mat-form-field appearance="outline" class="mensaje">
+              <textarea class="tarea" matInput #message maxlength="500" placeholder="Estoy interesado en..."
+                formControlName="mensaje"></textarea>
+              <mat-hint align="end">{{message.value.length}} / 500</mat-hint>
+              <mat-error *ngIf="contactForm.controls.mensaje.invalid">Ingrese una mensaje</mat-error>
+            </mat-form-field>
+
+
+            
+                <div class="contenedorBoton"><button type="submit" mat-raised-button [disabled]="!contactForm.valid" >Enviar</button></div>
+            
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    
+    Como se puede observar en el código HTML, hacemos la creación de la tabla, con sus respectivos Inputs, su dropdown y la sección de mensaje, junto con las condicionales requeridas para el funcionamiento del correo; y por último el botón de enviar que estará inhabilitado a menos de que todos los campos estén debidamente diligenciados.
+
+    A continuación se van a diligenciar todas las reglas de css que le dan estilo a nuestro fomulario:
+
+    .. code-block::
+      
+      mat-card {
+        max-width:80%;
+        text-align: center;
+        margin:auto;
+        margin-top: 5%;
+        margin-bottom: 5%;
+        background-color:#f5e8d3;}
+
+      mat-card-title{  
+        width: 100%;
+        font-size: 30px;  
+        text-align: center;}
+      mat-card-content{
+        width: 100%;}
+      .contenedor{
+        //background-color: #eb791c;
+        margin: auto;
+        margin-top: 20px;
+        width: 80%;}
+
+
+      mat-form-field{
+      
+        width: 80%;
+        margin:3% auto;
+        background-color: #f5e8d3;
+        display: block;
+      }
+
+      
+      label{
+      font-size: 20px;
+        text-align: center;
+        display: block;
+      width: 100%;}
+
+
+        button{
+      align-content: center;
+      background-color: orangered; 
+      width: 100%;}
+      button:hover{
+      background-color: grey;}
+      .contenedorBoton{
+      margin:auto;
+      margin-top: 10%;
+      width: 80%;    
+      //background-color: green;}
+
+
+      Input:Focus {
+        color:black;
+      font-size: 18px;}
+      .mensaje{
+        width: 80%;
+        height: 260px;
+        //background-color: #12e412d0;}
+      .tarea{
+      
+      height: 200px;
+        //background-color: #5112e4d0;  }
+        
+
+      //input outline color por defecto
+      ::ng-deep .mat-form-field-appearance-	outline .mat-form-field-outline {
+      color: gray!important;
+      //opacity: 1!important;
+      }
+
+      //mat-input focused color cunado se activa
+      ::ng-deep .mat-form-field-appearance-	outline.mat-focused .mat-form-field-	outline-thick {
+      color: #eb791c!important;
+      }
+
+      // mat-input error outline color caundo hay error
+      ::ng-deep .mat-form-field-appearance-	outline.mat-form-field-invalid.mat-form-	field-invalid .mat-form-field-outline-	thick{
+      color: #ff4e36!important;
+      opacity: 0.8!important;
+      }
+
+
+      // mat-input carent color para alertas
+      ::ng-deep .mat-input-element {
+      caret-color: orange!important;
+      }
+
+      // mat-input error carent color
+      ::ng-deep .mat-form-field-invalid .mat-input-	element, .mat-warn .mat-input-element {
+      caret-color: blue!important;
+      }
+
+      // mat-label normal state style color de los label en reposo
+      ::ng-deep .mat-form-field-label {
+      color: gray!important;
+      // color: $mainColor!important;
+      }
+
+      // mat-label focused style color del label al minimizarse
+      ::ng-deep .mat-form-field.mat-focused 	.mat-form-field-label {
+      color: black!important;
+      }
+
+      // mat-label error style color cuando el campo es imvalido
+      ::ng-deep .mat-form-field.mat-form-field-	invalid .mat-form-field-label {
+      color: red!important;
+      }
+
+
+      
+      
+      
+
+    Se definen todas las reglas para nuestro formulario tanto en versión web como en versión responsiva.
+
+
+    Pasaremos a explicar de manera breve cada uno de las partes que componen el Contacto.Component.ts, este archivo contiene todas importaciones necesarias para crear el formulario y poder trabajar con el Modelo de Contacto, enviar el formulario a la base de datos y usar la Api de Elasticemail para enviar el correo al CEO cada vez que alguien quiera hacer un contacto para discutir sobre nuestros servicios y oportunidades en Mafaldos Project.
+
+
+    .. code-block::
+
+        //para el formGroup
+      contactForm: FormGroup;
+
+      listaContactos;
+
+      // para la validacion del email
+      emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+
+      // para el selecionar el motivo
+      motivos= [
+        {value: 'Contratos' },
+        {value: 'Proyectos'},
+        {value: 'Cobranzas'}
+      ];
+
+      motivoSeleccionado:string;
+
+
+
+        this.contactForm= this.fb.group({
+
+          nombreCompleto: new FormControl('', [Validators.required]),
+          email: new FormControl('', [Validators.required, Validators.required, Validators.pattern(this.emailPattern), /*this.validarEmail*/]),
+          motivo: new FormControl('', [Validators.required]),
+          mensaje: new FormControl('', [Validators.required]),
+
+        });
+
+
+
+    Iniciamos un nuevo formulario, el cuál recibirá los cuatro datos requeridos. Hecho esta sección, nuestro formulario ya está listo para poder ser procesado por otros métodos para su envío & cumpliendo con el requerimiento, se crea un array Motivo para que podamos crear el dropdown en nuestro html con las 3 opciones entregadas por el cliente.
+
+
+    .. code-block::
+
+        getRegistros(){
+
+        this.contactosService.getContactos().subscribe((rgSnapshot) => {
+          this.listaContactos = [];
+          rgSnapshot.forEach((rgData: any) => {
+            this.listaContactos.push({
+              id: rgData.payload.doc.id,
+              data: rgData.payload.doc.data()
+
+            });
+          })
+
+          console.log(this.listaContactos);
+          
+
+        });
+
+        
+      }
+
+    Este primero método de get registros, será que el que nos permite obtener los datos de contactos y poderlos almacenar dentro de un documento en firebase
+
+
+    .. code-block::
+      
+      errorEmail() {
+        if (this.contactForm.controls.email.hasError('required')) {
+          return 'Debe ingresar un email';
         }
-      });
-    }
-
-  }
-
-
-Lo primero que se observa, es que hacemos una breves importaciones de librerias y modelos que necesitamos para poder trabajar esta sección de Contacto.
-Seguido, iniciamos un nuevo formulario, el cuál recibirá los cuatro datos requeridos.
-
-.. code-block::
-   
-   export class ContactoComponent implements OnInit {
-   contactanosForm= new FormGroup({
-    nombre: new FormControl(''),
-    email:new FormControl('', [/*Validators.email*/,Validators.pattern(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),
-    motivo: new FormControl(''),
-    mensaje: new FormControl(''),
-  },);
-    motivos=['Contratos', 'Proyectos', 'Cobranzas'];
-
-Hecho esta sección, nuestro formulario ya está listo para poder ser procesado por otros métodos para su envío & cumpliendo con el requerimiento, se crea un array Motivo para que podamos crear el dropdown en nuestro html con las 3 opciones entregadas por el cliente.
-Seguido de esto, encontraremos nuestro constructor, el cual inicializará como privado, el servicio de DataBaseService, el cual es el servicio creado para poder manejar los métodos necesarios para procesar información.
-
-.. code-block::
-   
-     guardar(){
-      const {nombre, email, motivo, mensaje} = this.contactanosForm.value;
-      const asunto:string = 'Nos ha contactado '+nombre+' desde Marvel-Project';
-      const cuerpo:string = '<table style="width: 900px; margin: auto; border: 1px solid black; table-layout: fixed;"><tr>      <th colspan="2" style="border-bottom: 1px solid black;border-collapse: collapse;">        Contacto desde Marvel-Project      </th>    </tr>    <tr>      <td style="border-right: 1px solid black; border-bottom: 1px solid black; border-collapse: collapse;  text-align: justify;">Nombre:</td>      <td style=" border-bottom: 1px solid black; border-collapse: collapse;  text-align: justify; word-wrap: break-word;">'+nombre+'</td>    </tr>    <tr>      <td style="border-right: 1px solid black; border-bottom: 1px solid black; border-collapse: collapse;  text-align: justify;">Correo electronico:</td>      <td style="border-bottom: 1px solid black; border-collapse: collapse;  text-align: justify; word-wrap: break-word;">'+email+'</td>    </tr>    <tr>      <td style="border-right: 1px solid black; border-bottom: 1px solid black; border-collapse: collapse;  text-align: justify;">Motivo:</td>      <td style="border-bottom: 1px solid black;  border-collapse: collapse;  text-align: justify; word-wrap: break-word;">'+motivo+'</td>    </tr>    <tr>      <td style="border-right: 1px solid black; border-collapse: collapse;  text-align: justify;">Mensaje:</td>      <td style="border-collapse: collapse;  text-align: justify; word-wrap: break-word;">'+mensaje+'</td>    </tr>  </table>';
-      var datos = new Contactanos();
-      datos.nombre = nombre;
-      datos.email = email;
-      datos.motivo = motivo;
-      datos.mensaje = mensaje;
-      this.db.crearContactanos(datos).then(r=>{
-        if (r){
-          Email.send({
-            Host: 'smtp.elasticemail.com',
-            Username: 'dev17@aiatic.com',
-            Password: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-            To: 'ceo@aiatic.com',
-            From: 'dev17@aiatic.com',
-            Subject: asunto,
-            Body: cuerpo
-          }).then(message =>{
-            alert('m'+ message);
-          });
-          console.log('si');
-        }else{
-          console.log('no');
+        if (this.contactForm.controls.email.hasError('ms')) {
+          return 'El email ya ha sido registrado';
         }
-      });
-    }
+        return this.contactForm.controls.email.hasError('pattern') ? 'Email no válido' : '';
+      }
+
+    En este pequeño método validamos que el dato ingresado en el campo e-mail, se efectivamente un email con su correspondiente formato.
 
 
 
+    .. code-block::
+      
+      oncreate(form){
+        //contraseña 215745566ED59E05A9845F9B348B9915395B
 
-El método guardar() es donde hacemos el llamado de nuestra API de elasticmail. En este método, observamos que se crean unas variables en donde almacenamos los datos de nuestro formulario previamente creado, seguido de la creación de una variable asunto, la cuál en el correo del CEO será tal cual la caja en dónde se especifíca el asunto del correo y el cuerpo, el cuál recibe dentro de la misma variable el estilo que este tendrá cuando el CEO reciba el correo. se crea la variable datos, la cual incializa un objeto de tipo "contactanos". Creamos una condicional para que una vez creado el formulario en la base de datos, se ejecute el envío del correo
- 
+        this.contactosService.crearContacto(this.contactForm.value).then(() => {
+
+          //toco importar en el archivo angular.json ln 34 y 99
+          //"scripts": ["src/assets/smtp.js"]    
+          //tomado de https://medium.com/javascript-in-plain-english/send-emails-without-a-server-side-code-with-angular-e227c3e62dbd     
+          Email.send({
+          Host : 'smtp.elasticemail.com',
+          Username : 'dev24@aiatic.com',
+          Password : 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+          To : 'ceo@aiatic.com',//ceo@aiatic.com
+          From : 'dev24@aiatic.com',
+          Subject : 'Dc Team Nuevo contacto',
+          Body : `
+                <h1> Nuevo registro de Contacto</h1>
+                <p></p>
+                <h3> Nombre: ${this.contactForm.controls.nombreCompleto.value}</h3>
+                <h3> Correo: ${this.contactForm.controls.email.value}</h3>
+                <h3> Motivo: ${this.contactForm.controls.motivo.value}</h3>
+                <h3> Mensaje</h3>
+                <p>${this.contactForm.controls.mensaje.value}</p> 
+          
+          `
+          }).then( message => {
+            alert(message); 
+          } );
+
+
+          this.contactForm.setValue({
+
+            nombreCompleto: '', 
+            email: '', 
+            motivo: '',
+            mensaje: ''
+      
+          });
+          
+        }, (error) => {
+          console.error(error);
+        }); 
+      }
+    El método onCreat(form) es donde hacemos el llamado de nuestra API de elasticmail. En este método, observamos que se crean unas variables en donde almacenamos los datos de nuestro formulario previamente creado, seguido de la creación de una variable asunto, la cuál en el correo del CEO será tal cual la caja en dónde se especifíca el asunto del correo y el cuerpo, el cuál recibe dentro de la misma variable Sel estilo que este tendrá cuando el CEO reciba el correo. se crea la variable datos, la cual incializa un objeto de tipo "contact". 
+    
+
+      
+
+
 
 
 

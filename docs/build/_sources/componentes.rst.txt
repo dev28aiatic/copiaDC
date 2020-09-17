@@ -27,7 +27,7 @@ Estructura
 
 #. Material
     Se tiene esta carpeta en donde se recolecta de una manera ordenada un modulo que llame todas los componentes que se requieran, en este
-    proyecto se utiliza para dar los estilos con Angular Material, se puede ver mas informacion de cada material usado en el proyecto en esta lista:.
+    proyecto se utiliza para dar los estilos con Angular Material, se puede ver mas informacion de cada material usado en el proyecto en esta lista:
 
     .. toctree::
        
@@ -54,7 +54,7 @@ Estructura
        auth
        contactoService
        APIREST
-       registroService
+       registrosService
        
        
 
