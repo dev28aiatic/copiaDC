@@ -89,16 +89,11 @@
 <li class="toctree-l2"><a class="reference internal" href="sidenav.html">Sidenav</a></li>
 <li class="toctree-l2"><a class="reference internal" href="home.html">Inicio</a></li>
 <li class="toctree-l2"><a class="reference internal" href="registro.html">Registro</a></li>
-<li class="toctree-l2"><a class="reference internal" href="login.html">Login</a></li>
+<li class="toctree-l2"><a class="reference internal" href="login.html">Iniciar sesión</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mi%20Perfil.html">Perfil</a></li>
 <li class="toctree-l2"><a class="reference internal" href="registros.html">Registros</a></li>
 <li class="toctree-l2"><a class="reference internal" href="video.html">Video</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Contacto</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#descripcion">.Descripción</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#importaciones">.Importaciones</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#desarrollos">.Desarrollos</a></li>
-</ul>
-</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Contacto</a></li>
 <li class="toctree-l2"><a class="reference internal" href="angularMaterial.html">Angular Material</a></li>
 <li class="toctree-l2"><a class="reference internal" href="usuarioModel.html">Modelo registros.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="auth.html">Servicio Auth</a></li>
@@ -176,13 +171,18 @@
             
   <div class="section" id="contacto">
 <h1>Contacto<a class="headerlink" href="#contacto" title="Enlazar permanentemente con este título">¶</a></h1>
-<div class="section" id="descripcion">
-<h2>.Descripción<a class="headerlink" href="#descripcion" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>En este módulo creamos el formulario y los métodos necesarios para enviar un correo de contacto entre un usuario interesado en los servicios de Marvel Project y su CEO, a través de un correo electrónico el CEO recibirá toda la información que será proporcionada por el usuario/visitante de la página.</p>
-</div>
-<div class="section" id="importaciones">
-<h2>.Importaciones<a class="headerlink" href="#importaciones" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>Importamos todas las librerías necesarias en nuestro componente de contacto, como lo son los Form y los validators, el primero se encargará de poder crear un formulario que nos permita trabajar con los datos otorgados por el usuario final, junto con el contact service que nos provee de todos los métodos para trabajar estos datos en nuestra base de datos</p>
+<img alt="_images/contacto.JPG" src="_images/contacto.JPG" />
+<p>Contacto en versión web</p>
+<img alt="_images/contactomovil.JPG" src="_images/contactomovil.JPG" />
+<p>Contactos en versión movil</p>
+<ul>
+<li><dl class="simple">
+<dt>Descripción</dt><dd><p>En este módulo creamos el formulario y los métodos necesarios para enviar un correo de contacto entre un usuario interesado en los servicios de Marvel Project y su CEO, a través de un correo electrónico el CEO recibirá toda la información que será proporcionada por el usuario/visitante de la página.</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Importaciones</dt><dd><p>Importamos todas las librerías necesarias en nuestro componente de contacto, como lo son los Form y los validators, el primero se encargará de poder crear un formulario que nos permita trabajar con los datos otorgados por el usuario final, junto con el contact service que nos provee de todos los métodos para trabajar estos datos en nuestra base de datos</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="p">{</span> <span class="n">Component</span><span class="p">,</span> <span class="n">OnInit</span> <span class="p">}</span> <span class="kn">from</span>    <span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
 <span class="kn">import</span> <span class="p">{</span> <span class="n">FormBuilder</span><span class="p">,</span> <span class="n">FormControl</span><span class="p">,</span> <span class="n">FormGroup</span><span class="p">,</span>   <span class="n">Validators</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/forms&#39;</span><span class="p">;</span>
 
@@ -192,60 +192,57 @@
 <span class="kn">import</span> <span class="s1">&#39;src/assets/smtp.js&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="desarrollos">
-<h2>.Desarrollos<a class="headerlink" href="#desarrollos" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Los archivos son generados automáticamente por el Angular CLI.
 La estructura HMTL del formulario y la página de contacto es la siguiente</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">card</span> <span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">card</span><span class="o">-</span><span class="n">content</span>  <span class="n">fxLayout</span><span class="o">=</span><span class="s2">&quot;column&quot;</span>  <span class="o">&gt;</span>
- <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">card</span><span class="o">-</span><span class="n">title</span><span class="o">&gt;</span><span class="n">Contacto</span><span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">card</span><span class="o">-</span><span class="n">title</span><span class="o">&gt;</span>
- <span class="o">&lt;</span><span class="n">br</span><span class="o">&gt;</span>
- <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Diligencia</span> <span class="n">el</span> <span class="n">siguiente</span> <span class="n">formulario</span> <span class="n">para</span> <span class="n">ponernos</span> <span class="n">en</span> <span class="n">contacto</span> <span class="n">contigo</span>
-   <span class="n">y</span> <span class="n">atender</span> <span class="n">tu</span> <span class="n">solicitud</span><span class="o">.</span>
- <span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">card</span><span class="o">-</span><span class="n">title</span><span class="o">&gt;</span><span class="n">Contacto</span><span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">card</span><span class="o">-</span><span class="n">title</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">br</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Diligencia</span> <span class="n">el</span> <span class="n">siguiente</span> <span class="n">formulario</span> <span class="n">para</span> <span class="n">ponernos</span> <span class="n">en</span> <span class="n">contacto</span> <span class="n">contigo</span>
+    <span class="n">y</span> <span class="n">atender</span> <span class="n">tu</span> <span class="n">solicitud</span><span class="o">.</span>
+  <span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 
- <span class="o">&lt;</span><span class="n">form</span> <span class="p">(</span><span class="n">ngSubmit</span><span class="p">)</span><span class="o">=</span><span class="s2">&quot;oncreate(contactForm.value)&quot;</span> <span class="p">[</span><span class="n">formGroup</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;contactForm&quot;</span> <span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">form</span> <span class="p">(</span><span class="n">ngSubmit</span><span class="p">)</span><span class="o">=</span><span class="s2">&quot;oncreate(contactForm.value)&quot;</span> <span class="p">[</span><span class="n">formGroup</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;contactForm&quot;</span> <span class="o">&gt;</span>
 
-   <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;contenedor&quot;</span>  <span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;contenedor&quot;</span>  <span class="o">&gt;</span>
 
-     <span class="o">&lt;</span><span class="n">label</span><span class="o">&gt;</span><span class="n">Nombre</span> <span class="n">Completo</span><span class="o">&lt;/</span><span class="n">label</span><span class="o">&gt;</span>
-     <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">field</span> <span class="n">appearance</span><span class="o">=</span><span class="s2">&quot;outline&quot;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">label</span><span class="o">&gt;</span><span class="n">Nombre</span> <span class="n">Completo</span><span class="o">&lt;/</span><span class="n">label</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">field</span> <span class="n">appearance</span><span class="o">=</span><span class="s2">&quot;outline&quot;</span><span class="o">&gt;</span>
 
-       <span class="o">&lt;</span><span class="nb">input</span> <span class="n">matInput</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="n">formControlName</span><span class="o">=</span><span class="s2">&quot;nombreCompleto&quot;</span> <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Pepito Perez&quot;</span><span class="o">&gt;</span>
-       <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">error</span> <span class="o">*</span><span class="n">ngIf</span><span class="o">=</span><span class="s2">&quot;contactForm.controls.nombreCompleto.invalid&quot;</span><span class="o">&gt;</span><span class="n">Ingrese</span> <span class="n">un</span> <span class="n">nombre</span><span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">error</span><span class="o">&gt;</span>
-     <span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">field</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nb">input</span> <span class="n">matInput</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="n">formControlName</span><span class="o">=</span><span class="s2">&quot;nombreCompleto&quot;</span> <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Pepito Perez&quot;</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">error</span> <span class="o">*</span><span class="n">ngIf</span><span class="o">=</span><span class="s2">&quot;contactForm.controls.nombreCompleto.invalid&quot;</span><span class="o">&gt;</span><span class="n">Ingrese</span> <span class="n">un</span> <span class="n">nombre</span><span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">error</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">field</span><span class="o">&gt;</span>
 
-     <span class="o">&lt;</span><span class="n">label</span><span class="o">&gt;</span><span class="n">Email</span><span class="o">&lt;/</span><span class="n">label</span><span class="o">&gt;</span>
-     <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">field</span> <span class="n">appearance</span><span class="o">=</span><span class="s2">&quot;outline&quot;</span><span class="o">&gt;</span>
-         <span class="o">&lt;</span><span class="nb">input</span> <span class="n">matInput</span> <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;example@example.com&quot;</span> <span class="n">formControlName</span><span class="o">=</span><span class="s2">&quot;email&quot;</span> <span class="n">required</span><span class="o">&gt;</span>
-         <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">error</span> <span class="o">*</span><span class="n">ngIf</span><span class="o">=</span><span class="s2">&quot;contactForm.controls.email.errors&quot;</span><span class="o">&gt;</span><span class="p">{{</span><span class="n">errorEmail</span><span class="p">()}}</span><span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">error</span><span class="o">&gt;</span>
-     <span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">field</span> <span class="o">&gt;</span>
-
-
-       <span class="o">&lt;</span><span class="n">label</span><span class="o">&gt;</span><span class="n">Motivo</span><span class="o">&lt;/</span><span class="n">label</span><span class="o">&gt;</span>
-       <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">field</span> <span class="n">appearance</span><span class="o">=</span><span class="s2">&quot;outline&quot;</span><span class="o">&gt;</span>
-
-       <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">select</span> <span class="n">formControlName</span><span class="o">=</span><span class="s2">&quot;motivo&quot;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Motivos&quot;</span> <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Escoja un motivo&quot;</span><span class="o">&gt;</span>
-         <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">option</span> <span class="o">*</span><span class="n">ngFor</span><span class="o">=</span><span class="s2">&quot;let mot of motivos&quot;</span> <span class="p">[</span><span class="n">value</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;mot.value&quot;</span> <span class="o">&gt;</span>
-           <span class="p">{{</span><span class="n">mot</span><span class="o">.</span><span class="n">value</span><span class="p">}}</span>
-         <span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">option</span><span class="o">&gt;</span>
-       <span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">select</span><span class="o">&gt;</span>
-
-       <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">error</span> <span class="o">*</span><span class="n">ngIf</span><span class="o">=</span><span class="s2">&quot;contactForm.controls.motivo.invalid&quot;</span><span class="o">&gt;</span><span class="n">Ingrese</span> <span class="n">una</span> <span class="n">motivo</span><span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">error</span><span class="o">&gt;</span>
-     <span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">field</span><span class="o">&gt;</span>
-
-     <span class="o">&lt;</span><span class="n">label</span><span class="o">&gt;</span><span class="n">Mensaje</span><span class="o">&lt;/</span><span class="n">label</span><span class="o">&gt;</span>
-     <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">field</span> <span class="n">appearance</span><span class="o">=</span><span class="s2">&quot;outline&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;mensaje&quot;</span><span class="o">&gt;</span>
-       <span class="o">&lt;</span><span class="n">textarea</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;tarea&quot;</span> <span class="n">matInput</span> <span class="c1">#message maxlength=&quot;500&quot; placeholder=&quot;Estoy interesado en...&quot;</span>
-         <span class="n">formControlName</span><span class="o">=</span><span class="s2">&quot;mensaje&quot;</span><span class="o">&gt;&lt;/</span><span class="n">textarea</span><span class="o">&gt;</span>
-       <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">hint</span> <span class="n">align</span><span class="o">=</span><span class="s2">&quot;end&quot;</span><span class="o">&gt;</span><span class="p">{{</span><span class="n">message</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">length</span><span class="p">}}</span> <span class="o">/</span> <span class="mi">500</span><span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">hint</span><span class="o">&gt;</span>
-       <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">error</span> <span class="o">*</span><span class="n">ngIf</span><span class="o">=</span><span class="s2">&quot;contactForm.controls.mensaje.invalid&quot;</span><span class="o">&gt;</span><span class="n">Ingrese</span> <span class="n">una</span> <span class="n">mensaje</span><span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">error</span><span class="o">&gt;</span>
-     <span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">field</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">label</span><span class="o">&gt;</span><span class="n">Email</span><span class="o">&lt;/</span><span class="n">label</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">field</span> <span class="n">appearance</span><span class="o">=</span><span class="s2">&quot;outline&quot;</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nb">input</span> <span class="n">matInput</span> <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;example@example.com&quot;</span> <span class="n">formControlName</span><span class="o">=</span><span class="s2">&quot;email&quot;</span> <span class="n">required</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">error</span> <span class="o">*</span><span class="n">ngIf</span><span class="o">=</span><span class="s2">&quot;contactForm.controls.email.errors&quot;</span><span class="o">&gt;</span><span class="p">{{</span><span class="n">errorEmail</span><span class="p">()}}</span><span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">error</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">field</span> <span class="o">&gt;</span>
 
 
+        <span class="o">&lt;</span><span class="n">label</span><span class="o">&gt;</span><span class="n">Motivo</span><span class="o">&lt;/</span><span class="n">label</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">field</span> <span class="n">appearance</span><span class="o">=</span><span class="s2">&quot;outline&quot;</span><span class="o">&gt;</span>
 
-         <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;contenedorBoton&quot;</span><span class="o">&gt;&lt;</span><span class="n">button</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span> <span class="n">mat</span><span class="o">-</span><span class="n">raised</span><span class="o">-</span><span class="n">button</span> <span class="p">[</span><span class="n">disabled</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;!contactForm.valid&quot;</span> <span class="o">&gt;</span><span class="n">Enviar</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">select</span> <span class="n">formControlName</span><span class="o">=</span><span class="s2">&quot;motivo&quot;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Motivos&quot;</span> <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Escoja un motivo&quot;</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">option</span> <span class="o">*</span><span class="n">ngFor</span><span class="o">=</span><span class="s2">&quot;let mot of motivos&quot;</span> <span class="p">[</span><span class="n">value</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;mot.value&quot;</span> <span class="o">&gt;</span>
+            <span class="p">{{</span><span class="n">mot</span><span class="o">.</span><span class="n">value</span><span class="p">}}</span>
+          <span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">option</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">select</span><span class="o">&gt;</span>
+
+        <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">error</span> <span class="o">*</span><span class="n">ngIf</span><span class="o">=</span><span class="s2">&quot;contactForm.controls.motivo.invalid&quot;</span><span class="o">&gt;</span><span class="n">Ingrese</span> <span class="n">una</span> <span class="n">motivo</span><span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">error</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">field</span><span class="o">&gt;</span>
+
+      <span class="o">&lt;</span><span class="n">label</span><span class="o">&gt;</span><span class="n">Mensaje</span><span class="o">&lt;/</span><span class="n">label</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">field</span> <span class="n">appearance</span><span class="o">=</span><span class="s2">&quot;outline&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;mensaje&quot;</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">textarea</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;tarea&quot;</span> <span class="n">matInput</span> <span class="c1">#message maxlength=&quot;500&quot; placeholder=&quot;Estoy interesado en...&quot;</span>
+          <span class="n">formControlName</span><span class="o">=</span><span class="s2">&quot;mensaje&quot;</span><span class="o">&gt;&lt;/</span><span class="n">textarea</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">hint</span> <span class="n">align</span><span class="o">=</span><span class="s2">&quot;end&quot;</span><span class="o">&gt;</span><span class="p">{{</span><span class="n">message</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">length</span><span class="p">}}</span> <span class="o">/</span> <span class="mi">500</span><span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">hint</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">error</span> <span class="o">*</span><span class="n">ngIf</span><span class="o">=</span><span class="s2">&quot;contactForm.controls.mensaje.invalid&quot;</span><span class="o">&gt;</span><span class="n">Ingrese</span> <span class="n">una</span> <span class="n">mensaje</span><span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">error</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">field</span><span class="o">&gt;</span>
+
+
+
+          <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;contenedorBoton&quot;</span><span class="o">&gt;&lt;</span><span class="n">button</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span> <span class="n">mat</span><span class="o">-</span><span class="n">raised</span><span class="o">-</span><span class="n">button</span> <span class="p">[</span><span class="n">disabled</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;!contactForm.valid&quot;</span> <span class="o">&gt;</span><span class="n">Enviar</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
 
       <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
     <span class="o">&lt;/</span><span class="n">form</span><span class="o">&gt;</span>
@@ -256,21 +253,21 @@ La estructura HMTL del formulario y la página de contacto es la siguiente</p>
 <p>Como se puede observar en el código HTML, hacemos la creación de la tabla, con sus respectivos Inputs, su dropdown y la sección de mensaje, junto con las condicionales requeridas para el funcionamiento del correo; y por último el botón de enviar que estará inhabilitado a menos de que todos los campos estén debidamente diligenciados.</p>
 <p>A continuación se van a diligenciar todas las reglas de css que le dan estilo a nuestro fomulario:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>mat-card {
- max-width:80%;
- text-align: center;
- margin:auto;
- margin-top: 5%;
- margin-bottom: 5%;
- background-color:#f5e8d3;}
+  max-width:80%;
+  text-align: center;
+  margin:auto;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  background-color:#f5e8d3;}
 
 mat-card-title{
- width: 100%;
- font-size: 30px;
- text-align: center;}
+  width: 100%;
+  font-size: 30px;
+  text-align: center;}
 mat-card-content{
   width: 100%;}
 .contenedor{
- //background-color: #eb791c;
+  //background-color: #eb791c;
   margin: auto;
   margin-top: 20px;
   width: 80%;}
@@ -286,81 +283,81 @@ mat-form-field{
 
 
 label{
-     font-size: 20px;
-     text-align: center;
-     display: block;
-     width: 100%;}
+font-size: 20px;
+  text-align: center;
+  display: block;
+width: 100%;}
 
 
- button{
-     align-content: center;
-     background-color: orangered;
-     width: 100%;}
+  button{
+align-content: center;
+background-color: orangered;
+width: 100%;}
 button:hover{
-     background-color: grey;}
+background-color: grey;}
 .contenedorBoton{
-     margin:auto;
-     margin-top: 10%;
-     width: 80%;
+margin:auto;
+margin-top: 10%;
+width: 80%;
 //background-color: green;}
 
 
 Input:Focus {
-     color:black;
-     font-size: 18px;}
+  color:black;
+font-size: 18px;}
 .mensaje{
-     width: 80%;
-     height: 260px;
-     //background-color: #12e412d0;}
+  width: 80%;
+  height: 260px;
+  //background-color: #12e412d0;}
 .tarea{
 
-      height: 200px;
-     //background-color: #5112e4d0;  }
+height: 200px;
+  //background-color: #5112e4d0;  }
 
 
-     //input outline color por defecto
-     ::ng-deep .mat-form-field-appearance-   outline .mat-form-field-outline {
-     color: gray!important;
-     //opacity: 1!important;
-     }
+//input outline color por defecto
+::ng-deep .mat-form-field-appearance-     outline .mat-form-field-outline {
+color: gray!important;
+//opacity: 1!important;
+}
 
-     //mat-input focused color cunado se activa
-     ::ng-deep .mat-form-field-appearance-   outline.mat-focused .mat-form-field-    outline-thick {
-     color: #eb791c!important;
-     }
+//mat-input focused color cunado se activa
+::ng-deep .mat-form-field-appearance-     outline.mat-focused .mat-form-field-    outline-thick {
+color: #eb791c!important;
+}
 
-     // mat-input error outline color caundo hay error
-     ::ng-deep .mat-form-field-appearance-   outline.mat-form-field-invalid.mat-form-        field-invalid .mat-form-field-outline-  thick{
-     color: #ff4e36!important;
-     opacity: 0.8!important;
-     }
+// mat-input error outline color caundo hay error
+::ng-deep .mat-form-field-appearance-     outline.mat-form-field-invalid.mat-form-        field-invalid .mat-form-field-outline-  thick{
+color: #ff4e36!important;
+opacity: 0.8!important;
+}
 
 
-     // mat-input carent color para alertas
-     ::ng-deep .mat-input-element {
-     caret-color: orange!important;
-     }
+// mat-input carent color para alertas
+::ng-deep .mat-input-element {
+caret-color: orange!important;
+}
 
-     // mat-input error carent color
-     ::ng-deep .mat-form-field-invalid .mat-input-   element, .mat-warn .mat-input-element {
-     caret-color: blue!important;
-     }
+// mat-input error carent color
+::ng-deep .mat-form-field-invalid .mat-input-     element, .mat-warn .mat-input-element {
+caret-color: blue!important;
+}
 
-     // mat-label normal state style color de los label en reposo
-     ::ng-deep .mat-form-field-label {
-     color: gray!important;
-     // color: $mainColor!important;
-     }
+// mat-label normal state style color de los label en reposo
+::ng-deep .mat-form-field-label {
+color: gray!important;
+// color: $mainColor!important;
+}
 
-     // mat-label focused style color del label al minimizarse
-     ::ng-deep .mat-form-field.mat-focused   .mat-form-field-label {
-     color: black!important;
-     }
+// mat-label focused style color del label al minimizarse
+::ng-deep .mat-form-field.mat-focused     .mat-form-field-label {
+color: black!important;
+}
 
-     // mat-label error style color cuando el campo es imvalido
-     ::ng-deep .mat-form-field.mat-form-field-       invalid .mat-form-field-label {
-     color: red!important;
-     }
+// mat-label error style color cuando el campo es imvalido
+::ng-deep .mat-form-field.mat-form-field- invalid .mat-form-field-label {
+color: red!important;
+}
 </pre></div>
 </div>
 <p>Se definen todas las reglas para nuestro formulario tanto en versión web como en versión responsiva.</p>
@@ -417,7 +414,7 @@ Input:Focus {
 </pre></div>
 </div>
 <p>Este primero método de get registros, será que el que nos permite obtener los datos de contactos y poderlos almacenar dentro de un documento en firebase</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> errorEmail() {
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>errorEmail() {
   if (this.contactForm.controls.email.hasError(&#39;required&#39;)) {
     return &#39;Debe ingresar un email&#39;;
   }
@@ -429,7 +426,7 @@ Input:Focus {
 </pre></div>
 </div>
 <p>En este pequeño método validamos que el dato ingresado en el campo e-mail, se efectivamente un email con su correspondiente formato.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> oncreate(form){
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>oncreate(form){
   //contraseña 215745566ED59E05A9845F9B348B9915395B
 
   this.contactosService.crearContacto(this.contactForm.value).then(() =&gt; {
@@ -456,7 +453,7 @@ Input:Focus {
     `
     }).then( message =&gt; {
       alert(message);
-     } );
+    } );
 
 
     this.contactForm.setValue({
@@ -475,7 +472,10 @@ Input:Focus {
 </pre></div>
 </div>
 <p>El método onCreat(form) es donde hacemos el llamado de nuestra API de elasticmail. En este método, observamos que se crean unas variables en donde almacenamos los datos de nuestro formulario previamente creado, seguido de la creación de una variable asunto, la cuál en el correo del CEO será tal cual la caja en dónde se especifíca el asunto del correo y el cuerpo, el cuál recibe dentro de la misma variable Sel estilo que este tendrá cuando el CEO reciba el correo. se crea la variable datos, la cual incializa un objeto de tipo «contact».</p>
-</div>
+</dd>
+</dl>
+</li>
+</ul>
 </div>
 
 

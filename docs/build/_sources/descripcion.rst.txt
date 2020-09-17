@@ -1,6 +1,6 @@
 Descripción
 ***************************
-..Este es la documentación de un proyecto realizado en angular 10.
+.. Este es la documentación de un proyecto realizado en angular 10.
 
 El proyecto es desarrollado con el fin de poner en práctica los conocimientos
 adquiridos en el transcurso de la carrera de Ingeniería de Sistemas en la UNAB.

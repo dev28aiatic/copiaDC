@@ -89,15 +89,10 @@
 <li class="toctree-l2"><a class="reference internal" href="sidenav.html">Sidenav</a></li>
 <li class="toctree-l2"><a class="reference internal" href="home.html">Inicio</a></li>
 <li class="toctree-l2"><a class="reference internal" href="registro.html">Registro</a></li>
-<li class="toctree-l2"><a class="reference internal" href="login.html">Login</a></li>
+<li class="toctree-l2"><a class="reference internal" href="login.html">Iniciar sesión</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mi%20Perfil.html">Perfil</a></li>
 <li class="toctree-l2"><a class="reference internal" href="registros.html">Registros</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Video</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#descripcion">.Descripción</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#importaciones">.Importaciones</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#desarrollo">.Desarrollo</a></li>
-</ul>
-</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Video</a></li>
 <li class="toctree-l2"><a class="reference internal" href="contacto.html">Contacto</a></li>
 <li class="toctree-l2"><a class="reference internal" href="angularMaterial.html">Angular Material</a></li>
 <li class="toctree-l2"><a class="reference internal" href="usuarioModel.html">Modelo registros.</a></li>
@@ -176,50 +171,70 @@
             
   <div class="section" id="video">
 <h1>Video<a class="headerlink" href="#video" title="Enlazar permanentemente con este título">¶</a></h1>
-<div class="section" id="descripcion">
-<h2>.Descripción<a class="headerlink" href="#descripcion" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>En esta sección se explicará como embeber un vídeo en nuestro aplicativo web usando html/css</p>
-</div>
-<div class="section" id="importaciones">
-<h2>.Importaciones<a class="headerlink" href="#importaciones" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>No se realizan exportaciones para poder embeber el vídeo</p>
-</div>
-<div class="section" id="desarrollo">
-<h2>.Desarrollo<a class="headerlink" href="#desarrollo" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>El HTML/CSS es compuesto po un contenedor que utiliza el fxFlex para mejorar la parte de responsividad y se utiliza iFrame para embeber el vídeo de nuestro gusto</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;div class=&quot;content&quot; fxLayout=&quot;row wrap&quot; fxLayoutGap=&quot;16px grid&quot; fxLayoutAlign=&quot;center center&quot;&gt;
- &lt;div fxFlex=&quot;30%&quot; fxFlex.xs=&quot;100%&quot; fxFlex.sm=&quot;33%&quot;&gt;
-     &lt;h2&gt;Bienvenidos somos el equipo DC&lt;/h2&gt;
-     &lt;div class=&quot;videoWrapper&quot;&gt;
-         &lt;!-- Copy &amp; Pasted from YouTube --&gt;
-         &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/y_m7VsA73Y0&quot; frameborder=&quot;0&quot;
-         allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen&gt;&lt;/iframe&gt;
-     &lt;/div&gt;
+<img alt="_images/video.JPG" src="_images/video.JPG" />
+<p>Pagina Video</p>
+<ul>
+<li><dl class="simple">
+<dt>Descripción</dt><dd><p>En esta sección se explicará como embeber un vídeo en nuestro aplicativo web usando html/css</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Importaciones</dt><dd><p>No se realizan exportaciones para poder embeber el vídeo</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Desarrollo</dt><dd><p>El HTML/CSS es compuesto po un contenedor que utiliza el fxFlex para mejorar la parte de responsividad y se utiliza iFrame para embeber el vídeo de nuestro gusto
+.. code-block:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> &lt;div class=&quot;content&quot; fxLayout=&quot;row wrap&quot; fxLayoutGap=&quot;16px grid&quot; fxLayoutAlign=&quot;center center&quot;&gt;
+    &lt;div fxFlex=&quot;30%&quot; fxFlex.xs=&quot;100%&quot; fxFlex.sm=&quot;33%&quot;&gt;
+        &lt;h2&gt;Bienvenidos somos el equipo DC&lt;/h2&gt;
+        &lt;div class=&quot;videoWrapper&quot;&gt;
+            &lt;!-- Copy &amp; Pasted from YouTube --&gt;
+            &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/y_m7VsA73Y0&quot; frameborder=&quot;0&quot;
+            allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen&gt;&lt;/iframe&gt;
+        &lt;/div&gt;
 
-   &lt;/div&gt;
- &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+Estas serían las reglas de nuestro CSS las cuales posicionan el video que hemos embebido, le entregamos posiciones y tamaños junto con el padding y su respectivo alineamiento de contenido
+
+.. code-block::
+
+  .videoWrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    }
+  .videoWrapper iframe {
+    position: absolute;
+    padding: 16px;
+    top: 0;
+    left: 0;
+    width: 70%;
+    height: 70%;
+    align-content: center;
+    }
+
+
+dentro de nuestro video.component, creamos una variable que será un tag, el cual nos permitirá crear un elemento, este tag se le entregará la url del api de youtube que es esencial para el funcionamiento del vídeo
+
+.. code-block::
+    ngOnInit(): void {
+
+    const tag = document.createElement(&#39;script&#39;);
+    tag.src = &quot;https://www.youtube.com/iframe_api&quot;;
+    document.body.appendChild(tag);
+    }
 </pre></div>
 </div>
-<p>Estas serían las reglas de nuestro CSS las cuales posicionan el video que hemos embebido, le entregamos posiciones y tamaños junto con el padding y su respectivo alineamiento de contenido</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">videoWrapper</span> <span class="p">{</span>
-  <span class="n">position</span><span class="p">:</span> <span class="n">relative</span><span class="p">;</span>
-  <span class="n">padding</span><span class="o">-</span><span class="n">bottom</span><span class="p">:</span> <span class="mf">56.25</span><span class="o">%</span><span class="p">;</span> <span class="o">/*</span> <span class="mi">16</span><span class="p">:</span><span class="mi">9</span> <span class="o">*/</span>
-  <span class="n">padding</span><span class="o">-</span><span class="n">top</span><span class="p">:</span> <span class="mi">25</span><span class="n">px</span><span class="p">;</span>
-  <span class="n">height</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="o">.</span><span class="n">videoWrapper</span> <span class="n">iframe</span> <span class="p">{</span>
-  <span class="n">position</span><span class="p">:</span> <span class="n">absolute</span><span class="p">;</span>
-  <span class="n">padding</span><span class="p">:</span> <span class="mi">16</span><span class="n">px</span><span class="p">;</span>
-  <span class="n">top</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="n">left</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="n">width</span><span class="p">:</span> <span class="mi">70</span><span class="o">%</span><span class="p">;</span>
-  <span class="n">height</span><span class="p">:</span> <span class="mi">70</span><span class="o">%</span><span class="p">;</span>
-  <span class="n">align</span><span class="o">-</span><span class="n">content</span><span class="p">:</span> <span class="n">center</span><span class="p">;</span>
- <span class="p">}</span>
-</pre></div>
-</div>
-<p>dentro de nuestro video.component, creamos una variable que será un tag, el cual nos permitirá crear un elemento, este tag se le entregará la url del api de youtube que es esencial para el funcionamiento del vídeo</p>
-</div>
+</dd>
+</dl>
+</li>
+</ul>
 </div>
 
 
