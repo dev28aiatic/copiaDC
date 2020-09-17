@@ -1,0 +1,322 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Servicio Contacto &mdash; documentación de Mafaldos - 0.0.1</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Servicio Municipios" href="APIREST.html" />
+    <link rel="prev" title="Servicio Auth" href="auth.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Mafaldos
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="descripcion.html">Descripción</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="componentes.html">Estructura</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="sidenav.html">Sidenav</a></li>
+<li class="toctree-l2"><a class="reference internal" href="home.html">Inicio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="registro.html">Registro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="login.html">Login</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mi%20Perfil.html">Perfil</a></li>
+<li class="toctree-l2"><a class="reference internal" href="registros.html">Registros</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video.html">Video</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contacto.html">Contacto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="angularMaterial.html">Angular Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usuarioModel.html">Modelo registros.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html">Servicio Auth</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Servicio Contacto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="APIREST.html">Servicio Municipios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="registrosService.html">Servicio Registros</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Mafaldos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="componentes.html">Estructura</a> &raquo;</li>
+        
+      <li>Servicio Contacto</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/contactoService.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="servicio-contacto">
+<h1>Servicio Contacto<a class="headerlink" href="#servicio-contacto" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Este servicio es invocado para poder hacer modificaciones en la base de datos, en la colección de los contactos, en la
+que se encuentra la información de los mensajes enviados para contactar al servicio de la pagina, permitiendo
+diferentes acciones como, crear, modificar, obtener, obtener todos, entre otros.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="p">{</span> <span class="n">Injectable</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+
+<span class="o">//</span><span class="n">importaciones</span> <span class="n">para</span> <span class="n">gestionar</span> <span class="n">el</span> <span class="n">servicio</span> <span class="n">a</span> <span class="n">la</span> <span class="n">BD</span>
+<span class="n">import</span><span class="p">{</span><span class="n">AngularFirestore</span><span class="p">,</span> <span class="n">AngularFirestoreCollection</span><span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/fire/firestore&#39;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="p">{</span> <span class="n">Observable</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;rxjs&#39;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="p">{</span> <span class="nb">map</span><span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;rxjs/operators&#39;</span><span class="p">;</span>
+
+
+
+<span class="o">//</span><span class="n">importamos</span> <span class="n">la</span> <span class="n">interface</span>
+<span class="kn">import</span> <span class="p">{</span><span class="n">ContactosI</span><span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;src/app/models/registros.interface&#39;</span><span class="p">;</span>
+
+<span class="o">//</span><span class="n">ID</span> <span class="n">para</span> <span class="n">la</span> <span class="n">interface</span>
+<span class="n">export</span> <span class="n">interface</span> <span class="n">ContactosID</span> <span class="n">extends</span> <span class="n">ContactosI</span><span class="p">{</span><span class="nb">id</span><span class="p">:</span><span class="n">string</span><span class="p">;}</span>
+
+<span class="nd">@Injectable</span><span class="p">({</span>
+<span class="n">providedIn</span><span class="p">:</span> <span class="s1">&#39;root&#39;</span>
+<span class="p">})</span>
+<span class="n">export</span> <span class="k">class</span> <span class="nc">ContactosService</span> <span class="p">{</span>
+
+<span class="o">//</span><span class="n">Crear</span> <span class="n">propiedad</span>
+<span class="n">private</span> <span class="n">contactosCollection</span><span class="p">:</span> <span class="n">AngularFirestoreCollection</span><span class="o">&lt;</span><span class="n">ContactosI</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="o">//</span><span class="n">propiedad</span> <span class="n">para</span> <span class="n">guardar</span> <span class="n">todos</span> <span class="n">los</span> <span class="n">usuarios</span>
+<span class="n">contactos</span><span class="p">:</span> <span class="n">Observable</span><span class="o">&lt;</span><span class="n">ContactosID</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="o">//</span><span class="n">inyectamos</span> <span class="n">el</span> <span class="n">servicio</span> <span class="n">a</span> <span class="n">la</span> <span class="n">bd</span>
+<span class="n">constructor</span><span class="p">(</span><span class="n">private</span> <span class="n">readonly</span> <span class="n">firestore</span><span class="p">:</span><span class="n">AngularFirestore</span><span class="p">)</span> <span class="p">{</span>
+
+
+    <span class="o">//</span><span class="n">nombre</span> <span class="n">de</span> <span class="n">la</span> <span class="n">coleccion</span> <span class="n">va</span> <span class="n">en</span> <span class="n">parentesis</span>
+    <span class="n">this</span><span class="o">.</span><span class="n">contactosCollection</span> <span class="o">=</span> <span class="n">firestore</span><span class="o">.</span><span class="n">collection</span><span class="o">&lt;</span><span class="n">ContactosI</span><span class="o">&gt;</span><span class="p">(</span><span class="s1">&#39;contactos&#39;</span><span class="p">);</span>
+    <span class="n">this</span><span class="o">.</span><span class="n">contactos</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">contactosCollection</span><span class="o">.</span><span class="n">snapshotChanges</span><span class="p">()</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span>
+    <span class="nb">map</span><span class="p">(</span><span class="n">actions</span> <span class="o">=&gt;</span> <span class="n">actions</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">a</span> <span class="o">=&gt;</span><span class="p">{</span>
+        <span class="n">const</span> <span class="n">data</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">data</span><span class="p">()</span> <span class="k">as</span> <span class="n">ContactosI</span><span class="p">;</span>
+        <span class="n">const</span> <span class="nb">id</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">id</span><span class="p">;</span>
+        <span class="k">return</span><span class="p">{</span> <span class="nb">id</span><span class="p">,</span> <span class="o">...</span><span class="n">data</span><span class="p">};</span>
+    <span class="p">}))</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+
+
+
+<span class="n">getAllUser</span><span class="p">(){</span>
+    <span class="o">//</span><span class="k">return</span> <span class="n">todos</span> <span class="n">los</span> <span class="n">contactos</span>
+    <span class="k">return</span> <span class="n">this</span><span class="o">.</span><span class="n">contactos</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="o">//--------------------------------------------</span>
+<span class="o">//</span> <span class="n">conecion</span> <span class="n">y</span> <span class="n">manejo</span> <span class="n">de</span> <span class="n">base</span> <span class="n">de</span> <span class="n">datos</span> <span class="n">tomado</span> <span class="n">de</span><span class="p">:</span>
+<span class="o">//</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">medium</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">angular</span><span class="o">-</span><span class="n">chile</span><span class="o">/</span><span class="n">angular</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">y</span><span class="o">-</span><span class="n">firestore</span><span class="o">-</span><span class="n">b7f270adcc96</span>
+<span class="o">//--------------------------------------------</span>
+<span class="o">//</span><span class="n">metodos</span>
+
+<span class="o">//</span><span class="n">Recibe</span> <span class="n">un</span> <span class="n">objeto</span> <span class="n">de</span> <span class="n">la</span> <span class="n">interface</span>
+<span class="n">crearContacto</span><span class="p">(</span><span class="n">contacto</span><span class="p">:</span> <span class="n">ContactosI</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">this</span><span class="o">.</span><span class="n">firestore</span><span class="o">.</span><span class="n">collection</span><span class="p">(</span><span class="s1">&#39;contactos&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">contacto</span><span class="p">);</span>
+
+<span class="p">}</span>
+
+
+
+<span class="o">//</span><span class="n">Recibe</span> <span class="n">el</span> <span class="nb">id</span> <span class="n">para</span> <span class="n">un</span> <span class="n">obtener</span> <span class="n">un</span> <span class="n">unico</span> <span class="n">contacto</span>
+<span class="n">getContacto</span><span class="p">(</span><span class="n">contactoId</span><span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">this</span><span class="o">.</span><span class="n">firestore</span><span class="o">.</span><span class="n">collection</span><span class="p">(</span><span class="s1">&#39;contactos&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">doc</span><span class="p">(</span><span class="n">contactoId</span><span class="p">)</span><span class="o">.</span><span class="n">snapshotChanges</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="o">//</span><span class="n">obtiene</span> <span class="n">todos</span> <span class="n">los</span> <span class="n">contactos</span>
+<span class="n">getContactos</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">this</span><span class="o">.</span><span class="n">firestore</span><span class="o">.</span><span class="n">collection</span><span class="p">(</span><span class="s1">&#39;contactos&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">snapshotChanges</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="o">//</span><span class="n">actualiza</span> <span class="n">un</span> <span class="n">contactos</span>
+<span class="n">public</span> <span class="n">updateContacto</span><span class="p">(</span><span class="n">documentId</span><span class="p">:</span> <span class="n">string</span><span class="p">,</span> <span class="n">contacto</span><span class="p">:</span> <span class="n">ContactosI</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">this</span><span class="o">.</span><span class="n">firestore</span><span class="o">.</span><span class="n">collection</span><span class="p">(</span><span class="s1">&#39;contactos&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">doc</span><span class="p">(</span><span class="n">documentId</span><span class="p">)</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">contacto</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="o">//</span><span class="n">elimina</span> <span class="n">un</span> <span class="n">contacto</span>
+<span class="n">eliminarContacto</span><span class="p">(</span><span class="n">contactoID</span><span class="p">:</span> <span class="n">string</span><span class="p">){</span>
+
+    <span class="k">return</span> <span class="n">this</span><span class="o">.</span><span class="n">firestore</span><span class="o">.</span><span class="n">doc</span><span class="p">(</span><span class="s1">&#39;contactos/&#39;</span> <span class="o">+</span> <span class="n">contactoID</span><span class="p">)</span><span class="o">.</span><span class="n">delete</span><span class="p">();;</span>
+<span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="APIREST.html" class="btn btn-neutral float-right" title="Servicio Municipios" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="auth.html" class="btn btn-neutral float-left" title="Servicio Auth" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Karen Gómez, Ronal Landazabal, Carlos Gonzalez, Yeison Rey
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

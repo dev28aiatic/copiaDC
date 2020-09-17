@@ -37,7 +37,7 @@
     
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Búsqueda" href="search.html" />
-    <link rel="next" title="Modelo registros." href="usuarioModel.html" />
+    <link rel="next" title="Angular Material" href="angularMaterial.html" />
     <link rel="prev" title="Video" href="video.html" /> 
 </head>
 
@@ -93,10 +93,18 @@
 <li class="toctree-l2"><a class="reference internal" href="mi%20Perfil.html">Perfil</a></li>
 <li class="toctree-l2"><a class="reference internal" href="registros.html">Registros</a></li>
 <li class="toctree-l2"><a class="reference internal" href="video.html">Video</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Contacto</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Contacto</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#descripcion">.Descripción</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#importaciones">.Importaciones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#desarrollos">.Desarrollos</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="angularMaterial.html">Angular Material</a></li>
 <li class="toctree-l2"><a class="reference internal" href="usuarioModel.html">Modelo registros.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="auth.html">Servicio Auth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contactoService.html">Servicio Contacto</a></li>
 <li class="toctree-l2"><a class="reference internal" href="APIREST.html">Servicio Municipios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="registrosService.html">Servicio Registros</a></li>
 </ul>
 </li>
 </ul>
@@ -168,319 +176,306 @@
             
   <div class="section" id="contacto">
 <h1>Contacto<a class="headerlink" href="#contacto" title="Enlazar permanentemente con este título">¶</a></h1>
-<p>En este módulo creamos el formulario y los métodos necesarios para enviar un correo de contacto entre un usuario interesado en los servicios de Marvel Project y su CEO, a través de un correo electrónico el CEO recibirá toda la información que será proporcionada por el usuario/visitante de la página.
-La estructura del Modulo es la siguiente:</p>
-<img alt="../images/ContactoDoc01.png" src="../images/ContactoDoc01.png" />
-<p>Dentro de estos archivos, el routing module &amp; contacto.spec.ts no son modificados y son generados automáticamente por el Angular CLI.
+<div class="section" id="descripcion">
+<h2>.Descripción<a class="headerlink" href="#descripcion" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>En este módulo creamos el formulario y los métodos necesarios para enviar un correo de contacto entre un usuario interesado en los servicios de Marvel Project y su CEO, a través de un correo electrónico el CEO recibirá toda la información que será proporcionada por el usuario/visitante de la página.</p>
+</div>
+<div class="section" id="importaciones">
+<h2>.Importaciones<a class="headerlink" href="#importaciones" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Importamos todas las librerías necesarias en nuestro componente de contacto, como lo son los Form y los validators, el primero se encargará de poder crear un formulario que nos permita trabajar con los datos otorgados por el usuario final, junto con el contact service que nos provee de todos los métodos para trabajar estos datos en nuestra base de datos</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="p">{</span> <span class="n">Component</span><span class="p">,</span> <span class="n">OnInit</span> <span class="p">}</span> <span class="kn">from</span>    <span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="p">{</span> <span class="n">FormBuilder</span><span class="p">,</span> <span class="n">FormControl</span><span class="p">,</span> <span class="n">FormGroup</span><span class="p">,</span>   <span class="n">Validators</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/forms&#39;</span><span class="p">;</span>
+
+<span class="o">//</span> <span class="n">servicio</span> <span class="n">para</span> <span class="n">el</span> <span class="n">manejo</span> <span class="n">de</span> <span class="n">la</span> <span class="n">bd</span> <span class="n">de</span>    <span class="n">contactos</span>
+<span class="kn">import</span> <span class="p">{</span><span class="n">ContactosService</span><span class="p">}</span> <span class="kn">from</span>    <span class="s1">&#39;src/app/services/contactos.service&#39;</span>
+<span class="o">//</span> <span class="n">para</span> <span class="n">el</span> <span class="n">manejo</span> <span class="n">de</span> <span class="n">enviar</span> <span class="n">email</span> <span class="k">del</span> <span class="n">nuevo</span>    <span class="n">contacto</span>
+<span class="kn">import</span> <span class="s1">&#39;src/assets/smtp.js&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="desarrollos">
+<h2>.Desarrollos<a class="headerlink" href="#desarrollos" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Los archivos son generados automáticamente por el Angular CLI.
 La estructura HMTL del formulario y la página de contacto es la siguiente</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;div class=&quot;container&quot;&gt;
-&lt;div class=&quot;column&quot;&gt;
-&lt;form
-   [formGroup]=&quot;contactanosForm&quot;
-   (ngSubmit)=&quot;guardar()&quot;
-   method=&quot;POST&quot;
-   class=&quot;formxD&quot;&gt;
-   &lt;p&gt;
-     &lt;mat-form-field
-       appearance=&quot;outline&quot;
-       style=&quot;text-align: center&quot;
-       class=&quot;formItem&quot;&gt;
-       &lt;label class=&quot;label&quot;&gt;Nombre&lt;/label&gt;
-       &lt;input
-         formControlName=&quot;nombre&quot;
-         type=&quot;text&quot;
-         matInput
-         placeholder=&quot;Tu nombre completo&quot;
-         required
-       /&gt;
-     &lt;/mat-form-field&gt;
-   &lt;/p&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">card</span> <span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">card</span><span class="o">-</span><span class="n">content</span>  <span class="n">fxLayout</span><span class="o">=</span><span class="s2">&quot;column&quot;</span>  <span class="o">&gt;</span>
+ <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">card</span><span class="o">-</span><span class="n">title</span><span class="o">&gt;</span><span class="n">Contacto</span><span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">card</span><span class="o">-</span><span class="n">title</span><span class="o">&gt;</span>
+ <span class="o">&lt;</span><span class="n">br</span><span class="o">&gt;</span>
+ <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Diligencia</span> <span class="n">el</span> <span class="n">siguiente</span> <span class="n">formulario</span> <span class="n">para</span> <span class="n">ponernos</span> <span class="n">en</span> <span class="n">contacto</span> <span class="n">contigo</span>
+   <span class="n">y</span> <span class="n">atender</span> <span class="n">tu</span> <span class="n">solicitud</span><span class="o">.</span>
+ <span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 
-   &lt;p&gt;
-     &lt;mat-form-field
-       appearance=&quot;outline&quot;
-       style=&quot;text-align: center&quot;
-       class=&quot;formItem&quot;
-     &gt;
-       &lt;label class=&quot;label&quot;&gt;Correo electronico&lt;/label&gt;
-       &lt;input
-         formControlName=&quot;email&quot;
-         type=&quot;text&quot;
-         matInput
-         placeholder=&quot;Tu correo electronico&quot;
-         required
-         (change)=&quot;change()&quot;
-       /&gt;
-       &lt;mat-error
-         *ngIf=&quot;
-           contactanosForm.get(&#39;email&#39;).hasError(&#39;pattern&#39;) &amp;&amp;
-           !contactanosForm.get(&#39;email&#39;).hasError(&#39;required&#39;)
-         &quot;
-       &gt;
-         Por favor digita un correo electronico valido
-       &lt;/mat-error&gt;
-       &lt;mat-error *ngIf=&quot;contactanosForm.get(&#39;email&#39;).hasError(&#39;required&#39;)&quot;&gt;
-         El email es &lt;strong&gt;requerido&lt;/strong&gt;
-       &lt;/mat-error&gt;
-     &lt;/mat-form-field&gt;
-   &lt;/p&gt;
-   &lt;p&gt;
-     &lt;mat-form-field
-       appearance=&quot;outline&quot;
-       class=&quot;formItem&quot;
-       style=&quot;text-align: center&quot;
-     &gt;
-       &lt;mat-label class=&quot;titulo&quot;&gt;Motivo&lt;/mat-label&gt;
-       &lt;br /&gt;
-       &lt;mat-form-field style=&quot;text-align: center; width: 90%&quot;&gt;
-         &lt;mat-label&gt;Tu motivo&lt;/mat-label&gt;
-         &lt;mat-select formControlName=&quot;motivo&quot; matInput required&gt;
-           &lt;mat-option [disabled]=&quot;true&quot;&gt;Seleccionar&lt;/mat-option&gt;
-           &lt;mat-option *ngFor=&quot;let motivo of motivos&quot; [value]=&quot;motivo&quot;&gt;{{
-             motivo
-           }}&lt;/mat-option&gt;
-         &lt;/mat-select&gt;
-         &lt;mat-hint&gt;&lt;/mat-hint&gt;
-       &lt;/mat-form-field&gt;
-     &lt;/mat-form-field&gt;
-   &lt;/p&gt;
-   &lt;br /&gt;
-   &lt;br /&gt;
-   &lt;p&gt;
-     &lt;mat-form-field
-       appearance=&quot;outline&quot;
-       style=&quot;text-align: center&quot;
-       class=&quot;formItem&quot;
-     &gt;
-       &lt;mat-label class=&quot;titulo&quot;&gt;Mensaje&lt;/mat-label&gt;
-       &lt;mat-form-field style=&quot;width: 90%&quot;&gt;
-         &lt;mat-label&gt;Tu mensaje&lt;/mat-label&gt;
-         &lt;textarea
-           name=&quot;mensaje&quot;
-           class=&quot;textDesc&quot;
-           formControlName=&quot;mensaje&quot;
-           matInput
-           placeholder=&quot;Tu mensaje&quot;
-           required
-         &gt;
-         &lt;/textarea&gt;
-       &lt;/mat-form-field&gt;
-     &lt;/mat-form-field&gt;
-   &lt;/p&gt;
+ <span class="o">&lt;</span><span class="n">form</span> <span class="p">(</span><span class="n">ngSubmit</span><span class="p">)</span><span class="o">=</span><span class="s2">&quot;oncreate(contactForm.value)&quot;</span> <span class="p">[</span><span class="n">formGroup</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;contactForm&quot;</span> <span class="o">&gt;</span>
 
-   &lt;div class=&quot;btnRegister&quot;&gt;
-     &lt;button
-       mat-button
-       class=&quot;botonRegis&quot;
-       type=&quot;submit&quot;
-       [disabled]=&quot;contactanosForm.invalid&quot;
-     &gt;
-       &lt;mat-icon class=&quot;loginIcon&quot;&gt;send&lt;/mat-icon&gt;&lt;span&gt; Enviar&lt;/span&gt;
-     &lt;/button&gt;
-     &lt;/div&gt;
-     &lt;/form&gt;
-     &lt;/div&gt;
-     &lt;div class=&quot;column&quot;&gt;
-      &lt;img src=&quot;../../../../assets/CONTACTO.png&quot; class=&quot;imagen&quot; /&gt;
-   &lt;/div&gt;
-  &lt;/div&gt;
+   <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;contenedor&quot;</span>  <span class="o">&gt;</span>
+
+     <span class="o">&lt;</span><span class="n">label</span><span class="o">&gt;</span><span class="n">Nombre</span> <span class="n">Completo</span><span class="o">&lt;/</span><span class="n">label</span><span class="o">&gt;</span>
+     <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">field</span> <span class="n">appearance</span><span class="o">=</span><span class="s2">&quot;outline&quot;</span><span class="o">&gt;</span>
+
+       <span class="o">&lt;</span><span class="nb">input</span> <span class="n">matInput</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="n">formControlName</span><span class="o">=</span><span class="s2">&quot;nombreCompleto&quot;</span> <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Pepito Perez&quot;</span><span class="o">&gt;</span>
+       <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">error</span> <span class="o">*</span><span class="n">ngIf</span><span class="o">=</span><span class="s2">&quot;contactForm.controls.nombreCompleto.invalid&quot;</span><span class="o">&gt;</span><span class="n">Ingrese</span> <span class="n">un</span> <span class="n">nombre</span><span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">error</span><span class="o">&gt;</span>
+     <span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">field</span><span class="o">&gt;</span>
+
+     <span class="o">&lt;</span><span class="n">label</span><span class="o">&gt;</span><span class="n">Email</span><span class="o">&lt;/</span><span class="n">label</span><span class="o">&gt;</span>
+     <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">field</span> <span class="n">appearance</span><span class="o">=</span><span class="s2">&quot;outline&quot;</span><span class="o">&gt;</span>
+         <span class="o">&lt;</span><span class="nb">input</span> <span class="n">matInput</span> <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;example@example.com&quot;</span> <span class="n">formControlName</span><span class="o">=</span><span class="s2">&quot;email&quot;</span> <span class="n">required</span><span class="o">&gt;</span>
+         <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">error</span> <span class="o">*</span><span class="n">ngIf</span><span class="o">=</span><span class="s2">&quot;contactForm.controls.email.errors&quot;</span><span class="o">&gt;</span><span class="p">{{</span><span class="n">errorEmail</span><span class="p">()}}</span><span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">error</span><span class="o">&gt;</span>
+     <span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">field</span> <span class="o">&gt;</span>
+
+
+       <span class="o">&lt;</span><span class="n">label</span><span class="o">&gt;</span><span class="n">Motivo</span><span class="o">&lt;/</span><span class="n">label</span><span class="o">&gt;</span>
+       <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">field</span> <span class="n">appearance</span><span class="o">=</span><span class="s2">&quot;outline&quot;</span><span class="o">&gt;</span>
+
+       <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">select</span> <span class="n">formControlName</span><span class="o">=</span><span class="s2">&quot;motivo&quot;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Motivos&quot;</span> <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Escoja un motivo&quot;</span><span class="o">&gt;</span>
+         <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">option</span> <span class="o">*</span><span class="n">ngFor</span><span class="o">=</span><span class="s2">&quot;let mot of motivos&quot;</span> <span class="p">[</span><span class="n">value</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;mot.value&quot;</span> <span class="o">&gt;</span>
+           <span class="p">{{</span><span class="n">mot</span><span class="o">.</span><span class="n">value</span><span class="p">}}</span>
+         <span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">option</span><span class="o">&gt;</span>
+       <span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">select</span><span class="o">&gt;</span>
+
+       <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">error</span> <span class="o">*</span><span class="n">ngIf</span><span class="o">=</span><span class="s2">&quot;contactForm.controls.motivo.invalid&quot;</span><span class="o">&gt;</span><span class="n">Ingrese</span> <span class="n">una</span> <span class="n">motivo</span><span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">error</span><span class="o">&gt;</span>
+     <span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">field</span><span class="o">&gt;</span>
+
+     <span class="o">&lt;</span><span class="n">label</span><span class="o">&gt;</span><span class="n">Mensaje</span><span class="o">&lt;/</span><span class="n">label</span><span class="o">&gt;</span>
+     <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">field</span> <span class="n">appearance</span><span class="o">=</span><span class="s2">&quot;outline&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;mensaje&quot;</span><span class="o">&gt;</span>
+       <span class="o">&lt;</span><span class="n">textarea</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;tarea&quot;</span> <span class="n">matInput</span> <span class="c1">#message maxlength=&quot;500&quot; placeholder=&quot;Estoy interesado en...&quot;</span>
+         <span class="n">formControlName</span><span class="o">=</span><span class="s2">&quot;mensaje&quot;</span><span class="o">&gt;&lt;/</span><span class="n">textarea</span><span class="o">&gt;</span>
+       <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">hint</span> <span class="n">align</span><span class="o">=</span><span class="s2">&quot;end&quot;</span><span class="o">&gt;</span><span class="p">{{</span><span class="n">message</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">length</span><span class="p">}}</span> <span class="o">/</span> <span class="mi">500</span><span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">hint</span><span class="o">&gt;</span>
+       <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">error</span> <span class="o">*</span><span class="n">ngIf</span><span class="o">=</span><span class="s2">&quot;contactForm.controls.mensaje.invalid&quot;</span><span class="o">&gt;</span><span class="n">Ingrese</span> <span class="n">una</span> <span class="n">mensaje</span><span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">error</span><span class="o">&gt;</span>
+     <span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">field</span><span class="o">&gt;</span>
+
+
+
+         <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;contenedorBoton&quot;</span><span class="o">&gt;&lt;</span><span class="n">button</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span> <span class="n">mat</span><span class="o">-</span><span class="n">raised</span><span class="o">-</span><span class="n">button</span> <span class="p">[</span><span class="n">disabled</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;!contactForm.valid&quot;</span> <span class="o">&gt;</span><span class="n">Enviar</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+
+      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">form</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">card</span><span class="o">-</span><span class="n">content</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">mat</span><span class="o">-</span><span class="n">card</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>Como se puede observar en el código HTML, hacemos la creación de la tabla, con sus respectivos Inputs, su dropdown y la sección de mensaje, junto con las condicionales requeridas para el funcionamiento del correo; y por último el botón de enviar que estará inhabilitado a menos de que todos los campos estén debidamente diligenciados.</p>
 <p>A continuación se van a diligenciar todas las reglas de css que le dan estilo a nuestro fomulario:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> .column {
-   position: relative;
-   height: auto;
-   width: 100%;
-   top: 0;
-   display: block;
-   margin: auto;
-   margin-bottom: 50px;
-   margin-top: 50px;
-   //background-color: rgba($color: #d37130, $alpha: 0.2);}
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>mat-card {
+ max-width:80%;
+ text-align: center;
+ margin:auto;
+ margin-top: 5%;
+ margin-bottom: 5%;
+ background-color:#f5e8d3;}
 
- .btnRegister {
-    text-align: center;
-    margin-bottom: 70px;}
+mat-card-title{
+ width: 100%;
+ font-size: 30px;
+ text-align: center;}
+mat-card-content{
+  width: 100%;}
+.contenedor{
+ //background-color: #eb791c;
+  margin: auto;
+  margin-top: 20px;
+  width: 80%;}
 
- .formItem .titulo {
-    color: black;}
 
- .container {
-   background-color: rgba($color: #d37130, $alpha: 0.2);
-   position: relative;
-   height: 100%;
-   width: 100%;
-   top: 0;
-//display: block;
-   margin: auto;
-   display: inline-flex;
-   justify-content: center;
-   align-items: center;
-   align-content: center;
-   overflow-y: auto;
-   margin-bottom: 0;}
+mat-form-field{
 
- .imagen {
-   margin-top: 0.5%;
-   margin-right: 0;
-   height: 99%;
-   width: 99%;
-   border-radius: 25px;
-   background-color: rgba($color: #d37130, $alpha: 0.2);}
+  width: 80%;
+  margin:3% auto;
+  background-color: #f5e8d3;
+  display: block;
+}
 
- .formxD {
- //padding: 35px 135px 135px 35px;
-  height: 100%;
-  width: 90%;
-  margin-top: 30px;
-  margin-left: 5%; }
- .formItem {
-  //margin-top: 20px;
-   margin-bottom: 1%;
-   font-size: 18px;
-   width: 100%;
-  //height: 100%;}
 
-  @media only screen and (max-width: 768px) and (max-height: 849px) {
-   .imagen {
-     height: 0px;
-     width: 0px;  } }
-
- @media only screen and (max-width: 768px) {
-   .container {
+label{
+     font-size: 20px;
+     text-align: center;
      display: block;
-     margin: auto;  }
+     width: 100%;}
 
-   .column {
-     display: block;
-     margin: auto;  }
-  .imagen {
-    height: auto;
-    display: block;
-    position: relative;
-    margin-top: 100px;  }}
+
+ button{
+     align-content: center;
+     background-color: orangered;
+     width: 100%;}
+button:hover{
+     background-color: grey;}
+.contenedorBoton{
+     margin:auto;
+     margin-top: 10%;
+     width: 80%;
+//background-color: green;}
+
+
+Input:Focus {
+     color:black;
+     font-size: 18px;}
+.mensaje{
+     width: 80%;
+     height: 260px;
+     //background-color: #12e412d0;}
+.tarea{
+
+      height: 200px;
+     //background-color: #5112e4d0;  }
+
+
+     //input outline color por defecto
+     ::ng-deep .mat-form-field-appearance-   outline .mat-form-field-outline {
+     color: gray!important;
+     //opacity: 1!important;
+     }
+
+     //mat-input focused color cunado se activa
+     ::ng-deep .mat-form-field-appearance-   outline.mat-focused .mat-form-field-    outline-thick {
+     color: #eb791c!important;
+     }
+
+     // mat-input error outline color caundo hay error
+     ::ng-deep .mat-form-field-appearance-   outline.mat-form-field-invalid.mat-form-        field-invalid .mat-form-field-outline-  thick{
+     color: #ff4e36!important;
+     opacity: 0.8!important;
+     }
+
+
+     // mat-input carent color para alertas
+     ::ng-deep .mat-input-element {
+     caret-color: orange!important;
+     }
+
+     // mat-input error carent color
+     ::ng-deep .mat-form-field-invalid .mat-input-   element, .mat-warn .mat-input-element {
+     caret-color: blue!important;
+     }
+
+     // mat-label normal state style color de los label en reposo
+     ::ng-deep .mat-form-field-label {
+     color: gray!important;
+     // color: $mainColor!important;
+     }
+
+     // mat-label focused style color del label al minimizarse
+     ::ng-deep .mat-form-field.mat-focused   .mat-form-field-label {
+     color: black!important;
+     }
+
+     // mat-label error style color cuando el campo es imvalido
+     ::ng-deep .mat-form-field.mat-form-field-       invalid .mat-form-field-label {
+     color: red!important;
+     }
 </pre></div>
 </div>
-<p>Se definen todas las reglas para nuestro formulario tanto en versión web como en versión responsiva.
-Pasaremos a explicar de manera breve cada uno de las partes que componen el Contacto.Component.ts, este archivo contiene todas importaciones necesarias para crear el formulario y poder trabajar con el Modelo de Contacto, enviar el formulario a la base de datos y usar la Api de Elasticemail para enviar el correo al CEO cada vez que alguien quiera hacer un contacto para discutir sobre nuestros servicios y oportunidades en Marvel Project.</p>
-<p>A la par de esto, en nuestro Contacto.Module.ts, hacemos una importanción de todos las librerias y clases que usaremos para trabajar de manera efectiva en contacto.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="kn">import</span> <span class="p">{</span> <span class="n">Component</span><span class="p">,</span> <span class="n">OnInit</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
- <span class="kn">import</span> <span class="p">{</span> <span class="n">RequiredValidator</span><span class="p">,</span> <span class="n">Validators</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/forms&#39;</span><span class="p">;</span>
- <span class="kn">import</span> <span class="p">{</span> <span class="n">FormControl</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/forms&#39;</span><span class="p">;</span>
- <span class="kn">import</span> <span class="p">{</span> <span class="n">FormGroup</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/forms&#39;</span><span class="p">;</span>
- <span class="kn">import</span> <span class="p">{</span> <span class="n">Contactanos</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;src/app/models/contacto/contactanos.model&#39;</span><span class="p">;</span>
- <span class="kn">import</span> <span class="p">{</span> <span class="n">DataBaseService</span><span class="p">}</span>  <span class="kn">from</span> <span class="s1">&#39;../../../services/data-base.service&#39;</span><span class="p">;</span>
- <span class="kn">import</span> <span class="s1">&#39;../../../../assets/js/smtp.js&#39;</span><span class="p">;</span>
- <span class="n">declare</span> <span class="n">let</span> <span class="n">Email</span><span class="p">:</span> <span class="nb">any</span><span class="p">;</span>
+<p>Se definen todas las reglas para nuestro formulario tanto en versión web como en versión responsiva.</p>
+<p>Pasaremos a explicar de manera breve cada uno de las partes que componen el Contacto.Component.ts, este archivo contiene todas importaciones necesarias para crear el formulario y poder trabajar con el Modelo de Contacto, enviar el formulario a la base de datos y usar la Api de Elasticemail para enviar el correo al CEO cada vez que alguien quiera hacer un contacto para discutir sobre nuestros servicios y oportunidades en Mafaldos Project.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="o">//</span><span class="n">para</span> <span class="n">el</span> <span class="n">formGroup</span>
+<span class="n">contactForm</span><span class="p">:</span> <span class="n">FormGroup</span><span class="p">;</span>
 
+<span class="n">listaContactos</span><span class="p">;</span>
 
- <span class="nd">@Component</span><span class="p">({</span>
-  <span class="n">selector</span><span class="p">:</span> <span class="s1">&#39;app-contacto&#39;</span><span class="p">,</span>
-  <span class="n">templateUrl</span><span class="p">:</span> <span class="s1">&#39;./contacto.component.html&#39;</span><span class="p">,</span>
-  <span class="n">styleUrls</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;./contacto.component.scss&#39;</span><span class="p">],</span>
-<span class="p">})</span>
+<span class="o">//</span> <span class="n">para</span> <span class="n">la</span> <span class="n">validacion</span> <span class="k">del</span> <span class="n">email</span>
+<span class="n">emailPattern</span> <span class="o">=</span> <span class="s2">&quot;^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$&quot;</span><span class="p">;</span>
 
- <span class="n">export</span> <span class="k">class</span> <span class="nc">ContactoComponent</span> <span class="n">implements</span> <span class="n">OnInit</span> <span class="p">{</span>
-   <span class="n">contactanosForm</span><span class="o">=</span> <span class="n">new</span> <span class="n">FormGroup</span><span class="p">({</span>
-    <span class="n">nombre</span><span class="p">:</span> <span class="n">new</span> <span class="n">FormControl</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
-    <span class="n">email</span><span class="p">:</span><span class="n">new</span> <span class="n">FormControl</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">[</span><span class="o">/*</span><span class="n">Validators</span><span class="o">.</span><span class="n">email</span><span class="o">*/</span><span class="p">,</span><span class="n">Validators</span><span class="o">.</span><span class="n">pattern</span><span class="p">(</span><span class="o">/^</span><span class="p">(([</span><span class="o">^&lt;&gt;</span><span class="p">()[</span>\<span class="p">]</span>\\<span class="o">.</span><span class="p">,;:</span>\<span class="n">s</span><span class="o">@</span>\<span class="s2">&quot;]+(\.[^&lt;&gt;()[\]</span><span class="se">\\</span><span class="s2">.,;:\s@</span><span class="se">\&quot;</span><span class="s2">]+)*)|(</span><span class="se">\&quot;</span><span class="s2">.+</span><span class="se">\&quot;</span><span class="s2">))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),</span>
-    <span class="n">motivo</span><span class="p">:</span> <span class="n">new</span> <span class="n">FormControl</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
-    <span class="n">mensaje</span><span class="p">:</span> <span class="n">new</span> <span class="n">FormControl</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
-  <span class="p">},);</span>
+<span class="o">//</span> <span class="n">para</span> <span class="n">el</span> <span class="n">selecionar</span> <span class="n">el</span> <span class="n">motivo</span>
+<span class="n">motivos</span><span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span><span class="n">value</span><span class="p">:</span> <span class="s1">&#39;Contratos&#39;</span> <span class="p">},</span>
+  <span class="p">{</span><span class="n">value</span><span class="p">:</span> <span class="s1">&#39;Proyectos&#39;</span><span class="p">},</span>
+  <span class="p">{</span><span class="n">value</span><span class="p">:</span> <span class="s1">&#39;Cobranzas&#39;</span><span class="p">}</span>
+<span class="p">];</span>
 
-  <span class="n">motivos</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Contratos&#39;</span><span class="p">,</span> <span class="s1">&#39;Proyectos&#39;</span><span class="p">,</span> <span class="s1">&#39;Cobranzas&#39;</span><span class="p">];</span>
+<span class="n">motivoSeleccionado</span><span class="p">:</span><span class="n">string</span><span class="p">;</span>
 
 
 
-  <span class="n">constructor</span><span class="p">(</span><span class="n">private</span> <span class="n">db</span><span class="p">:</span> <span class="n">DataBaseService</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">this</span><span class="o">.</span><span class="n">contactForm</span><span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">fb</span><span class="o">.</span><span class="n">group</span><span class="p">({</span>
 
-  <span class="p">}</span>
+    <span class="n">nombreCompleto</span><span class="p">:</span> <span class="n">new</span> <span class="n">FormControl</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">Validators</span><span class="o">.</span><span class="n">required</span><span class="p">]),</span>
+    <span class="n">email</span><span class="p">:</span> <span class="n">new</span> <span class="n">FormControl</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">Validators</span><span class="o">.</span><span class="n">required</span><span class="p">,</span> <span class="n">Validators</span><span class="o">.</span><span class="n">required</span><span class="p">,</span> <span class="n">Validators</span><span class="o">.</span><span class="n">pattern</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">emailPattern</span><span class="p">),</span> <span class="o">/*</span><span class="n">this</span><span class="o">.</span><span class="n">validarEmail</span><span class="o">*/</span><span class="p">]),</span>
+    <span class="n">motivo</span><span class="p">:</span> <span class="n">new</span> <span class="n">FormControl</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">Validators</span><span class="o">.</span><span class="n">required</span><span class="p">]),</span>
+    <span class="n">mensaje</span><span class="p">:</span> <span class="n">new</span> <span class="n">FormControl</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">Validators</span><span class="o">.</span><span class="n">required</span><span class="p">]),</span>
 
-  <span class="n">ngOnInit</span><span class="p">():</span> <span class="n">void</span> <span class="p">{</span>
-  <span class="p">}</span>
-  <span class="n">change</span><span class="p">(){</span>
-    <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">contactanosForm</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="o">//</span><span class="n">servidor</span> <span class="n">de</span> <span class="n">correos</span> <span class="n">Elasticemail</span>
-
-  <span class="n">guardar</span><span class="p">(){</span>
-    <span class="n">const</span> <span class="p">{</span><span class="n">nombre</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">motivo</span><span class="p">,</span> <span class="n">mensaje</span><span class="p">}</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">contactanosForm</span><span class="o">.</span><span class="n">value</span><span class="p">;</span>
-    <span class="n">const</span> <span class="n">asunto</span><span class="p">:</span><span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;Nos ha contactado &#39;</span><span class="o">+</span><span class="n">nombre</span><span class="o">+</span><span class="s1">&#39; desde Marvel-Project&#39;</span><span class="p">;</span>
-    <span class="n">const</span> <span class="n">cuerpo</span><span class="p">:</span><span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;&lt;table style=&quot;width: 900px; margin: auto; border: 1px solid black; table-layout: fixed;&quot;&gt;&lt;tr&gt;      &lt;th colspan=&quot;2&quot; style=&quot;border-bottom:       1px solid black;border-collapse: collapse;&quot;&gt;        Contacto desde Marvel-Project      &lt;/th&gt;    &lt;/tr&gt;    &lt;tr&gt;      &lt;td style=&quot;border-right: 1px solid black;       border-bottom: 1px solid black; border-collapse: collapse;  text-align: justify;&quot;&gt;Nombre:&lt;/td&gt;      &lt;td style=&quot; border-bottom: 1px solid black; border-collapse: collapse;  text-align: justify; word-wrap: break-word;&quot;&gt;&#39;</span><span class="o">+</span><span class="n">nombre</span><span class="o">+</span><span class="s1">&#39;&lt;/td&gt;    &lt;/tr&gt;    &lt;tr&gt;      &lt;td style=&quot;border-right: 1px solid black; border-bottom: 1px solid black; border-collapse: collapse;  text-align: justify;&quot;&gt;Correo electronico:&lt;/td&gt;      &lt;td style=&quot;border-bottom: 1px solid black; border-collapse: collapse;  text-align: justify; word-wrap: break-word;&quot;&gt;&#39;</span><span class="o">+</span><span class="n">email</span><span class="o">+</span><span class="s1">&#39;&lt;/td&gt;    &lt;/tr&gt;    &lt;tr&gt;      &lt;td style=&quot;border-right: 1px solid black; border-bottom: 1px solid black; border-collapse: collapse;  text-align: justify;&quot;&gt;Motivo:&lt;/td&gt;      &lt;td style=&quot;border-bottom: 1px solid black;  border-collapse: collapse;  text-align: justify; word-wrap: break-word;&quot;&gt;&#39;</span><span class="o">+</span><span class="n">motivo</span><span class="o">+</span><span class="s1">&#39;&lt;/td&gt;    &lt;/tr&gt;    &lt;tr&gt;      &lt;td style=&quot;border-right: 1px solid black; border-collapse: collapse;  text-align: justify;&quot;&gt;Mensaje:&lt;/td&gt;      &lt;td style=&quot;border-collapse: collapse;  text-align: justify; word-wrap: break-word;&quot;&gt;&#39;</span><span class="o">+</span><span class="n">mensaje</span><span class="o">+</span><span class="s1">&#39;&lt;/td&gt;    &lt;/tr&gt;  &lt;/table&gt;&#39;</span><span class="p">;</span>
-    <span class="n">var</span> <span class="n">datos</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Contactanos</span><span class="p">();</span>
-    <span class="n">datos</span><span class="o">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="n">nombre</span><span class="p">;</span>
-    <span class="n">datos</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">email</span><span class="p">;</span>
-    <span class="n">datos</span><span class="o">.</span><span class="n">motivo</span> <span class="o">=</span> <span class="n">motivo</span><span class="p">;</span>
-    <span class="n">datos</span><span class="o">.</span><span class="n">mensaje</span> <span class="o">=</span> <span class="n">mensaje</span><span class="p">;</span>
-    <span class="n">this</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">crearContactanos</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span><span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">r</span><span class="o">=&gt;</span><span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">r</span><span class="p">){</span>
-        <span class="n">Email</span><span class="o">.</span><span class="n">send</span><span class="p">({</span>
-          <span class="n">Host</span><span class="p">:</span> <span class="s1">&#39;smtp.elasticemail.com&#39;</span><span class="p">,</span>
-          <span class="n">Username</span><span class="p">:</span> <span class="s1">&#39;dev17@aiatic.com&#39;</span><span class="p">,</span>
-          <span class="n">Password</span><span class="p">:</span> <span class="s1">&#39;XXXXXXXXXXXXXXXXXXXXXXXXXXXX&#39;</span><span class="p">,</span>
-          <span class="n">To</span><span class="p">:</span> <span class="s1">&#39;ceo@aiatic.com&#39;</span><span class="p">,</span>
-          <span class="n">From</span><span class="p">:</span> <span class="s1">&#39;dev17@aiatic.com&#39;</span><span class="p">,</span>
-          <span class="n">Subject</span><span class="p">:</span> <span class="n">asunto</span><span class="p">,</span>
-          <span class="n">Body</span><span class="p">:</span> <span class="n">cuerpo</span>
-        <span class="p">})</span><span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">message</span> <span class="o">=&gt;</span><span class="p">{</span>
-          <span class="n">alert</span><span class="p">(</span><span class="s1">&#39;m&#39;</span><span class="o">+</span> <span class="n">message</span><span class="p">);</span>
-        <span class="p">});</span>
-        <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;si&#39;</span><span class="p">);</span>
-      <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-        <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;no&#39;</span><span class="p">);</span>
-      <span class="p">}</span>
-    <span class="p">});</span>
-  <span class="p">}</span>
-
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Lo primero que se observa, es que hacemos una breves importaciones de librerias y modelos que necesitamos para poder trabajar esta sección de Contacto.
-Seguido, iniciamos un nuevo formulario, el cuál recibirá los cuatro datos requeridos.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">export</span> <span class="k">class</span> <span class="nc">ContactoComponent</span> <span class="n">implements</span> <span class="n">OnInit</span> <span class="p">{</span>
- <span class="n">contactanosForm</span><span class="o">=</span> <span class="n">new</span> <span class="n">FormGroup</span><span class="p">({</span>
-  <span class="n">nombre</span><span class="p">:</span> <span class="n">new</span> <span class="n">FormControl</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
-  <span class="n">email</span><span class="p">:</span><span class="n">new</span> <span class="n">FormControl</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">[</span><span class="o">/*</span><span class="n">Validators</span><span class="o">.</span><span class="n">email</span><span class="o">*/</span><span class="p">,</span><span class="n">Validators</span><span class="o">.</span><span class="n">pattern</span><span class="p">(</span><span class="o">/^</span><span class="p">(([</span><span class="o">^&lt;&gt;</span><span class="p">()[</span>\<span class="p">]</span>\\<span class="o">.</span><span class="p">,;:</span>\<span class="n">s</span><span class="o">@</span>\<span class="s2">&quot;]+(\.[^&lt;&gt;()[\]</span><span class="se">\\</span><span class="s2">.,;:\s@</span><span class="se">\&quot;</span><span class="s2">]+)*)|(</span><span class="se">\&quot;</span><span class="s2">.+</span><span class="se">\&quot;</span><span class="s2">))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),</span>
-  <span class="n">motivo</span><span class="p">:</span> <span class="n">new</span> <span class="n">FormControl</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
-  <span class="n">mensaje</span><span class="p">:</span> <span class="n">new</span> <span class="n">FormControl</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
-<span class="p">},);</span>
-  <span class="n">motivos</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Contratos&#39;</span><span class="p">,</span> <span class="s1">&#39;Proyectos&#39;</span><span class="p">,</span> <span class="s1">&#39;Cobranzas&#39;</span><span class="p">];</span>
-</pre></div>
-</div>
-<p>Hecho esta sección, nuestro formulario ya está listo para poder ser procesado por otros métodos para su envío &amp; cumpliendo con el requerimiento, se crea un array Motivo para que podamos crear el dropdown en nuestro html con las 3 opciones entregadas por el cliente.
-Seguido de esto, encontraremos nuestro constructor, el cual inicializará como privado, el servicio de DataBaseService, el cual es el servicio creado para poder manejar los métodos necesarios para procesar información.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">guardar</span><span class="p">(){</span>
-  <span class="n">const</span> <span class="p">{</span><span class="n">nombre</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">motivo</span><span class="p">,</span> <span class="n">mensaje</span><span class="p">}</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">contactanosForm</span><span class="o">.</span><span class="n">value</span><span class="p">;</span>
-  <span class="n">const</span> <span class="n">asunto</span><span class="p">:</span><span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;Nos ha contactado &#39;</span><span class="o">+</span><span class="n">nombre</span><span class="o">+</span><span class="s1">&#39; desde Marvel-Project&#39;</span><span class="p">;</span>
-  <span class="n">const</span> <span class="n">cuerpo</span><span class="p">:</span><span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;&lt;table style=&quot;width: 900px; margin: auto; border: 1px solid black; table-layout: fixed;&quot;&gt;&lt;tr&gt;      &lt;th colspan=&quot;2&quot; style=&quot;border-bottom: 1px solid black;border-collapse: collapse;&quot;&gt;        Contacto desde Marvel-Project      &lt;/th&gt;    &lt;/tr&gt;    &lt;tr&gt;      &lt;td style=&quot;border-right: 1px solid black; border-bottom: 1px solid black; border-collapse: collapse;  text-align: justify;&quot;&gt;Nombre:&lt;/td&gt;      &lt;td style=&quot; border-bottom: 1px solid black; border-collapse: collapse;  text-align: justify; word-wrap: break-word;&quot;&gt;&#39;</span><span class="o">+</span><span class="n">nombre</span><span class="o">+</span><span class="s1">&#39;&lt;/td&gt;    &lt;/tr&gt;    &lt;tr&gt;      &lt;td style=&quot;border-right: 1px solid black; border-bottom: 1px solid black; border-collapse: collapse;  text-align: justify;&quot;&gt;Correo electronico:&lt;/td&gt;      &lt;td style=&quot;border-bottom: 1px solid black; border-collapse: collapse;  text-align: justify; word-wrap: break-word;&quot;&gt;&#39;</span><span class="o">+</span><span class="n">email</span><span class="o">+</span><span class="s1">&#39;&lt;/td&gt;    &lt;/tr&gt;    &lt;tr&gt;      &lt;td style=&quot;border-right: 1px solid black; border-bottom: 1px solid black; border-collapse: collapse;  text-align: justify;&quot;&gt;Motivo:&lt;/td&gt;      &lt;td style=&quot;border-bottom: 1px solid black;  border-collapse: collapse;  text-align: justify; word-wrap: break-word;&quot;&gt;&#39;</span><span class="o">+</span><span class="n">motivo</span><span class="o">+</span><span class="s1">&#39;&lt;/td&gt;    &lt;/tr&gt;    &lt;tr&gt;      &lt;td style=&quot;border-right: 1px solid black; border-collapse: collapse;  text-align: justify;&quot;&gt;Mensaje:&lt;/td&gt;      &lt;td style=&quot;border-collapse: collapse;  text-align: justify; word-wrap: break-word;&quot;&gt;&#39;</span><span class="o">+</span><span class="n">mensaje</span><span class="o">+</span><span class="s1">&#39;&lt;/td&gt;    &lt;/tr&gt;  &lt;/table&gt;&#39;</span><span class="p">;</span>
-  <span class="n">var</span> <span class="n">datos</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Contactanos</span><span class="p">();</span>
-  <span class="n">datos</span><span class="o">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="n">nombre</span><span class="p">;</span>
-  <span class="n">datos</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">email</span><span class="p">;</span>
-  <span class="n">datos</span><span class="o">.</span><span class="n">motivo</span> <span class="o">=</span> <span class="n">motivo</span><span class="p">;</span>
-  <span class="n">datos</span><span class="o">.</span><span class="n">mensaje</span> <span class="o">=</span> <span class="n">mensaje</span><span class="p">;</span>
-  <span class="n">this</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">crearContactanos</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span><span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">r</span><span class="o">=&gt;</span><span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">r</span><span class="p">){</span>
-      <span class="n">Email</span><span class="o">.</span><span class="n">send</span><span class="p">({</span>
-        <span class="n">Host</span><span class="p">:</span> <span class="s1">&#39;smtp.elasticemail.com&#39;</span><span class="p">,</span>
-        <span class="n">Username</span><span class="p">:</span> <span class="s1">&#39;dev17@aiatic.com&#39;</span><span class="p">,</span>
-        <span class="n">Password</span><span class="p">:</span> <span class="s1">&#39;XXXXXXXXXXXXXXXXXXXXXXXXXXXX&#39;</span><span class="p">,</span>
-        <span class="n">To</span><span class="p">:</span> <span class="s1">&#39;ceo@aiatic.com&#39;</span><span class="p">,</span>
-        <span class="n">From</span><span class="p">:</span> <span class="s1">&#39;dev17@aiatic.com&#39;</span><span class="p">,</span>
-        <span class="n">Subject</span><span class="p">:</span> <span class="n">asunto</span><span class="p">,</span>
-        <span class="n">Body</span><span class="p">:</span> <span class="n">cuerpo</span>
-      <span class="p">})</span><span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">message</span> <span class="o">=&gt;</span><span class="p">{</span>
-        <span class="n">alert</span><span class="p">(</span><span class="s1">&#39;m&#39;</span><span class="o">+</span> <span class="n">message</span><span class="p">);</span>
-      <span class="p">});</span>
-      <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;si&#39;</span><span class="p">);</span>
-    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-      <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;no&#39;</span><span class="p">);</span>
-    <span class="p">}</span>
   <span class="p">});</span>
+</pre></div>
+</div>
+<p>Iniciamos un nuevo formulario, el cuál recibirá los cuatro datos requeridos. Hecho esta sección, nuestro formulario ya está listo para poder ser procesado por otros métodos para su envío &amp; cumpliendo con el requerimiento, se crea un array Motivo para que podamos crear el dropdown en nuestro html con las 3 opciones entregadas por el cliente.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">getRegistros</span><span class="p">(){</span>
+
+  <span class="n">this</span><span class="o">.</span><span class="n">contactosService</span><span class="o">.</span><span class="n">getContactos</span><span class="p">()</span><span class="o">.</span><span class="n">subscribe</span><span class="p">((</span><span class="n">rgSnapshot</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">this</span><span class="o">.</span><span class="n">listaContactos</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="n">rgSnapshot</span><span class="o">.</span><span class="n">forEach</span><span class="p">((</span><span class="n">rgData</span><span class="p">:</span> <span class="nb">any</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="n">this</span><span class="o">.</span><span class="n">listaContactos</span><span class="o">.</span><span class="n">push</span><span class="p">({</span>
+        <span class="nb">id</span><span class="p">:</span> <span class="n">rgData</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="n">data</span><span class="p">:</span> <span class="n">rgData</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">data</span><span class="p">()</span>
+
+      <span class="p">});</span>
+    <span class="p">})</span>
+
+    <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">listaContactos</span><span class="p">);</span>
+
+
+  <span class="p">});</span>
+
+
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>El método guardar() es donde hacemos el llamado de nuestra API de elasticmail. En este método, observamos que se crean unas variables en donde almacenamos los datos de nuestro formulario previamente creado, seguido de la creación de una variable asunto, la cuál en el correo del CEO será tal cual la caja en dónde se especifíca el asunto del correo y el cuerpo, el cuál recibe dentro de la misma variable el estilo que este tendrá cuando el CEO reciba el correo. se crea la variable datos, la cual incializa un objeto de tipo «contactanos». Creamos una condicional para que una vez creado el formulario en la base de datos, se ejecute el envío del correo</p>
+<p>Este primero método de get registros, será que el que nos permite obtener los datos de contactos y poderlos almacenar dentro de un documento en firebase</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> errorEmail() {
+  if (this.contactForm.controls.email.hasError(&#39;required&#39;)) {
+    return &#39;Debe ingresar un email&#39;;
+  }
+  if (this.contactForm.controls.email.hasError(&#39;ms&#39;)) {
+    return &#39;El email ya ha sido registrado&#39;;
+  }
+  return this.contactForm.controls.email.hasError(&#39;pattern&#39;) ? &#39;Email no válido&#39; : &#39;&#39;;
+}
+</pre></div>
+</div>
+<p>En este pequeño método validamos que el dato ingresado en el campo e-mail, se efectivamente un email con su correspondiente formato.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> oncreate(form){
+  //contraseña 215745566ED59E05A9845F9B348B9915395B
+
+  this.contactosService.crearContacto(this.contactForm.value).then(() =&gt; {
+
+    //toco importar en el archivo angular.json ln 34 y 99
+    //&quot;scripts&quot;: [&quot;src/assets/smtp.js&quot;]
+    //tomado de https://medium.com/javascript-in-plain-english/send-emails-without-a-server-side-code-with-angular-e227c3e62dbd
+    Email.send({
+    Host : &#39;smtp.elasticemail.com&#39;,
+    Username : &#39;dev24@aiatic.com&#39;,
+    Password : &#39;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#39;,
+    To : &#39;ceo@aiatic.com&#39;,//ceo@aiatic.com
+    From : &#39;dev24@aiatic.com&#39;,
+    Subject : &#39;Dc Team Nuevo contacto&#39;,
+    Body : `
+          &lt;h1&gt; Nuevo registro de Contacto&lt;/h1&gt;
+          &lt;p&gt;&lt;/p&gt;
+          &lt;h3&gt; Nombre: ${this.contactForm.controls.nombreCompleto.value}&lt;/h3&gt;
+          &lt;h3&gt; Correo: ${this.contactForm.controls.email.value}&lt;/h3&gt;
+          &lt;h3&gt; Motivo: ${this.contactForm.controls.motivo.value}&lt;/h3&gt;
+          &lt;h3&gt; Mensaje&lt;/h3&gt;
+          &lt;p&gt;${this.contactForm.controls.mensaje.value}&lt;/p&gt;
+
+    `
+    }).then( message =&gt; {
+      alert(message);
+     } );
+
+
+    this.contactForm.setValue({
+
+      nombreCompleto: &#39;&#39;,
+      email: &#39;&#39;,
+      motivo: &#39;&#39;,
+      mensaje: &#39;&#39;
+
+    });
+
+  }, (error) =&gt; {
+    console.error(error);
+  });
+}
+</pre></div>
+</div>
+<p>El método onCreat(form) es donde hacemos el llamado de nuestra API de elasticmail. En este método, observamos que se crean unas variables en donde almacenamos los datos de nuestro formulario previamente creado, seguido de la creación de una variable asunto, la cuál en el correo del CEO será tal cual la caja en dónde se especifíca el asunto del correo y el cuerpo, el cuál recibe dentro de la misma variable Sel estilo que este tendrá cuando el CEO reciba el correo. se crea la variable datos, la cual incializa un objeto de tipo «contact».</p>
+</div>
 </div>
 
 
@@ -491,7 +486,7 @@ Seguido de esto, encontraremos nuestro constructor, el cual inicializará como p
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="usuarioModel.html" class="btn btn-neutral float-right" title="Modelo registros." accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="angularMaterial.html" class="btn btn-neutral float-right" title="Angular Material" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="video.html" class="btn btn-neutral float-left" title="Video" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

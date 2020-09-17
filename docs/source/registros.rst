@@ -1,6 +1,15 @@
 Registros
 *********
 
+
+.. image :: ../images/registrosweb.JPG
+Registros en versión web
+
+
+.. image :: ../images/registrosmovil.JPG
+Registros en versión movil
+
+
 1. Descripción
     En este componente se debe realizar el registro de cada nuevo usuario, donde el usuario debe ingresar una 
     serie de datos necesaria para su registro.  
