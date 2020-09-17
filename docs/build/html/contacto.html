@@ -1,0 +1,542 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Contacto &mdash; documentación de Mafaldos - 0.0.1</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Modelo registros:" href="usuarioModel.html" />
+    <link rel="prev" title="Video" href="video.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Mafaldos
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="descripcion.html">Descripción</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="componentes.html">Estructura</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="sidenav.html">Sidenav</a></li>
+<li class="toctree-l2"><a class="reference internal" href="home.html">Inicio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="registro.html">Registro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="login.html">Login</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mi%20Perfil.html">Mi Perfil</a></li>
+<li class="toctree-l2"><a class="reference internal" href="registros.html">Registros</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video.html">Video</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Contacto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usuarioModel.html">Modelo registros:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="APIREST.html">Servicio Municipios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datos-municipio.html">Interface de municipio</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Mafaldos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="componentes.html">Estructura</a> &raquo;</li>
+        
+      <li>Contacto</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/contacto.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="contacto">
+<h1>Contacto<a class="headerlink" href="#contacto" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>En este módulo creamos el formulario y los métodos necesarios para enviar un correo de contacto entre un usuario interesado en los servicios de Marvel Project y su CEO, a través de un correo electrónico el CEO recibirá toda la información que será proporcionada por el usuario/visitante de la página.
+La estructura del Modulo es la siguiente:</p>
+<img alt="../images/ContactoDoc01.png" src="../images/ContactoDoc01.png" />
+<p>Dentro de estos archivos, el routing module &amp; contacto.spec.ts no son modificados y son generados automáticamente por el Angular CLI.
+La estructura HMTL del formulario y la página de contacto es la siguiente</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;div class=&quot;container&quot;&gt;
+&lt;div class=&quot;column&quot;&gt;
+&lt;form
+   [formGroup]=&quot;contactanosForm&quot;
+   (ngSubmit)=&quot;guardar()&quot;
+   method=&quot;POST&quot;
+   class=&quot;formxD&quot;&gt;
+   &lt;p&gt;
+     &lt;mat-form-field
+       appearance=&quot;outline&quot;
+       style=&quot;text-align: center&quot;
+       class=&quot;formItem&quot;&gt;
+       &lt;label class=&quot;label&quot;&gt;Nombre&lt;/label&gt;
+       &lt;input
+         formControlName=&quot;nombre&quot;
+         type=&quot;text&quot;
+         matInput
+         placeholder=&quot;Tu nombre completo&quot;
+         required
+       /&gt;
+     &lt;/mat-form-field&gt;
+   &lt;/p&gt;
+
+   &lt;p&gt;
+     &lt;mat-form-field
+       appearance=&quot;outline&quot;
+       style=&quot;text-align: center&quot;
+       class=&quot;formItem&quot;
+     &gt;
+       &lt;label class=&quot;label&quot;&gt;Correo electronico&lt;/label&gt;
+       &lt;input
+         formControlName=&quot;email&quot;
+         type=&quot;text&quot;
+         matInput
+         placeholder=&quot;Tu correo electronico&quot;
+         required
+         (change)=&quot;change()&quot;
+       /&gt;
+       &lt;mat-error
+         *ngIf=&quot;
+           contactanosForm.get(&#39;email&#39;).hasError(&#39;pattern&#39;) &amp;&amp;
+           !contactanosForm.get(&#39;email&#39;).hasError(&#39;required&#39;)
+         &quot;
+       &gt;
+         Por favor digita un correo electronico valido
+       &lt;/mat-error&gt;
+       &lt;mat-error *ngIf=&quot;contactanosForm.get(&#39;email&#39;).hasError(&#39;required&#39;)&quot;&gt;
+         El email es &lt;strong&gt;requerido&lt;/strong&gt;
+       &lt;/mat-error&gt;
+     &lt;/mat-form-field&gt;
+   &lt;/p&gt;
+   &lt;p&gt;
+     &lt;mat-form-field
+       appearance=&quot;outline&quot;
+       class=&quot;formItem&quot;
+       style=&quot;text-align: center&quot;
+     &gt;
+       &lt;mat-label class=&quot;titulo&quot;&gt;Motivo&lt;/mat-label&gt;
+       &lt;br /&gt;
+       &lt;mat-form-field style=&quot;text-align: center; width: 90%&quot;&gt;
+         &lt;mat-label&gt;Tu motivo&lt;/mat-label&gt;
+         &lt;mat-select formControlName=&quot;motivo&quot; matInput required&gt;
+           &lt;mat-option [disabled]=&quot;true&quot;&gt;Seleccionar&lt;/mat-option&gt;
+           &lt;mat-option *ngFor=&quot;let motivo of motivos&quot; [value]=&quot;motivo&quot;&gt;{{
+             motivo
+           }}&lt;/mat-option&gt;
+         &lt;/mat-select&gt;
+         &lt;mat-hint&gt;&lt;/mat-hint&gt;
+       &lt;/mat-form-field&gt;
+     &lt;/mat-form-field&gt;
+   &lt;/p&gt;
+   &lt;br /&gt;
+   &lt;br /&gt;
+   &lt;p&gt;
+     &lt;mat-form-field
+       appearance=&quot;outline&quot;
+       style=&quot;text-align: center&quot;
+       class=&quot;formItem&quot;
+     &gt;
+       &lt;mat-label class=&quot;titulo&quot;&gt;Mensaje&lt;/mat-label&gt;
+       &lt;mat-form-field style=&quot;width: 90%&quot;&gt;
+         &lt;mat-label&gt;Tu mensaje&lt;/mat-label&gt;
+         &lt;textarea
+           name=&quot;mensaje&quot;
+           class=&quot;textDesc&quot;
+           formControlName=&quot;mensaje&quot;
+           matInput
+           placeholder=&quot;Tu mensaje&quot;
+           required
+         &gt;
+         &lt;/textarea&gt;
+       &lt;/mat-form-field&gt;
+     &lt;/mat-form-field&gt;
+   &lt;/p&gt;
+
+   &lt;div class=&quot;btnRegister&quot;&gt;
+     &lt;button
+       mat-button
+       class=&quot;botonRegis&quot;
+       type=&quot;submit&quot;
+       [disabled]=&quot;contactanosForm.invalid&quot;
+     &gt;
+       &lt;mat-icon class=&quot;loginIcon&quot;&gt;send&lt;/mat-icon&gt;&lt;span&gt; Enviar&lt;/span&gt;
+     &lt;/button&gt;
+     &lt;/div&gt;
+     &lt;/form&gt;
+     &lt;/div&gt;
+     &lt;div class=&quot;column&quot;&gt;
+      &lt;img src=&quot;../../../../assets/CONTACTO.png&quot; class=&quot;imagen&quot; /&gt;
+   &lt;/div&gt;
+  &lt;/div&gt;
+</pre></div>
+</div>
+<p>Como se puede observar en el código HTML, hacemos la creación de la tabla, con sus respectivos Inputs, su dropdown y la sección de mensaje, junto con las condicionales requeridas para el funcionamiento del correo; y por último el botón de enviar que estará inhabilitado a menos de que todos los campos estén debidamente diligenciados.</p>
+<p>A continuación se van a diligenciar todas las reglas de css que le dan estilo a nuestro fomulario:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> .column {
+   position: relative;
+   height: auto;
+   width: 100%;
+   top: 0;
+   display: block;
+   margin: auto;
+   margin-bottom: 50px;
+   margin-top: 50px;
+   //background-color: rgba($color: #d37130, $alpha: 0.2);}
+
+ .btnRegister {
+    text-align: center;
+    margin-bottom: 70px;}
+
+ .formItem .titulo {
+    color: black;}
+
+ .container {
+   background-color: rgba($color: #d37130, $alpha: 0.2);
+   position: relative;
+   height: 100%;
+   width: 100%;
+   top: 0;
+//display: block;
+   margin: auto;
+   display: inline-flex;
+   justify-content: center;
+   align-items: center;
+   align-content: center;
+   overflow-y: auto;
+   margin-bottom: 0;}
+
+ .imagen {
+   margin-top: 0.5%;
+   margin-right: 0;
+   height: 99%;
+   width: 99%;
+   border-radius: 25px;
+   background-color: rgba($color: #d37130, $alpha: 0.2);}
+
+ .formxD {
+ //padding: 35px 135px 135px 35px;
+  height: 100%;
+  width: 90%;
+  margin-top: 30px;
+  margin-left: 5%; }
+ .formItem {
+  //margin-top: 20px;
+   margin-bottom: 1%;
+   font-size: 18px;
+   width: 100%;
+  //height: 100%;}
+
+  @media only screen and (max-width: 768px) and (max-height: 849px) {
+   .imagen {
+     height: 0px;
+     width: 0px;  } }
+
+ @media only screen and (max-width: 768px) {
+   .container {
+     display: block;
+     margin: auto;  }
+
+   .column {
+     display: block;
+     margin: auto;  }
+  .imagen {
+    height: auto;
+    display: block;
+    position: relative;
+    margin-top: 100px;  }}
+</pre></div>
+</div>
+<p>Se definen todas las reglas para nuestro formulario tanto en versión web como en versión responsiva.
+Pasaremos a explicar de manera breve cada uno de las partes que componen el Contacto.Component.ts, este archivo contiene todas importaciones necesarias para crear el formulario y poder trabajar con el Modelo de Contacto, enviar el formulario a la base de datos y usar la Api de Elasticemail para enviar el correo al CEO cada vez que alguien quiera hacer un contacto para discutir sobre nuestros servicios y oportunidades en Marvel Project.</p>
+<p>A la par de esto, en nuestro Contacto.Module.ts, hacemos una importanción de todos las librerias y clases que usaremos para trabajar de manera efectiva en contacto.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="kn">import</span> <span class="p">{</span> <span class="n">Component</span><span class="p">,</span> <span class="n">OnInit</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+ <span class="kn">import</span> <span class="p">{</span> <span class="n">RequiredValidator</span><span class="p">,</span> <span class="n">Validators</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/forms&#39;</span><span class="p">;</span>
+ <span class="kn">import</span> <span class="p">{</span> <span class="n">FormControl</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/forms&#39;</span><span class="p">;</span>
+ <span class="kn">import</span> <span class="p">{</span> <span class="n">FormGroup</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/forms&#39;</span><span class="p">;</span>
+ <span class="kn">import</span> <span class="p">{</span> <span class="n">Contactanos</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;src/app/models/contacto/contactanos.model&#39;</span><span class="p">;</span>
+ <span class="kn">import</span> <span class="p">{</span> <span class="n">DataBaseService</span><span class="p">}</span>  <span class="kn">from</span> <span class="s1">&#39;../../../services/data-base.service&#39;</span><span class="p">;</span>
+ <span class="kn">import</span> <span class="s1">&#39;../../../../assets/js/smtp.js&#39;</span><span class="p">;</span>
+ <span class="n">declare</span> <span class="n">let</span> <span class="n">Email</span><span class="p">:</span> <span class="nb">any</span><span class="p">;</span>
+
+
+ <span class="nd">@Component</span><span class="p">({</span>
+  <span class="n">selector</span><span class="p">:</span> <span class="s1">&#39;app-contacto&#39;</span><span class="p">,</span>
+  <span class="n">templateUrl</span><span class="p">:</span> <span class="s1">&#39;./contacto.component.html&#39;</span><span class="p">,</span>
+  <span class="n">styleUrls</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;./contacto.component.scss&#39;</span><span class="p">],</span>
+<span class="p">})</span>
+
+ <span class="n">export</span> <span class="k">class</span> <span class="nc">ContactoComponent</span> <span class="n">implements</span> <span class="n">OnInit</span> <span class="p">{</span>
+   <span class="n">contactanosForm</span><span class="o">=</span> <span class="n">new</span> <span class="n">FormGroup</span><span class="p">({</span>
+    <span class="n">nombre</span><span class="p">:</span> <span class="n">new</span> <span class="n">FormControl</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
+    <span class="n">email</span><span class="p">:</span><span class="n">new</span> <span class="n">FormControl</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">[</span><span class="o">/*</span><span class="n">Validators</span><span class="o">.</span><span class="n">email</span><span class="o">*/</span><span class="p">,</span><span class="n">Validators</span><span class="o">.</span><span class="n">pattern</span><span class="p">(</span><span class="o">/^</span><span class="p">(([</span><span class="o">^&lt;&gt;</span><span class="p">()[</span>\<span class="p">]</span>\\<span class="o">.</span><span class="p">,;:</span>\<span class="n">s</span><span class="o">@</span>\<span class="s2">&quot;]+(\.[^&lt;&gt;()[\]</span><span class="se">\\</span><span class="s2">.,;:\s@</span><span class="se">\&quot;</span><span class="s2">]+)*)|(</span><span class="se">\&quot;</span><span class="s2">.+</span><span class="se">\&quot;</span><span class="s2">))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),</span>
+    <span class="n">motivo</span><span class="p">:</span> <span class="n">new</span> <span class="n">FormControl</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
+    <span class="n">mensaje</span><span class="p">:</span> <span class="n">new</span> <span class="n">FormControl</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
+  <span class="p">},);</span>
+
+  <span class="n">motivos</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Contratos&#39;</span><span class="p">,</span> <span class="s1">&#39;Proyectos&#39;</span><span class="p">,</span> <span class="s1">&#39;Cobranzas&#39;</span><span class="p">];</span>
+
+
+
+  <span class="n">constructor</span><span class="p">(</span><span class="n">private</span> <span class="n">db</span><span class="p">:</span> <span class="n">DataBaseService</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="p">}</span>
+
+  <span class="n">ngOnInit</span><span class="p">():</span> <span class="n">void</span> <span class="p">{</span>
+  <span class="p">}</span>
+  <span class="n">change</span><span class="p">(){</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">contactanosForm</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="o">//</span><span class="n">servidor</span> <span class="n">de</span> <span class="n">correos</span> <span class="n">Elasticemail</span>
+
+  <span class="n">guardar</span><span class="p">(){</span>
+    <span class="n">const</span> <span class="p">{</span><span class="n">nombre</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">motivo</span><span class="p">,</span> <span class="n">mensaje</span><span class="p">}</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">contactanosForm</span><span class="o">.</span><span class="n">value</span><span class="p">;</span>
+    <span class="n">const</span> <span class="n">asunto</span><span class="p">:</span><span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;Nos ha contactado &#39;</span><span class="o">+</span><span class="n">nombre</span><span class="o">+</span><span class="s1">&#39; desde Marvel-Project&#39;</span><span class="p">;</span>
+    <span class="n">const</span> <span class="n">cuerpo</span><span class="p">:</span><span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;&lt;table style=&quot;width: 900px; margin: auto; border: 1px solid black; table-layout: fixed;&quot;&gt;&lt;tr&gt;      &lt;th colspan=&quot;2&quot; style=&quot;border-bottom:       1px solid black;border-collapse: collapse;&quot;&gt;        Contacto desde Marvel-Project      &lt;/th&gt;    &lt;/tr&gt;    &lt;tr&gt;      &lt;td style=&quot;border-right: 1px solid black;       border-bottom: 1px solid black; border-collapse: collapse;  text-align: justify;&quot;&gt;Nombre:&lt;/td&gt;      &lt;td style=&quot; border-bottom: 1px solid black; border-collapse: collapse;  text-align: justify; word-wrap: break-word;&quot;&gt;&#39;</span><span class="o">+</span><span class="n">nombre</span><span class="o">+</span><span class="s1">&#39;&lt;/td&gt;    &lt;/tr&gt;    &lt;tr&gt;      &lt;td style=&quot;border-right: 1px solid black; border-bottom: 1px solid black; border-collapse: collapse;  text-align: justify;&quot;&gt;Correo electronico:&lt;/td&gt;      &lt;td style=&quot;border-bottom: 1px solid black; border-collapse: collapse;  text-align: justify; word-wrap: break-word;&quot;&gt;&#39;</span><span class="o">+</span><span class="n">email</span><span class="o">+</span><span class="s1">&#39;&lt;/td&gt;    &lt;/tr&gt;    &lt;tr&gt;      &lt;td style=&quot;border-right: 1px solid black; border-bottom: 1px solid black; border-collapse: collapse;  text-align: justify;&quot;&gt;Motivo:&lt;/td&gt;      &lt;td style=&quot;border-bottom: 1px solid black;  border-collapse: collapse;  text-align: justify; word-wrap: break-word;&quot;&gt;&#39;</span><span class="o">+</span><span class="n">motivo</span><span class="o">+</span><span class="s1">&#39;&lt;/td&gt;    &lt;/tr&gt;    &lt;tr&gt;      &lt;td style=&quot;border-right: 1px solid black; border-collapse: collapse;  text-align: justify;&quot;&gt;Mensaje:&lt;/td&gt;      &lt;td style=&quot;border-collapse: collapse;  text-align: justify; word-wrap: break-word;&quot;&gt;&#39;</span><span class="o">+</span><span class="n">mensaje</span><span class="o">+</span><span class="s1">&#39;&lt;/td&gt;    &lt;/tr&gt;  &lt;/table&gt;&#39;</span><span class="p">;</span>
+    <span class="n">var</span> <span class="n">datos</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Contactanos</span><span class="p">();</span>
+    <span class="n">datos</span><span class="o">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="n">nombre</span><span class="p">;</span>
+    <span class="n">datos</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">email</span><span class="p">;</span>
+    <span class="n">datos</span><span class="o">.</span><span class="n">motivo</span> <span class="o">=</span> <span class="n">motivo</span><span class="p">;</span>
+    <span class="n">datos</span><span class="o">.</span><span class="n">mensaje</span> <span class="o">=</span> <span class="n">mensaje</span><span class="p">;</span>
+    <span class="n">this</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">crearContactanos</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span><span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">r</span><span class="o">=&gt;</span><span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">r</span><span class="p">){</span>
+        <span class="n">Email</span><span class="o">.</span><span class="n">send</span><span class="p">({</span>
+          <span class="n">Host</span><span class="p">:</span> <span class="s1">&#39;smtp.elasticemail.com&#39;</span><span class="p">,</span>
+          <span class="n">Username</span><span class="p">:</span> <span class="s1">&#39;dev17@aiatic.com&#39;</span><span class="p">,</span>
+          <span class="n">Password</span><span class="p">:</span> <span class="s1">&#39;XXXXXXXXXXXXXXXXXXXXXXXXXXXX&#39;</span><span class="p">,</span>
+          <span class="n">To</span><span class="p">:</span> <span class="s1">&#39;ceo@aiatic.com&#39;</span><span class="p">,</span>
+          <span class="n">From</span><span class="p">:</span> <span class="s1">&#39;dev17@aiatic.com&#39;</span><span class="p">,</span>
+          <span class="n">Subject</span><span class="p">:</span> <span class="n">asunto</span><span class="p">,</span>
+          <span class="n">Body</span><span class="p">:</span> <span class="n">cuerpo</span>
+        <span class="p">})</span><span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">message</span> <span class="o">=&gt;</span><span class="p">{</span>
+          <span class="n">alert</span><span class="p">(</span><span class="s1">&#39;m&#39;</span><span class="o">+</span> <span class="n">message</span><span class="p">);</span>
+        <span class="p">});</span>
+        <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;si&#39;</span><span class="p">);</span>
+      <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+        <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;no&#39;</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Lo primero que se observa, es que hacemos una breves importaciones de librerias y modelos que necesitamos para poder trabajar esta sección de Contacto.
+Seguido, iniciamos un nuevo formulario, el cuál recibirá los cuatro datos requeridos.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">export</span> <span class="k">class</span> <span class="nc">ContactoComponent</span> <span class="n">implements</span> <span class="n">OnInit</span> <span class="p">{</span>
+ <span class="n">contactanosForm</span><span class="o">=</span> <span class="n">new</span> <span class="n">FormGroup</span><span class="p">({</span>
+  <span class="n">nombre</span><span class="p">:</span> <span class="n">new</span> <span class="n">FormControl</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
+  <span class="n">email</span><span class="p">:</span><span class="n">new</span> <span class="n">FormControl</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">[</span><span class="o">/*</span><span class="n">Validators</span><span class="o">.</span><span class="n">email</span><span class="o">*/</span><span class="p">,</span><span class="n">Validators</span><span class="o">.</span><span class="n">pattern</span><span class="p">(</span><span class="o">/^</span><span class="p">(([</span><span class="o">^&lt;&gt;</span><span class="p">()[</span>\<span class="p">]</span>\\<span class="o">.</span><span class="p">,;:</span>\<span class="n">s</span><span class="o">@</span>\<span class="s2">&quot;]+(\.[^&lt;&gt;()[\]</span><span class="se">\\</span><span class="s2">.,;:\s@</span><span class="se">\&quot;</span><span class="s2">]+)*)|(</span><span class="se">\&quot;</span><span class="s2">.+</span><span class="se">\&quot;</span><span class="s2">))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),</span>
+  <span class="n">motivo</span><span class="p">:</span> <span class="n">new</span> <span class="n">FormControl</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
+  <span class="n">mensaje</span><span class="p">:</span> <span class="n">new</span> <span class="n">FormControl</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
+<span class="p">},);</span>
+  <span class="n">motivos</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Contratos&#39;</span><span class="p">,</span> <span class="s1">&#39;Proyectos&#39;</span><span class="p">,</span> <span class="s1">&#39;Cobranzas&#39;</span><span class="p">];</span>
+</pre></div>
+</div>
+<p>Hecho esta sección, nuestro formulario ya está listo para poder ser procesado por otros métodos para su envío &amp; cumpliendo con el requerimiento, se crea un array Motivo para que podamos crear el dropdown en nuestro html con las 3 opciones entregadas por el cliente.
+Seguido de esto, encontraremos nuestro constructor, el cual inicializará como privado, el servicio de DataBaseService, el cual es el servicio creado para poder manejar los métodos necesarios para procesar información.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">guardar</span><span class="p">(){</span>
+  <span class="n">const</span> <span class="p">{</span><span class="n">nombre</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">motivo</span><span class="p">,</span> <span class="n">mensaje</span><span class="p">}</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">contactanosForm</span><span class="o">.</span><span class="n">value</span><span class="p">;</span>
+  <span class="n">const</span> <span class="n">asunto</span><span class="p">:</span><span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;Nos ha contactado &#39;</span><span class="o">+</span><span class="n">nombre</span><span class="o">+</span><span class="s1">&#39; desde Marvel-Project&#39;</span><span class="p">;</span>
+  <span class="n">const</span> <span class="n">cuerpo</span><span class="p">:</span><span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;&lt;table style=&quot;width: 900px; margin: auto; border: 1px solid black; table-layout: fixed;&quot;&gt;&lt;tr&gt;      &lt;th colspan=&quot;2&quot; style=&quot;border-bottom: 1px solid black;border-collapse: collapse;&quot;&gt;        Contacto desde Marvel-Project      &lt;/th&gt;    &lt;/tr&gt;    &lt;tr&gt;      &lt;td style=&quot;border-right: 1px solid black; border-bottom: 1px solid black; border-collapse: collapse;  text-align: justify;&quot;&gt;Nombre:&lt;/td&gt;      &lt;td style=&quot; border-bottom: 1px solid black; border-collapse: collapse;  text-align: justify; word-wrap: break-word;&quot;&gt;&#39;</span><span class="o">+</span><span class="n">nombre</span><span class="o">+</span><span class="s1">&#39;&lt;/td&gt;    &lt;/tr&gt;    &lt;tr&gt;      &lt;td style=&quot;border-right: 1px solid black; border-bottom: 1px solid black; border-collapse: collapse;  text-align: justify;&quot;&gt;Correo electronico:&lt;/td&gt;      &lt;td style=&quot;border-bottom: 1px solid black; border-collapse: collapse;  text-align: justify; word-wrap: break-word;&quot;&gt;&#39;</span><span class="o">+</span><span class="n">email</span><span class="o">+</span><span class="s1">&#39;&lt;/td&gt;    &lt;/tr&gt;    &lt;tr&gt;      &lt;td style=&quot;border-right: 1px solid black; border-bottom: 1px solid black; border-collapse: collapse;  text-align: justify;&quot;&gt;Motivo:&lt;/td&gt;      &lt;td style=&quot;border-bottom: 1px solid black;  border-collapse: collapse;  text-align: justify; word-wrap: break-word;&quot;&gt;&#39;</span><span class="o">+</span><span class="n">motivo</span><span class="o">+</span><span class="s1">&#39;&lt;/td&gt;    &lt;/tr&gt;    &lt;tr&gt;      &lt;td style=&quot;border-right: 1px solid black; border-collapse: collapse;  text-align: justify;&quot;&gt;Mensaje:&lt;/td&gt;      &lt;td style=&quot;border-collapse: collapse;  text-align: justify; word-wrap: break-word;&quot;&gt;&#39;</span><span class="o">+</span><span class="n">mensaje</span><span class="o">+</span><span class="s1">&#39;&lt;/td&gt;    &lt;/tr&gt;  &lt;/table&gt;&#39;</span><span class="p">;</span>
+  <span class="n">var</span> <span class="n">datos</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Contactanos</span><span class="p">();</span>
+  <span class="n">datos</span><span class="o">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="n">nombre</span><span class="p">;</span>
+  <span class="n">datos</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">email</span><span class="p">;</span>
+  <span class="n">datos</span><span class="o">.</span><span class="n">motivo</span> <span class="o">=</span> <span class="n">motivo</span><span class="p">;</span>
+  <span class="n">datos</span><span class="o">.</span><span class="n">mensaje</span> <span class="o">=</span> <span class="n">mensaje</span><span class="p">;</span>
+  <span class="n">this</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">crearContactanos</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span><span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">r</span><span class="o">=&gt;</span><span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">r</span><span class="p">){</span>
+      <span class="n">Email</span><span class="o">.</span><span class="n">send</span><span class="p">({</span>
+        <span class="n">Host</span><span class="p">:</span> <span class="s1">&#39;smtp.elasticemail.com&#39;</span><span class="p">,</span>
+        <span class="n">Username</span><span class="p">:</span> <span class="s1">&#39;dev17@aiatic.com&#39;</span><span class="p">,</span>
+        <span class="n">Password</span><span class="p">:</span> <span class="s1">&#39;XXXXXXXXXXXXXXXXXXXXXXXXXXXX&#39;</span><span class="p">,</span>
+        <span class="n">To</span><span class="p">:</span> <span class="s1">&#39;ceo@aiatic.com&#39;</span><span class="p">,</span>
+        <span class="n">From</span><span class="p">:</span> <span class="s1">&#39;dev17@aiatic.com&#39;</span><span class="p">,</span>
+        <span class="n">Subject</span><span class="p">:</span> <span class="n">asunto</span><span class="p">,</span>
+        <span class="n">Body</span><span class="p">:</span> <span class="n">cuerpo</span>
+      <span class="p">})</span><span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">message</span> <span class="o">=&gt;</span><span class="p">{</span>
+        <span class="n">alert</span><span class="p">(</span><span class="s1">&#39;m&#39;</span><span class="o">+</span> <span class="n">message</span><span class="p">);</span>
+      <span class="p">});</span>
+      <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;si&#39;</span><span class="p">);</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+      <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;no&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>El método guardar() es donde hacemos el llamado de nuestra API de elasticmail. En este método, observamos que se crean unas variables en donde almacenamos los datos de nuestro formulario previamente creado, seguido de la creación de una variable asunto, la cuál en el correo del CEO será tal cual la caja en dónde se especifíca el asunto del correo y el cuerpo, el cuál recibe dentro de la misma variable el estilo que este tendrá cuando el CEO reciba el correo. se crea la variable datos, la cual incializa un objeto de tipo «contactanos». Creamos una condicional para que una vez creado el formulario en la base de datos, se ejecute el envío del correo</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="usuarioModel.html" class="btn btn-neutral float-right" title="Modelo registros:" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="video.html" class="btn btn-neutral float-left" title="Video" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Karen Gómez, Ronal Landazabal, Carlos Gonzalez, Yeison Rey
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

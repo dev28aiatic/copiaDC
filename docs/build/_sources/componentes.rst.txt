@@ -1,0 +1,14 @@
+Mis componentes
+================
+
+
+En esta sección se encuentra la lista de los componentes que posee la aplicación, estas cuentan con una descripción, las importaciones
+utilizadas y el desarrollo de cada una.
+
+.. toctree::
+   
+   login
+   mi Perfil
+   registro
+   registros
+   video
