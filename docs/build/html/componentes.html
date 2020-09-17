@@ -90,13 +90,16 @@
 <li class="toctree-l2"><a class="reference internal" href="home.html">Inicio</a></li>
 <li class="toctree-l2"><a class="reference internal" href="registro.html">Registro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="login.html">Login</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mi%20Perfil.html">Mi Perfil</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mi%20Perfil.html">Perfil</a></li>
 <li class="toctree-l2"><a class="reference internal" href="registros.html">Registros</a></li>
 <li class="toctree-l2"><a class="reference internal" href="video.html">Video</a></li>
 <li class="toctree-l2"><a class="reference internal" href="contacto.html">Contacto</a></li>
-<li class="toctree-l2"><a class="reference internal" href="usuarioModel.html">Modelo registros:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="angularMaterial.html">Angular Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usuarioModel.html">Modelo registros.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html">Servicio Auth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contactoService.html">Servicio Contacto</a></li>
 <li class="toctree-l2"><a class="reference internal" href="APIREST.html">Servicio Municipios</a></li>
-<li class="toctree-l2"><a class="reference internal" href="datos-municipio.html">Interface de municipio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="registrosService.html">Servicio Registros</a></li>
 </ul>
 </li>
 </ul>
@@ -177,7 +180,7 @@ crear un elemento con caracteristicas propias tanto de comportamiento como de ap
 <li class="toctree-l1"><a class="reference internal" href="home.html">Inicio</a></li>
 <li class="toctree-l1"><a class="reference internal" href="registro.html">Registro</a></li>
 <li class="toctree-l1"><a class="reference internal" href="login.html">Login</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mi%20Perfil.html">Mi Perfil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mi%20Perfil.html">Perfil</a></li>
 <li class="toctree-l1"><a class="reference internal" href="registros.html">Registros</a></li>
 <li class="toctree-l1"><a class="reference internal" href="video.html">Video</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contacto.html">Contacto</a></li>
@@ -187,44 +190,26 @@ crear un elemento con caracteristicas propias tanto de comportamiento como de ap
 </dl>
 </li>
 <li><dl>
-<dt>Angular material</dt><dd><p>Angular Material es una biblioteca de componentes de UI para desarrolladores de Angular JS. Se utilizo para la contrucción de los
-componentes y hacerlos mas atractivos, consistentes y funcionales.</p>
-<p>Se creo un modulo como practica de orden y facilidad en el momento de hacer las importaciones de los modulos para el uso
-de Material, las cuales fueron las siguientes:.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="p">{</span><span class="n">MatButtonModule</span><span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/material/button&#39;</span><span class="p">;</span>
-<span class="kn">import</span> <span class="p">{</span><span class="n">MatCardModule</span><span class="p">}</span> <span class="n">from</span><span class="s1">&#39;@angular/material/Card&#39;</span><span class="p">;</span>
-<span class="kn">import</span> <span class="p">{</span> <span class="n">MatFormFieldModule</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/material/form-field&#39;</span><span class="p">;</span>
-<span class="kn">import</span> <span class="p">{</span><span class="n">MatSelectModule</span><span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/material/select&#39;</span><span class="p">;</span>
-<span class="kn">import</span> <span class="p">{</span> <span class="n">MatInputModule</span><span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/material/input&#39;</span><span class="p">;</span>
-<span class="kn">import</span> <span class="p">{</span><span class="n">MatIconModule</span><span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/material/icon&#39;</span><span class="p">;</span>
-<span class="kn">import</span> <span class="p">{</span> <span class="n">MatDatepickerModule</span><span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/material/datepicker&#39;</span><span class="p">;</span>
-<span class="kn">import</span> <span class="p">{</span> <span class="n">MatNativeDateModule</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/material/core&#39;</span><span class="p">;</span>
-<span class="kn">import</span> <span class="p">{</span> <span class="n">MatCheckboxModule</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/material/checkbox&#39;</span><span class="p">;</span>
-<span class="kn">import</span> <span class="p">{</span><span class="n">MatListModule</span><span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/material/list&#39;</span><span class="p">;</span>
-<span class="kn">import</span> <span class="p">{</span> <span class="n">MatDialogModule</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/material/dialog&#39;</span><span class="p">;</span>
-<span class="kn">import</span> <span class="p">{</span> <span class="n">MatToolbarModule</span><span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/material/toolbar&#39;</span><span class="p">;</span>
-<span class="kn">import</span> <span class="p">{</span> <span class="n">MatSidenavModule</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/material/sidenav&#39;</span><span class="p">;</span>
-<span class="kn">import</span> <span class="p">{</span> <span class="n">MatGridListModule</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/material/grid-list&#39;</span><span class="p">;</span>
-<span class="kn">import</span> <span class="p">{</span> <span class="n">MatTableModule</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/material/table&#39;</span><span class="p">;</span>
-<span class="kn">import</span> <span class="p">{</span> <span class="n">MatSortModule</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/material/sort&#39;</span><span class="p">;</span>
-<span class="kn">import</span> <span class="p">{</span> <span class="n">MatProgressBarModule</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/material/progress-bar&#39;</span><span class="p">;</span>
-<span class="kn">import</span> <span class="p">{</span> <span class="n">MatMenuModule</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/material/menu&#39;</span><span class="p">;</span>
-<span class="kn">import</span> <span class="p">{</span><span class="n">MatAutocompleteModule</span><span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/material/autocomplete&#39;</span><span class="p">;</span>
-</pre></div>
+<dt>Material</dt><dd><p>Se tiene esta carpeta en donde se recolecta de una manera ordenada un modulo que llame todas los componentes que se requieran, en este
+proyecto se utiliza para dar los estilos con Angular Material, se puede ver mas informacion de cada material usado en el proyecto en esta lista:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="angularMaterial.html">Angular Material</a></li>
+</ul>
 </div>
 </dd>
 </dl>
 </li>
-</ol>
-<ol class="arabic">
-<li><p>Modelos</p>
-<blockquote>
-<div><div class="toctree-wrapper compound">
+<li><dl>
+<dt>Modelos</dt><dd><p>Un modelo se utiliza para definir los tipos de datos que vamos a usar en la aplicación. Son archivos creados a mano,
+que definen un tipo de datos, modelando una serie de atributos que contiene, los modelos utilizados en este proyecto son:</p>
+<div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="usuarioModel.html">Modelo registros:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usuarioModel.html">Modelo registros.</a></li>
 </ul>
 </div>
-</div></blockquote>
+</dd>
+</dl>
 </li>
 <li><dl>
 <dt>Servicios</dt><dd><p>Un servicio es un proveedor de datos, que mantiene lógica de acceso a ellos y operativa relacionada con la aplicación y las cosas que se hacen con los datos dentro de la misma.
@@ -232,8 +217,10 @@ Los servicios serán consumidos por los componentes, que delegarán en ellos la 
 <p>Los servicios utilizados en la aplicación son:</p>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">Servicio Auth</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contactoService.html">Servicio Contacto</a></li>
 <li class="toctree-l1"><a class="reference internal" href="APIREST.html">Servicio Municipios</a></li>
-<li class="toctree-l1"><a class="reference internal" href="datos-municipio.html">Interface de municipio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="registrosService.html">Servicio Registros</a></li>
 </ul>
 </div>
 </dd>

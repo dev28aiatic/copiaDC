@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-
 //Para manejo de llamadas a apis con este modulo no necesitas usar fetch ni ajax
 import { HttpClient } from "@angular/common/http";
 import { Observable } from 'rxjs/internal/Observable';

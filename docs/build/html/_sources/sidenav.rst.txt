@@ -2,7 +2,12 @@ Sidenav
 *********
 
 
-.. image :: ../images/inicio.png
+.. image :: ../images/sidenavweb.JPG
+Sidenav en versión web
+
+
+.. image :: ../images/sidenavmovil.JPG
+Sidenav en versión movil
 
 
 * Descripción

@@ -1,10 +1,18 @@
 Registro
 *********
 
-1. Descripción
+.. image :: ../images/registro.JPG
+Pagina de registro para versión web
+
+
+.. image :: ../images/registromovil.JPG
+Pagína de registro para versión movil
+
+
+* Descripción
     En este componente se debe mostrar todos los registros almacenados en la base de datos. 
 
-2. Importaciones
+* Importaciones
     Para este componente de debe importar el servicio a la base de datos, el servicio para la 
     autentificación de usuarios y el servicio a una API para obtener los municipios y departamentos 
     de Colombia.
@@ -24,7 +32,7 @@ Registro
         import { Router } from '@angular/router';
 
     
-3. Desarrollo
+* Desarrollo
     El constructor se inyectan todos los objetos a necesarios para el desarrollo del componente.
     ::
         private afAuth: AngularFireAuth,

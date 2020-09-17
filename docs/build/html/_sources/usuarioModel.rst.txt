@@ -1,4 +1,4 @@
-Modelo registros:
+Modelo registros.
 ===============
 
 Para los modelos se usaron dos interfaces:

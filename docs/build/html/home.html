@@ -90,11 +90,11 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Inicio</a></li>
 <li class="toctree-l2"><a class="reference internal" href="registro.html">Registro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="login.html">Login</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mi%20Perfil.html">Mi Perfil</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mi%20Perfil.html">Perfil</a></li>
 <li class="toctree-l2"><a class="reference internal" href="registros.html">Registros</a></li>
 <li class="toctree-l2"><a class="reference internal" href="video.html">Video</a></li>
 <li class="toctree-l2"><a class="reference internal" href="contacto.html">Contacto</a></li>
-<li class="toctree-l2"><a class="reference internal" href="usuarioModel.html">Modelo registros:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usuarioModel.html">Modelo registros.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="APIREST.html">Servicio Municipios</a></li>
 <li class="toctree-l2"><a class="reference internal" href="datos-municipio.html">Interface de municipio</a></li>
 </ul>
@@ -168,7 +168,10 @@
             
   <div class="section" id="inicio">
 <h1>Inicio<a class="headerlink" href="#inicio" title="Enlazar permanentemente con este título">¶</a></h1>
-<img alt="../images/inicio.png" src="../images/inicio.png" />
+<img alt="_images/homeweb.JPG" src="_images/homeweb.JPG" />
+<p>Inicio para versión web</p>
+<img alt="_images/homemovil.JPG" src="_images/homemovil.JPG" />
+<p>Inicio para versión movil</p>
 <ul>
 <li><dl class="simple">
 <dt>Descripción</dt><dd><p>En esta sección se muestra información de los desarrolladores.</p>
@@ -176,20 +179,69 @@
 </dl>
 </li>
 <li><dl>
-<dt>Importaciones</dt><dd><p>Para este componente se debe importar el módulo de Angular Material denominado MatCard para las tarjetas de cada
+<dt>Importaciones</dt><dd><p>Para este componente se debe importar el módulo de Angular Material para las tarjetas de cada
 integrante del equipo.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="p">{</span> <span class="n">MatCardModule</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/material/card&#39;</span><span class="p">;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="p">{</span> <span class="n">MaterialModule</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;src/app/material/material.module&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
 </dd>
 </dl>
 </li>
 <li><dl class="simple">
-<dt>Desarrollo</dt><dd><p>El MatCard permite agregar una imagen y un texto en este caso los datos del desarrollador.</p>
+<dt>Desarrollo</dt><dd><p>El MatCard permite agregar una imagen y un texto en este caso los datos del desarrollador dentro de un mat-grid, donde tenemos 2 columnas, una para cada mat-grid-tile por desarrollador.</p>
 </dd>
 </dl>
 </li>
 </ul>
+<div class="highlight-html notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24</pre></div></td><td class="code"><div class="highlight"><pre><span></span> &lt;mat-grid-list cols=&quot;2&quot; rowHeight=&quot;1:1&quot; &gt;
+
+     &lt;!--grid tile para cada tarjeta--&gt;
+     &lt;mat-grid-tile [colspan]=&quot;1&quot; [rowspan]=&quot;1&quot; &gt;
+         &lt;!--card ronal--&gt;
+         &lt;mat-card class=&quot;card-persona&quot; fxFlex=&quot;0 0 50%&quot;&gt;
+         &lt;img mat-card-image src=&quot;../../../assets/ronal2.jpg&quot;&gt;
+         &lt;mat-card-content&gt;
+             &lt;p&gt;Ronal Landazabal&lt;/p&gt;
+         &lt;/mat-card-content&gt;
+         &lt;/mat-card&gt;
+     &lt;/mat-grid-tile&gt;
+
+     &lt;!--card karen--&gt;
+     &lt;mat-grid-tile [colspan]=&quot;1&quot; [rowspan]=&quot;1&quot;&gt;
+         &lt;mat-card class=&quot;card-persona&quot; fxFlex=&quot;0 0 50%&quot;&gt;
+         &lt;img mat-card-image src=&quot;../../../assets/karen.jpg&quot;&gt;
+         &lt;mat-card-content&gt;
+             &lt;p&gt;Karen Gómez&lt;/p&gt;
+         &lt;/mat-card-content&gt;
+         &lt;/mat-card&gt;
+     &lt;/mat-grid-tile&gt;
+
+ &lt;/mat-grid-list&gt;
+</pre></div>
+</td></tr></table></div>
 </div>
 
 

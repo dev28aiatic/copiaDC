@@ -6,21 +6,28 @@ Este servicio es invocado para auxiliar a los módulos que requieran la utilizac
 .. code-block::
 
    import { Injectable } from '@angular/core';
-   import { HttpClient} from '@angular/common/http';
-   import { environment} from '../../../environments/environment';
-   import { Municipio } from '../../interfaces/datos/municipio';
+   //Para manejo de llamadas a apis con este modulo no necesitas usar fetch ni ajax
+   import { HttpClient } from "@angular/common/http";
+   import { Observable } from 'rxjs/internal/Observable';
 
    @Injectable({
-  providedIn: 'root'
-   })  
-   export class APIRestMunicipiosService {
+   providedIn: 'root'
+   })
+   export class MunicipiosColombiaService {
 
-   constructor(private http: HttpClient) { 
+   //inyecto el httpClient
+   constructor( private http: HttpClient) { 
+
    }
- 
-   getAll(){
-    return this.http.get<Municipio[]>(`${environment.urlColombia}`);
-    }
+
+   //metodos
+   getDatos():Observable<any>{
+
+   return this.http.get("https://www.datos.gov.co/resource/xdk5-pm3f.json");
+
+   }
+
+
    }
 
 
