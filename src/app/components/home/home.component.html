@@ -1,14 +1,14 @@
 <div class="content" fxLayout="row wrap" fxLayoutGap="16px grid" fxLayoutAlign="center center">
   <div fxFlex="30%" fxFlex.xs="100%" fxFlex.sm="33%">
-    <h2> Bienvenidos somos el equipo DC</h2>
+    <h2> Bienvenidos somos el equipo MAFALDOS</h2>
 
 <!-- grid de dos columnas -->
-    <mat-grid-list cols="2" rowHeight="400px">
+    <mat-grid-list cols="2" rowHeight="1:1" >
 
       <!--grid tile para cada tarjeta-->
-      <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-grid-tile [colspan]="1" [rowspan]="1" >
         <!--card ronal-->
-          <mat-card class="card-persona">
+          <mat-card class="card-persona" fxFlex="0 0 50%">
           <img mat-card-image src="../../../assets/ronal2.jpg">
           <mat-card-content>
             <p>Ronal Landazabal</p>
@@ -18,14 +18,19 @@
 
        <!--card karen-->
       <mat-grid-tile [colspan]="1" [rowspan]="1">
-        <mat-card class="card-persona">
+        <mat-card class="card-persona" fxFlex="0 0 50%">
           <img mat-card-image src="../../../assets/karen.jpg">
           <mat-card-content>
             <p>Karen Gómez</p>
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
+
     </mat-grid-list>
+
+
+
+
 
     <!--card unab-->
     <mat-card>

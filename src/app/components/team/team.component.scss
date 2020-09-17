@@ -1,16 +1,35 @@
     img{
-        max-width: 200px;
-        margin: auto auto auto;
-        float:left
+        object-fit: cover;
+        float:left;
     }
+
+
+
+
+    .card-persona{
+      max-width: 250px;
+      max-height: 100%;
+
+    }
+
+
+
     p{
-        
+
         text-align: justify;
-        padding-left: 30px;
-        padding-right: 30px;
-        padding-top: 20px;
-        
+        padding: 20px;
+        margin: 0 auto;
+        display: inline-block;
+        top: -150px;
+
+
     }
-   
-   
+
+    mat-card{
+      align-content: center;
+    }
+
+
+
+
 

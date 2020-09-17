@@ -19,9 +19,9 @@ master_doc = 'index'
 
 # -- Project information -----------------------------------------------------
 
-project = 'teamDC'
-copyright = '2020, Karen Gómez y Ronal Landazabal'
-author = 'Karen Gómez y Ronal Landazabal'
+project = 'Mafaldos'
+copyright = '2020, Karen Gómez, Ronal Landazabal, Carlos Gonzalez, Yeison Rey'
+author = 'Karen Gómez, Ronal Landazabal, Carlos Gonzalez, Yeison Rey'
 
 # The full version, including alpha/beta/rc tags
 release = '0.0.1'

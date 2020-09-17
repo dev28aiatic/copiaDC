@@ -2,12 +2,13 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
+      [opened]="(isHandset$ | async) === false"
+      >
 
       <!-- Encabezado de la barra lateral, donde esta el logo de la esquina superior derecha -->
     <mat-toolbar>
-      <img class="logo" src="../../../assets/logo.png">
-      
+      <img class="logo" src="../../../assets/logoai3lab.png">
+
     </mat-toolbar>
      <!--lista del menú de la barra lateral izquierda -->
     <mat-nav-list>
@@ -25,10 +26,10 @@
     <mat-toolbar class="headerContent" >
       <div fxShow="true" fxHide.lt-md>
         <!-- Menú que va en el header -->
-        <a [routerLink]="['/home']" mat-button><mat-icon>home</mat-icon>Inicio</a>
-        <a [routerLink]="['/team']" mat-button><mat-icon>team</mat-icon>Equipo</a>
+        <a [routerLink]="['/home']" mat-button>Inicio</a>
+        <a [routerLink]="['/team']" mat-button>Equipo</a>
         <a [routerLink]="['/contact']"  mat-button>Contacto</a>
-      
+
       </div>
     <!--icono que es visible cuando esta en modo responsive -->
       <button
@@ -38,11 +39,11 @@
         (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-        
-      </button> 
+
+      </button>
        <!-- logo que se pone solo cuando esta en responsive -->
-      <img class="logo-sidenav" *ngIf="isHandset$ | async" src="../../../assets/logo.png">
-      
+      <img class="logo-sidenav" *ngIf="isHandset$ | async" src="../../../assets/logoai3lab.png">
+
        <!-- Menu derecho en modo responsive -->
       <button mat-button [matMenuTriggerFor]="menu" fxShow="true" fxHide.gt-sm><mat-icon>menu</mat-icon></button>
      <mat-menu #menu="matMenu">
@@ -50,11 +51,11 @@
        <button mat-menu-item [routerLink]="['/team']">Equipo</button>
        <button mat-menu-item [routerLink]="['/contact']" >Contacto</button>
     </mat-menu>
-      
-    </mat-toolbar>
-    
 
-    
+    </mat-toolbar>
+
+
+
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

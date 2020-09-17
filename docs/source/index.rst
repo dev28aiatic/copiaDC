@@ -3,29 +3,28 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
    
-Bienvenido a la documentación de DCTEAM!
+
+.. image :: ../images/logomafaldos.png
+
+
+Bienvenido a la documentación de MAFALDOS!
 =========================================
+
+
+Mafaldos es una plataforma web responsiva de tipo dashboard, con varias secciones. 
+La plataforma permite a los usuarios registrarse y acceder a todas los módulos de la plataforma. 
+En la sección mi perfil se visuliza la información del usuario, permitiendo que se editen estos datos y 
+agregar una foto de usuario. La seccion de registros muestra información de todos los usuarios registrados.
+
 
 Contenido
 ====================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    
    descripcion
-   home
-   login
-   mi Perfil
-   registro
-   registros
-   video
-
-Descripción
-***************************
-TEAM DC es una plataforma web responsiva de tipo dashboard, con varias secciones. 
-La plataforma permite a los usuarios registrarse y acceder a todas los módulos de la plataforma. 
-En la sección mi perfil se visuliza la información del usuario, permitiendo que se editen estos datos y 
-agregar una foto de usuario. La seccion de registros muestra información de todos los usuarios registrados.
+   componentes
 
 
 Framework
