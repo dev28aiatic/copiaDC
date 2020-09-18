@@ -20,11 +20,11 @@ master_doc = 'index'
 # -- Project information -----------------------------------------------------
 
 project = 'Mafaldos'
-copyright = '2020, Karen Gómez, Ronal Landazabal, Carlos Gonzalez, Yeison Rey'
-author = 'Karen Gómez, Ronal Landazabal, Carlos Gonzalez, Yeison Rey'
+copyright = '2020, Carlos Gonzalez & Yeison Rey'
+author = 'Carlos Gonzalez & Yeison Rey'
 
 # The full version, including alpha/beta/rc tags
-release = '0.0.1'
+release = '0.0.2'
 
 
 # -- General configuration ---------------------------------------------------

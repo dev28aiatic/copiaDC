@@ -28,7 +28,7 @@ Equipo en versión movil
     del desarrollador dentro de un mat-grid, donde tenemos 2 columnas, una para cada mat-grid-tile el cual los impares contienen 
     el mat-card y los pares la autobiografia.
 
-
+    
     .. code-block:: html
        :linenos:
 
