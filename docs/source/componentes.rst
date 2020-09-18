@@ -41,6 +41,7 @@ Estructura
     .. toctree::
 
        usuarioModel
+       contactoModel
 
 #. Servicios
     Un servicio es un proveedor de datos, que mantiene lógica de acceso a ellos y operativa relacionada con la aplicación y las cosas que se hacen con los datos dentro de la misma. 

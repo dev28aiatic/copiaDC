@@ -99,8 +99,9 @@
 <li class="toctree-l2"><a class="reference internal" href="contacto.html">Contacto</a></li>
 <li class="toctree-l2"><a class="reference internal" href="angularMaterial.html">Angular Material</a></li>
 <li class="toctree-l2"><a class="reference internal" href="usuarioModel.html">Modelo registros</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contactoModel.html">Modelo Contacto</a></li>
 <li class="toctree-l2"><a class="reference internal" href="auth.html">Servicio Auth</a></li>
-<li class="toctree-l2"><a class="reference internal" href="contactoService.html">Servicio Contacto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contactoService.html">Servicio contacto</a></li>
 <li class="toctree-l2"><a class="reference internal" href="APIREST.html">Servicio Municipios</a></li>
 <li class="toctree-l2"><a class="reference internal" href="registrosService.html">Servicio Registros</a></li>
 </ul>
@@ -176,27 +177,29 @@
 <h1>Iniciar sesión<a class="headerlink" href="#iniciar-sesion" title="Enlazar permanentemente con este título">¶</a></h1>
 <img alt="_images/login.JPG" src="_images/login.JPG" />
 <p>Inicio de sesión</p>
-<ul class="simple">
-<li><p>Descripción</p></li>
-</ul>
-<p>Este componente de Login, está compuesto por contenedor, el cuál con la propiedades del fxFlex podemos otorgarle un re-dimencionamiento a nuestro componente dependiendo de la pantalla de nuestro usuario. Se desarrolla a modo de formulario, en el cuál posee un pequeño titulo que identifica dicha sección. dentro de nuestro formulario, solo tenemos un input de e-mail &amp; un botón que tendrá el método onLogin(), el cuál validará si el correo existe o no en base de datos. y si el usuario no posee una cuenta, un hipervínculo que lo ayudará a registrarse en nuestra plataforma.</p>
-<ul class="simple">
-<li><p>Importaciones</p></li>
-</ul>
-<p>Para este componente, son fundamentales las importaciones del FormControl, FormGroup &amp; Validators, para poder crear nuestro formulario y poder enviar todos los datos que este capture.</p>
+<ul>
+<li><dl class="simple">
+<dt>Descripción</dt><dd><p>Este componente de Login, está compuesto por contenedor, el cuál con la propiedades del fxFlex podemos otorgarle un re-dimencionamiento a nuestro componente dependiendo de la pantalla de nuestro usuario. Se desarrolla a modo de formulario, en el cuál posee un pequeño titulo que identifica dicha sección. dentro de nuestro formulario, solo tenemos un input de e-mail &amp; un botón que tendrá el método onLogin(), el cuál validará si el correo existe o no en base de datos. y si el usuario no posee una cuenta, un hipervínculo que lo ayudará a registrarse en nuestra plataforma.</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Importaciones</dt><dd><p>Para este componente, son fundamentales las importaciones del FormControl, FormGroup &amp; Validators, para poder crear nuestro formulario y poder enviar todos los datos que este capture.</p>
 <p>El authService nos ayudará para verificar la autenticidad de los datos entregados, permitiendonos saber si el cliente existe. Se importa Registro Services que es donde tenemos todos nuestros métodos para interactuar con nuestra base de datos. se importan los Mat Dialog para poder manejar los Modales.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="p">{</span> <span class="n">Component</span><span class="p">,</span> <span class="n">OnInit</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
-             <span class="kn">import</span> <span class="p">{</span> <span class="n">FormControl</span><span class="p">,</span> <span class="n">FormGroup</span><span class="p">,</span> <span class="n">Validators</span><span class="p">,</span> <span class="n">EmailValidator</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/forms&#39;</span><span class="p">;</span>
-             <span class="kn">import</span> <span class="p">{</span> <span class="n">Router</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/router&#39;</span><span class="p">;</span>
-             <span class="kn">import</span> <span class="p">{</span> <span class="n">auth</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;firebase&#39;</span><span class="p">;</span>
-             <span class="kn">import</span> <span class="p">{</span> <span class="n">AuthService</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;../../services/auth.service&#39;</span><span class="p">;</span>
-             <span class="kn">import</span> <span class="p">{</span> <span class="n">RegistrosService</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;src/app/services/registros.service&#39;</span><span class="p">;</span>
-             <span class="kn">import</span> <span class="p">{</span> <span class="n">MatDialogConfig</span><span class="p">,</span> <span class="n">MatDialog</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/material/dialog&#39;</span><span class="p">;</span>
-             <span class="kn">import</span> <span class="p">{</span> <span class="n">DialogComponent</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;../dialog/dialog.component&#39;</span><span class="p">;</span>
-             <span class="kn">import</span> <span class="p">{</span> <span class="n">AngularFireAuth</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/fire/auth&#39;</span><span class="p">;</span>
+         <span class="kn">import</span> <span class="p">{</span> <span class="n">FormControl</span><span class="p">,</span> <span class="n">FormGroup</span><span class="p">,</span> <span class="n">Validators</span><span class="p">,</span> <span class="n">EmailValidator</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/forms&#39;</span><span class="p">;</span>
+         <span class="kn">import</span> <span class="p">{</span> <span class="n">Router</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/router&#39;</span><span class="p">;</span>
+         <span class="kn">import</span> <span class="p">{</span> <span class="n">auth</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;firebase&#39;</span><span class="p">;</span>
+         <span class="kn">import</span> <span class="p">{</span> <span class="n">AuthService</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;../../services/auth.service&#39;</span><span class="p">;</span>
+         <span class="kn">import</span> <span class="p">{</span> <span class="n">RegistrosService</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;src/app/services/registros.service&#39;</span><span class="p">;</span>
+         <span class="kn">import</span> <span class="p">{</span> <span class="n">MatDialogConfig</span><span class="p">,</span> <span class="n">MatDialog</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/material/dialog&#39;</span><span class="p">;</span>
+         <span class="kn">import</span> <span class="p">{</span> <span class="n">DialogComponent</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;../dialog/dialog.component&#39;</span><span class="p">;</span>
+         <span class="kn">import</span> <span class="p">{</span> <span class="n">AngularFireAuth</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/fire/auth&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
-<ul>
+</dd>
+</dl>
+</li>
 <li><dl>
 <dt>Desarrollo</dt><dd><p>En esta sección, iniciamos con nuestro componente creado en el HTML y estilizado en nuestro css.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;div
@@ -233,28 +236,15 @@
          &lt;/div&gt;
 </pre></div>
 </div>
-</dd>
-</dl>
-</li>
-</ul>
 <p>El desarrollo de nuestra lógica de desarrollo empieza por la creación de nuestro Form en el typescript</p>
-<blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">loginForm</span><span class="o">=</span> <span class="n">new</span> <span class="n">FormGroup</span><span class="p">({</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">loginForm</span><span class="o">=</span> <span class="n">new</span> <span class="n">FormGroup</span><span class="p">({</span>
   <span class="n">emai</span><span class="p">:</span> <span class="n">new</span> <span class="n">FormControl</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,[</span><span class="n">Validators</span><span class="o">.</span><span class="n">required</span><span class="p">,</span> <span class="n">Validators</span><span class="o">.</span><span class="n">email</span><span class="p">])</span>
 
 <span class="p">})</span>
 </pre></div>
 </div>
-</div></blockquote>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
-<blockquote>
-<div><p>Después de que tenemos nuestro Form listo para recibir información, podemos ir a nuestro método principal en donde vamos a primero, validar si el correo que se ingresó existe en nuestra base de datos, si sí, se usar el router para redirigir el usuario a Home. sino saldrá un Modal explicando que no existe este correo en nuestra base de datos.</p>
-</div></blockquote>
-<hr class="docutils" />
-<p>Después de que tenemos nuestro Form listo para recibir información, podemos ir a nuestro método principal en donde vamos a primero, validar si el correo que se ingresó existe en nuestra base de datos, si sí, se usar el router para redirigir el usuario a Home. sino saldrá un Modal explicando que no existe este correo en nuestra base de datos.
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; origin/rama1Frontv1</p>
-<blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="k">async</span> <span class="n">onLogin</span><span class="p">(){</span>
+<p>Después de que tenemos nuestro Form listo para recibir información, podemos ir a nuestro método principal en donde vamos a primero, validar si el correo que se ingresó existe en nuestra base de datos, si sí, se usar el router para redirigir el usuario a Home. sino saldrá un Modal explicando que no existe este correo en nuestra base de datos.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="k">async</span> <span class="n">onLogin</span><span class="p">(){</span>
   <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;funciona&quot;</span><span class="o">+</span> <span class="n">this</span><span class="o">.</span><span class="n">loginForm</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">email</span><span class="o">.</span><span class="n">value</span><span class="p">);</span>
 
   <span class="k">if</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">ValidarExistenciaCorreo</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">loginForm</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">email</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="o">==</span><span class="n">true</span><span class="p">)</span>
@@ -279,10 +269,8 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-</div></blockquote>
 <p>Como podemos observar, nuestro método onLogin, se vale de un Método llamado ValidarExistenciaCorreo, el cual es un método que espera un String y un Boolean. en este método, recorremos una lista de registros con un for y vamos comparando el String(correo) que nos entrega nuestro usuario final y lo comparamos con cada dato de correo existente en la base de datos</p>
-<blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">this</span><span class="o">.</span><span class="n">listaRegistros</span><span class="o">.</span><span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">this</span><span class="o">.</span><span class="n">listaRegistros</span><span class="o">.</span><span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
 <span class="n">const</span> <span class="n">element</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">listaRegistros</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 
 <span class="n">const</span> <span class="p">{</span> <span class="n">email</span> <span class="p">}</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">data</span><span class="p">;</span>
@@ -309,10 +297,8 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-</div></blockquote>
 <p>por último, tenemos nuestro modal, el cuál es el método OpenDialog y recibe una variable data que puede ser cualquier tipo de dato. y es la que mostrará un mensaje una vez tengamos el correo erroneo.</p>
-<blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>openDialog(data:any) {
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>openDialog(data:any) {
   const dialogConfig = new MatDialogConfig();
   dialogConfig.data = data;
 //dialogConfig.data = { titulo:&#39;Estado de registro&#39;, mensaje:&#39;Exitoso&#39;};
@@ -325,7 +311,10 @@
   }
 </pre></div>
 </div>
-</div></blockquote>
+</dd>
+</dl>
+</li>
+</ul>
 </div>
 
 

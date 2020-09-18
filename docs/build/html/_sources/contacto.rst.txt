@@ -17,7 +17,7 @@ Contactos en versión movil
 * Importaciones
     Importamos todas las librerías necesarias en nuestro componente de contacto, como lo son los Form y los validators, el primero se encargará de poder crear un formulario que nos permita trabajar con los datos otorgados por el usuario final, junto con el contact service que nos provee de todos los métodos para trabajar estos datos en nuestra base de datos
 
-    .. code-block::
+    ::
 
         import { Component, OnInit } from    '@angular/core';
         import { FormBuilder, FormControl, FormGroup,   Validators } from '@angular/forms';
@@ -33,7 +33,7 @@ Contactos en versión movil
     Los archivos son generados automáticamente por el Angular CLI.
     La estructura HMTL del formulario y la página de contacto es la siguiente
 
-    .. code-block::
+    ::
       
         <mat-card >
         <mat-card-content  fxLayout="column"  >
@@ -94,7 +94,7 @@ Contactos en versión movil
 
     A continuación se van a diligenciar todas las reglas de css que le dan estilo a nuestro fomulario:
 
-    .. code-block::
+    ::
       
         mat-card {
           max-width:80%;
@@ -214,7 +214,7 @@ Contactos en versión movil
     Pasaremos a explicar de manera breve cada uno de las partes que componen el Contacto.Component.ts, este archivo contiene todas importaciones necesarias para crear el formulario y poder trabajar con el Modelo de Contacto, enviar el formulario a la base de datos y usar la Api de Elasticemail para enviar el correo al CEO cada vez que alguien quiera hacer un contacto para discutir sobre nuestros servicios y oportunidades en Mafaldos Project.
 
 
-    .. code-block::
+    ::
 
         //para el formGroup
         contactForm: FormGroup;
@@ -249,7 +249,7 @@ Contactos en versión movil
     Iniciamos un nuevo formulario, el cuál recibirá los cuatro datos requeridos. Hecho esta sección, nuestro formulario ya está listo para poder ser procesado por otros métodos para su envío & cumpliendo con el requerimiento, se crea un array Motivo para que podamos crear el dropdown en nuestro html con las 3 opciones entregadas por el cliente.
 
 
-    .. code-block::
+    ::
 
           getRegistros(){
 
@@ -274,7 +274,7 @@ Contactos en versión movil
     Este primero método de get registros, será que el que nos permite obtener los datos de contactos y poderlos almacenar dentro de un documento en firebase
 
 
-    .. code-block::
+    ::
       
         errorEmail() {
           if (this.contactForm.controls.email.hasError('required')) {
@@ -290,7 +290,7 @@ Contactos en versión movil
 
 
 
-    .. code-block::
+    ::
       
         oncreate(form){
           //contraseña 215745566ED59E05A9845F9B348B9915395B

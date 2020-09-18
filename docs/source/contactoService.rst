@@ -1,12 +1,13 @@
-Servicio Contacto
-****************
+Servicio contacto
+***************
+
 
 Este servicio es invocado para poder hacer modificaciones en la base de datos, en la colección de los contactos, en la
 que se encuentra la información de los mensajes enviados para contactar al servicio de la pagina, permitiendo
 diferentes acciones como, crear, modificar, obtener, obtener todos, entre otros.
 
 
-.. code-block::
+::
    
                 import { Injectable } from '@angular/core';
 

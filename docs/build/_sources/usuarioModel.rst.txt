@@ -7,7 +7,7 @@ Para los modelos se usaron dos interfaces:
 #. La primera interfaz se llamo "RegistrosI" modelo en el que se declaran cada uno de los atributos requeridos de un "usuario".
 
 
-.. code-block:: 
+:: 
 
                     export interface RegistrosI{
                     
@@ -34,7 +34,7 @@ Este modelo es necesario para su uso en los componentes Mi Perfil, Registro y Re
 #. La segunda interfaz se llamo "ContactosI" modelo en el que se declaran cada uno de los atributos requeridos para los campos del componente "Contacto".
 
 
-.. code-block::
+::
                     
                 export interface ContactosI{
                 
