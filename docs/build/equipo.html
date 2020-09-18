@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Equipo &mdash; documentación de Mafaldos - 0.0.1</title>
+  <title>Equipo &mdash; documentación de Mafaldos - 0.0.2</title>
   
 
   
@@ -195,48 +195,39 @@ de quiebre en la vista web y responsive y su respectivo Observable</p>
 <li><dl>
 <dt>Desarrollo</dt><dd><p>Para el desarrollo de este componente se necesito el MatCard que permite agregar una imagen y un texto en este caso los datos
 del desarrollador dentro de un mat-grid, donde tenemos 2 columnas, una para cada mat-grid-tile el cual los impares contienen
-el mat-card y los pares la autobiografia.</p>
-<div class="highlight-html notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20</pre></div></td><td class="code"><div class="highlight"><pre><span></span> &lt;mat-grid-list [cols]=&quot;isMobile ? 1 :2 &quot; rowHeight=&quot;1:1&quot; class=&quot;card&quot;&gt;
- &lt;!-- grid tile para cada elemento--&gt;
-
-     &lt;!-- foto ronal --&gt;
-     &lt;mat-grid-tile class=&quot;img&quot; &gt;
-         &lt;mat-card class=&quot;card-persona&quot; fxFlex=&quot;0 0 50%&quot;&gt;
-         &lt;img mat-card-image src=&quot;../../../assets/ronal2.jpg&quot;&gt;
-         &lt;/mat-card&gt;
-     &lt;/mat-grid-tile&gt;
-     &lt;!--descripción ronal --&gt;
-     &lt;mat-grid-tile&gt;
-         &lt;p&gt;
-         Soy Ronal Landazabal un ser creado por Dios, en busca de cumplir su propósito
-         mientras viene a recogerme. Durante mi estadía en este mundo, procuró vivir
-         íntegramente. Actualmente estoy terminando la carrera de ing.Sistemas,
-         estoy radicado en la ciudad de Bucaramanga, Santander. Entre mis hobbies
-         está pilotar drones de carreras, hacer deporte principalmente squahs,
-         ver películas o series, charrear con temas de electrónica, bricolaje, DIY, entre otras cosas.
-         &lt;/p&gt;
- &lt;/mat-grid-tile&gt;
-</pre></div>
-</td></tr></table></div>
+el mat-card y los pares la autobiografia.
+.. code-block:: html</p>
+<blockquote>
+<div><dl class="field-list">
+<dt class="field-odd">linenos</dt>
+<dd class="field-odd"><p>&lt;mat-grid-list [cols]=»isMobile ? 1 :2 » rowHeight=»1:1» class=»card»&gt;
+&lt;!– grid tile para cada elemento–&gt;</p>
+<blockquote>
+<div><p>&lt;!– foto ronal –&gt;
+&lt;mat-grid-tile class=»img» &gt;</p>
+<blockquote>
+<div><p>&lt;mat-card class=»card-persona» fxFlex=»0 0 50%»&gt;
+&lt;img mat-card-image src=»../../../assets/ronal2.jpg»&gt;
+&lt;/mat-card&gt;</p>
+</div></blockquote>
+<p>&lt;/mat-grid-tile&gt;
+&lt;!–descripción ronal –&gt;
+&lt;mat-grid-tile&gt;</p>
+<blockquote>
+<div><p>&lt;p&gt;
+Soy Ronal Landazabal un ser creado por Dios, en busca de cumplir su propósito
+mientras viene a recogerme. Durante mi estadía en este mundo, procuró vivir
+íntegramente. Actualmente estoy terminando la carrera de ing.Sistemas,
+estoy radicado en la ciudad de Bucaramanga, Santander. Entre mis hobbies
+está pilotar drones de carreras, hacer deporte principalmente squahs,
+ver películas o series, charrear con temas de electrónica, bricolaje, DIY, entre otras cosas.
+&lt;/p&gt;</p>
+</div></blockquote>
+</div></blockquote>
+<p>&lt;/mat-grid-tile&gt;</p>
+</dd>
+</dl>
+</div></blockquote>
 </dd>
 </dl>
 </li>
@@ -264,7 +255,7 @@ el mat-card y los pares la autobiografia.</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, Karen Gómez, Ronal Landazabal, Carlos Gonzalez, Yeison Rey
+        &copy; Copyright 2020, Carlos Gonzalez &amp; Yeison Rey
 
     </p>
   </div>

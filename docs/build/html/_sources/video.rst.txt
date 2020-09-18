@@ -29,9 +29,11 @@ Pagina Video
             
             </div>
           </div>
+      
 
       Estas serían las reglas de nuestro CSS las cuales posicionan el video que hemos embebido, le entregamos posiciones y tamaños junto con el padding y su respectivo alineamiento de contenido
 
+      
       .. code-block::
 
         .videoWrapper {
