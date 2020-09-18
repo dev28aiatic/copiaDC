@@ -9,14 +9,16 @@ Inicio de sesión
 * Descripción
     Este componente de Login, está compuesto por contenedor, el cuál con la propiedades del fxFlex podemos otorgarle un re-dimencionamiento a nuestro componente dependiendo de la pantalla de nuestro usuario. Se desarrolla a modo de formulario, en el cuál posee un pequeño titulo que identifica dicha sección. dentro de nuestro formulario, solo tenemos un input de e-mail & un botón que tendrá el método onLogin(), el cuál validará si el correo existe o no en base de datos. y si el usuario no posee una cuenta, un hipervínculo que lo ayudará a registrarse en nuestra plataforma.
 
+
 * Importaciones
     Para este componente, son fundamentales las importaciones del FormControl, FormGroup & Validators, para poder crear nuestro formulario y poder enviar todos los datos que este capture.
+    
     El authService nos ayudará para verificar la autenticidad de los datos entregados, permitiendonos saber si el cliente existe. Se importa Registro Services que es donde tenemos todos nuestros métodos para interactuar con nuestra base de datos. se importan los Mat Dialog para poder manejar los Modales.
 
 
-.. code-block::
+    .. code-block::
    
-   import { Component, OnInit } from '@angular/core';
+       import { Component, OnInit } from '@angular/core';
                 import { FormControl, FormGroup, Validators, EmailValidator } from '@angular/forms';
                 import { Router } from '@angular/router';
                 import { auth } from 'firebase';
@@ -67,6 +69,7 @@ Inicio de sesión
                 </div>
 
 
+    
     El desarrollo de nuestra lógica de desarrollo empieza por la creación de nuestro Form en el typescript
 
 
@@ -108,6 +111,7 @@ Inicio de sesión
               }
 
 
+    
     Como podemos observar, nuestro método onLogin, se vale de un Método llamado ValidarExistenciaCorreo, el cual es un método que espera un String y un Boolean. en este método, recorremos una lista de registros con un for y vamos comparando el String(correo) que nos entrega nuestro usuario final y lo comparamos con cada dato de correo existente en la base de datos
 
 
@@ -140,6 +144,7 @@ Inicio de sesión
                 }
 
 
+    
     por último, tenemos nuestro modal, el cuál es el método OpenDialog y recibe una variable data que puede ser cualquier tipo de dato. y es la que mostrará un mensaje una vez tengamos el correo erroneo.
 
 

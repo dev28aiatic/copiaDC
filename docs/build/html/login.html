@@ -176,31 +176,29 @@
 <h1>Iniciar sesión<a class="headerlink" href="#iniciar-sesion" title="Enlazar permanentemente con este título">¶</a></h1>
 <img alt="_images/login.JPG" src="_images/login.JPG" />
 <p>Inicio de sesión</p>
-<ul class="simple">
+<ul>
 <li><dl class="simple">
 <dt>Descripción</dt><dd><p>Este componente de Login, está compuesto por contenedor, el cuál con la propiedades del fxFlex podemos otorgarle un re-dimencionamiento a nuestro componente dependiendo de la pantalla de nuestro usuario. Se desarrolla a modo de formulario, en el cuál posee un pequeño titulo que identifica dicha sección. dentro de nuestro formulario, solo tenemos un input de e-mail &amp; un botón que tendrá el método onLogin(), el cuál validará si el correo existe o no en base de datos. y si el usuario no posee una cuenta, un hipervínculo que lo ayudará a registrarse en nuestra plataforma.</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>Importaciones</dt><dd><p>Para este componente, son fundamentales las importaciones del FormControl, FormGroup &amp; Validators, para poder crear nuestro formulario y poder enviar todos los datos que este capture.
-El authService nos ayudará para verificar la autenticidad de los datos entregados, permitiendonos saber si el cliente existe. Se importa Registro Services que es donde tenemos todos nuestros métodos para interactuar con nuestra base de datos. se importan los Mat Dialog para poder manejar los Modales.</p>
+<li><dl>
+<dt>Importaciones</dt><dd><p>Para este componente, son fundamentales las importaciones del FormControl, FormGroup &amp; Validators, para poder crear nuestro formulario y poder enviar todos los datos que este capture.</p>
+<p>El authService nos ayudará para verificar la autenticidad de los datos entregados, permitiendonos saber si el cliente existe. Se importa Registro Services que es donde tenemos todos nuestros métodos para interactuar con nuestra base de datos. se importan los Mat Dialog para poder manejar los Modales.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="p">{</span> <span class="n">Component</span><span class="p">,</span> <span class="n">OnInit</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+         <span class="kn">import</span> <span class="p">{</span> <span class="n">FormControl</span><span class="p">,</span> <span class="n">FormGroup</span><span class="p">,</span> <span class="n">Validators</span><span class="p">,</span> <span class="n">EmailValidator</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/forms&#39;</span><span class="p">;</span>
+         <span class="kn">import</span> <span class="p">{</span> <span class="n">Router</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/router&#39;</span><span class="p">;</span>
+         <span class="kn">import</span> <span class="p">{</span> <span class="n">auth</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;firebase&#39;</span><span class="p">;</span>
+         <span class="kn">import</span> <span class="p">{</span> <span class="n">AuthService</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;../../services/auth.service&#39;</span><span class="p">;</span>
+         <span class="kn">import</span> <span class="p">{</span> <span class="n">RegistrosService</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;src/app/services/registros.service&#39;</span><span class="p">;</span>
+         <span class="kn">import</span> <span class="p">{</span> <span class="n">MatDialogConfig</span><span class="p">,</span> <span class="n">MatDialog</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/material/dialog&#39;</span><span class="p">;</span>
+         <span class="kn">import</span> <span class="p">{</span> <span class="n">DialogComponent</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;../dialog/dialog.component&#39;</span><span class="p">;</span>
+         <span class="kn">import</span> <span class="p">{</span> <span class="n">AngularFireAuth</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/fire/auth&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
 </dd>
 </dl>
 </li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="p">{</span> <span class="n">Component</span><span class="p">,</span> <span class="n">OnInit</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
-             <span class="kn">import</span> <span class="p">{</span> <span class="n">FormControl</span><span class="p">,</span> <span class="n">FormGroup</span><span class="p">,</span> <span class="n">Validators</span><span class="p">,</span> <span class="n">EmailValidator</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/forms&#39;</span><span class="p">;</span>
-             <span class="kn">import</span> <span class="p">{</span> <span class="n">Router</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/router&#39;</span><span class="p">;</span>
-             <span class="kn">import</span> <span class="p">{</span> <span class="n">auth</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;firebase&#39;</span><span class="p">;</span>
-             <span class="kn">import</span> <span class="p">{</span> <span class="n">AuthService</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;../../services/auth.service&#39;</span><span class="p">;</span>
-             <span class="kn">import</span> <span class="p">{</span> <span class="n">RegistrosService</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;src/app/services/registros.service&#39;</span><span class="p">;</span>
-             <span class="kn">import</span> <span class="p">{</span> <span class="n">MatDialogConfig</span><span class="p">,</span> <span class="n">MatDialog</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/material/dialog&#39;</span><span class="p">;</span>
-             <span class="kn">import</span> <span class="p">{</span> <span class="n">DialogComponent</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;../dialog/dialog.component&#39;</span><span class="p">;</span>
-             <span class="kn">import</span> <span class="p">{</span> <span class="n">AngularFireAuth</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@angular/fire/auth&#39;</span><span class="p">;</span>
-</pre></div>
-</div>
-<ul>
 <li><dl>
 <dt>Desarrollo</dt><dd><p>En esta sección, iniciamos con nuestro componente creado en el HTML y estilizado en nuestro css.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;div
