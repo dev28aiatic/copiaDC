@@ -15,8 +15,8 @@ Inicio de sesión
 
 
 .. code-block::
-      
-                import { Component, OnInit } from '@angular/core';
+   
+   import { Component, OnInit } from '@angular/core';
                 import { FormControl, FormGroup, Validators, EmailValidator } from '@angular/forms';
                 import { Router } from '@angular/router';
                 import { auth } from 'firebase';
@@ -32,8 +32,8 @@ Inicio de sesión
 
 
     .. code-block::
-
-                <div
+       
+       <div
                   class="content"
                   fxLayout="row wrap"
                   fxLayoutGap="16px grid"
