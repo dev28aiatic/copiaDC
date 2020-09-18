@@ -1,10 +1,11 @@
 Servicio Auth
 ****************
 
+
 Este servicio es invocado para auxiliar a los módulos que requieran iniciar una sesion, cerrar una sesión o la autenticación de la existencia de una sesión.
 
 
-.. code-block::
+::
 
                 import { Injectable } from '@angular/core';
                 import { Observable } from 'rxjs';

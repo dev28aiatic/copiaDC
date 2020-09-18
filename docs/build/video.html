@@ -87,6 +87,8 @@
 <li class="toctree-l1"><a class="reference internal" href="descripcion.html">Descripción</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="componentes.html">Estructura</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="sidenav.html">Sidenav</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dialogo.html">Dialogo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="footer.html">Footer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="home.html">Inicio</a></li>
 <li class="toctree-l2"><a class="reference internal" href="registro.html">Registro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="login.html">Iniciar sesión</a></li>
@@ -97,8 +99,9 @@
 <li class="toctree-l2"><a class="reference internal" href="contacto.html">Contacto</a></li>
 <li class="toctree-l2"><a class="reference internal" href="angularMaterial.html">Angular Material</a></li>
 <li class="toctree-l2"><a class="reference internal" href="usuarioModel.html">Modelo registros</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contactoModel.html">Modelo Contacto</a></li>
 <li class="toctree-l2"><a class="reference internal" href="auth.html">Servicio Auth</a></li>
-<li class="toctree-l2"><a class="reference internal" href="contactoService.html">Servicio Contacto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contactoService.html">Servicio contacto</a></li>
 <li class="toctree-l2"><a class="reference internal" href="APIREST.html">Servicio Municipios</a></li>
 <li class="toctree-l2"><a class="reference internal" href="registrosService.html">Servicio Registros</a></li>
 </ul>
@@ -186,8 +189,7 @@
 </dl>
 </li>
 <li><dl>
-<dt>Desarrollo</dt><dd><p>El HTML/CSS es compuesto po un contenedor que utiliza el fxFlex para mejorar la parte de responsividad y se utiliza iFrame para embeber el vídeo de nuestro gusto
-.. code-block:</p>
+<dt>Desarrollo</dt><dd><p>El HTML/CSS es compuesto po un contenedor que utiliza el fxFlex para mejorar la parte de responsividad y se utiliza iFrame para embeber el vídeo de nuestro gusto</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span> &lt;div class=&quot;content&quot; fxLayout=&quot;row wrap&quot; fxLayoutGap=&quot;16px grid&quot; fxLayoutAlign=&quot;center center&quot;&gt;
     &lt;div fxFlex=&quot;30%&quot; fxFlex.xs=&quot;100%&quot; fxFlex.sm=&quot;33%&quot;&gt;
         &lt;h2&gt;Bienvenidos somos el equipo DC&lt;/h2&gt;
@@ -204,7 +206,7 @@
 Estas serían las reglas de nuestro CSS las cuales posicionan el video que hemos embebido, le entregamos posiciones y tamaños junto con el padding y su respectivo alineamiento de contenido
 
 
-.. code-block::
+::
 
   .videoWrapper {
     position: relative;
@@ -225,7 +227,7 @@ Estas serían las reglas de nuestro CSS las cuales posicionan el video que hemos
 
 dentro de nuestro video.component, creamos una variable que será un tag, el cual nos permitirá crear un elemento, este tag se le entregará la url del api de youtube que es esencial para el funcionamiento del vídeo
 
-.. code-block::
+::
     ngOnInit(): void {
 
     const tag = document.createElement(&#39;script&#39;);

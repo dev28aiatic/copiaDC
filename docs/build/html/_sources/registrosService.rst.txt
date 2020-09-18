@@ -1,12 +1,12 @@
 Servicio Registros
-****************
+***************
 
 Este servicio es invocado para poder hacer modificaciones en la base de datos, en la colección de los registros, en la cual
 se encuentra la información de los usuarios registrados , permitiendo realizar diferentes acciones como, crear, modificar, 
 obtener, obtener todos los registros, entre otros.
 
 
-.. code-block::
+::
    
                 import { Injectable } from '@angular/core';
 

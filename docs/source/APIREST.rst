@@ -5,7 +5,7 @@ Servicio Municipios
 Este servicio es invocado para auxiliar a los módulos que requieran la utilización del arreglo de Municipios y Departamentos de Colombia.
 
 
-.. code-block::
+::
 
                import { Injectable } from '@angular/core';
                //Para manejo de llamadas a apis con este modulo no necesitas usar fetch ni ajax
