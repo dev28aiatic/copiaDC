@@ -27,6 +27,8 @@ Equipo en versión movil
     Para el desarrollo de este componente se necesito el MatCard que permite agregar una imagen y un texto en este caso los datos 
     del desarrollador dentro de un mat-grid, donde tenemos 2 columnas, una para cada mat-grid-tile el cual los impares contienen 
     el mat-card y los pares la autobiografia.
+
+    
     .. code-block:: html
        :linenos:
 

@@ -15,8 +15,9 @@ Pagina Video
 
 * Desarrollo
     El HTML/CSS es compuesto po un contenedor que utiliza el fxFlex para mejorar la parte de responsividad y se utiliza iFrame para embeber el vídeo de nuestro gusto
+    
+    
     .. code-block::
-
 
        <div class="content" fxLayout="row wrap" fxLayoutGap="16px grid" fxLayoutAlign="center center">
           <div fxFlex="30%" fxFlex.xs="100%" fxFlex.sm="33%">
