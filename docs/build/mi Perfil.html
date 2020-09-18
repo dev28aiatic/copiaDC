@@ -100,7 +100,7 @@
 <li class="toctree-l2"><a class="reference internal" href="angularMaterial.html">Angular Material</a></li>
 <li class="toctree-l2"><a class="reference internal" href="usuarioModel.html">Modelo registros</a></li>
 <li class="toctree-l2"><a class="reference internal" href="auth.html">Servicio Auth</a></li>
-<li class="toctree-l2"><a class="reference internal" href="contactoService.html">Servicio Contacto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contactoService.html">Servicio contacto</a></li>
 <li class="toctree-l2"><a class="reference internal" href="APIREST.html">Servicio Municipios</a></li>
 <li class="toctree-l2"><a class="reference internal" href="registrosService.html">Servicio Registros</a></li>
 </ul>
@@ -201,12 +201,384 @@ Se importa el servicio de AngularFireStorage para la correcta modificación de l
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>Desarrollo</dt><dd><p>El cambiar imagen permite subir al firestore una nueva foto y actualizar el link de la ruta en la infromación del usuario de la base de datos.
-Con el boton de editar, permite habilitar los campos de perfil para poder cambiar la información que se encuentra en la base de datos,
+<li><dl>
+<dt>Desarrollo</dt><dd><p>Este componente permite visualizar y editar la información del usuario actualmente logueado mediante el metodo getRegistros, adicionalmente el cambiar imagen permite
+subir al firestore una nueva foto y actualizar el link de la ruta en la infromación del usuario de la base de datos con el metodo upload que se tiene el componente principal.
+Ambos metodos utilizados en el onInit()</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>//metodo para subir la imagen al storage
+ onUpload(e){
+     //console.log(&#39;subir&#39;, e);
+     //generar un id unico para la imagen
+     const id = Math.random().toString(36).substring(2);
+     //aqui se tiene el archivo
+     const file = e.target.files[0];
+
+     const filePath = `uploads/profile_${id}`;
+     //ruta del fichero
+     const ref = this.storage.ref(filePath);
+     //se realiza la subida del fichero
+     const task = this.storage.upload(filePath,file);
+
+     this.uploadPercent = task.percentageChanges();
+
+     //obtiene el tamaño de la imagen y lo pasa a MB
+     const Filesize = e.target.files[0].size/1024/1024;
+     if (Filesize&gt;1) {
+     alert(&#39;El archivo excede el tamaño permitido de 1MB&#39;)
+     }else{
+     //para recuperar la url
+     task.snapshotChanges()
+     .pipe(
+     finalize(() =&gt; {
+         this.downloadURL = ref.getDownloadURL();
+         this.downloadURL.subscribe(url =&gt; {
+         if (url) {
+             this.urlImage = url;
+             this.editForm.enable();
+             this.editForm.controls.photoUrl.setValue([this.urlImage]);
+             this.editForm.controls.fechaNacimiento.setValue(this.registroUsuario.data.fechaNacimiento);
+             this.onUpdate(this.editForm.value);
+
+         }
+         console.log(this.urlImage);
+         });
+     })
+     ).subscribe();
+
+     }
+
+
+
+ }
+
+ getRegistros(){
+
+     this.registroService.getRegistros().subscribe((rgSnapshot) =&gt; {
+     this.listaRegistros = [];
+     rgSnapshot.forEach((rgData: any) =&gt; {
+         this.listaRegistros.push({
+         id: rgData.payload.doc.id,
+         data: rgData.payload.doc.data()
+
+         });
+     })
+
+     //console.log(this.listaRegistros);
+     this.setDatosFormulario();
+
+     });
+
+
+ }
+</pre></div>
+</div>
+<p>Con el boton de editar, permite habilitar los campos de perfil para poder cambiar la información que se encuentra en la base de datos,
 los campos habilitados de cedula validan que al realizar el cambio no se encuentre repetida en la base de datos, los campos de ciudad y departamento
-cuentan con el autocompletado de la API de los municipios de Colombia suministrada por datos del govierno. El campo de correo electronico se encuntra deshabilitado
+cuentan con el autocompletado de la API de los municipios de Colombia suministrada por datos del gobierno. El campo de correo electronico se encuntra deshabilitado
 para la edición ya que este es el dato de identificación dentro de la aplicacion.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="n">boton</span> <span class="n">de</span> <span class="n">editar</span>
+ <span class="n">onEditar</span><span class="p">(){</span>
+     <span class="n">this</span><span class="o">.</span><span class="n">editForm</span><span class="o">.</span><span class="n">enable</span><span class="p">();</span>
+     <span class="o">//</span><span class="n">para</span> <span class="n">no</span> <span class="n">cambiar</span> <span class="n">el</span> <span class="n">correo</span>
+     <span class="n">this</span><span class="o">.</span><span class="n">editForm</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">disable</span><span class="p">();</span>
+     <span class="n">this</span><span class="o">.</span><span class="n">btnEditarDisabled</span><span class="o">=</span><span class="n">true</span><span class="p">;</span>
+     <span class="n">this</span><span class="o">.</span><span class="n">editForm</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">habilidades</span><span class="o">.</span><span class="n">setValue</span><span class="p">([]);</span>
+     <span class="n">this</span><span class="o">.</span><span class="n">editForm</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">habilidades</span><span class="o">.</span><span class="n">setValidators</span><span class="p">([</span><span class="n">Validators</span><span class="o">.</span><span class="n">required</span><span class="p">]);</span>
+     <span class="n">this</span><span class="o">.</span><span class="n">editForm</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">habilidades</span><span class="o">.</span><span class="n">updateValueAndValidity</span><span class="p">();</span>
+     <span class="n">this</span><span class="o">.</span><span class="n">editForm</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">fechaNacimiento</span><span class="o">.</span><span class="n">setValue</span><span class="p">([]);</span>
+     <span class="n">this</span><span class="o">.</span><span class="n">editForm</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">fechaNacimiento</span><span class="o">.</span><span class="n">setValidators</span><span class="p">([</span><span class="n">Validators</span><span class="o">.</span><span class="n">required</span><span class="p">]);</span>
+     <span class="n">this</span><span class="o">.</span><span class="n">editForm</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">fechaNacimiento</span><span class="o">.</span><span class="n">updateValueAndValidity</span><span class="p">();</span>
+
+     <span class="n">this</span><span class="o">.</span><span class="n">nHabilidaddes</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+     <span class="n">const</span> <span class="n">habiForm</span><span class="p">:</span> <span class="n">FormArray</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">checkboxForm</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;habiForm&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">FormArray</span><span class="p">;</span>
+         <span class="n">let</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
+         <span class="k">while</span> <span class="p">(</span><span class="n">habiForm</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">length</span><span class="o">!=</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+         <span class="n">habiForm</span><span class="o">.</span><span class="n">removeAt</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+         <span class="n">i</span><span class="o">--</span><span class="p">;</span>
+         <span class="p">}</span>
+
+     <span class="o">//</span><span class="n">this</span><span class="o">.</span><span class="n">checkboxForm</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">habiForm</span>
+     <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">checkboxForm</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">habiForm</span><span class="p">);</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+<p>Adicional se tiene el autocompletado con los municipios y departamentos de Colombia, validar que no se repita alguna cedula
+ya registrada y validar que no se seleccionen mas de tres habilidades.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">onCheckboxChange</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+     <span class="n">const</span> <span class="n">habiForm</span><span class="p">:</span> <span class="n">FormArray</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">checkboxForm</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;habiForm&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">FormArray</span><span class="p">;</span>
+
+     <span class="o">//</span><span class="n">si</span> <span class="n">lo</span> <span class="n">chuliaron</span> <span class="n">hagrega</span> <span class="n">al</span> <span class="n">array</span> <span class="n">siempre</span> <span class="n">que</span> <span class="n">numero</span> <span class="n">de</span> <span class="n">habilidades</span> <span class="n">menor</span> <span class="mi">4</span>
+     <span class="k">if</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">checked</span> <span class="o">&amp;&amp;</span> <span class="n">this</span><span class="o">.</span><span class="n">nHabilidaddes</span><span class="o">&lt;=</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+
+     <span class="n">habiForm</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">new</span> <span class="n">FormControl</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">value</span><span class="p">));</span>
+     <span class="n">this</span><span class="o">.</span><span class="n">nHabilidaddes</span><span class="o">++</span><span class="p">;</span>
+     <span class="n">this</span><span class="o">.</span><span class="n">validarHabilidades</span><span class="p">();</span>
+     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+     <span class="o">//</span><span class="n">si</span> <span class="n">numero</span> <span class="n">la</span> <span class="n">habilidad</span> <span class="n">se</span> <span class="n">desmarca</span> <span class="n">elimina</span> <span class="n">habilidad</span>
+     <span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">checked</span><span class="o">==</span><span class="n">false</span><span class="p">)</span>
+     <span class="p">{</span>
+         <span class="n">const</span> <span class="n">index</span> <span class="o">=</span> <span class="n">habiForm</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">findIndex</span><span class="p">(</span><span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span><span class="o">.</span><span class="n">value</span> <span class="o">===</span> <span class="n">e</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">value</span><span class="p">);</span>
+         <span class="n">habiForm</span><span class="o">.</span><span class="n">removeAt</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
+         <span class="n">this</span><span class="o">.</span><span class="n">validarHabilidades</span><span class="p">();</span>
+         <span class="n">this</span><span class="o">.</span><span class="n">nHabilidaddes</span><span class="o">--</span><span class="p">;</span>
+     <span class="p">}</span>
+     <span class="o">//</span><span class="n">si</span> <span class="n">numero</span> <span class="n">de</span> <span class="n">habilidades</span> <span class="n">esta</span> <span class="n">al</span> <span class="n">limite</span> <span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="n">no</span> <span class="n">agrega</span> <span class="n">nada</span> <span class="n">y</span> <span class="n">no</span> <span class="n">permite</span> <span class="n">chulear</span>
+     <span class="k">else</span><span class="p">{</span>
+         <span class="n">e</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">_checked</span><span class="o">=</span><span class="n">false</span><span class="p">;</span>
+     <span class="p">}</span>
+     <span class="p">}</span>
+
+     <span class="o">//</span><span class="n">si</span> <span class="n">no</span> <span class="n">hay</span> <span class="n">habilidades</span> <span class="n">selecionadas</span> <span class="n">no</span> <span class="n">habilita</span> <span class="n">el</span> <span class="n">boton</span>
+     <span class="k">if</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">nHabilidaddes</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+     <span class="p">{</span>
+     <span class="n">this</span><span class="o">.</span><span class="n">editForm</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">habilidades</span><span class="o">.</span><span class="n">setValue</span><span class="p">([]);</span>
+     <span class="n">this</span><span class="o">.</span><span class="n">editForm</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">habilidades</span><span class="o">.</span><span class="n">setValidators</span><span class="p">([</span><span class="n">Validators</span><span class="o">.</span><span class="n">required</span><span class="p">]);</span>
+     <span class="n">this</span><span class="o">.</span><span class="n">editForm</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">habilidades</span><span class="o">.</span><span class="n">updateValueAndValidity</span><span class="p">();</span>
+ <span class="p">}</span>
+
+ <span class="o">//</span><span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">editForm</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">habilidades</span><span class="o">.</span><span class="n">value</span><span class="p">);</span>
+
+ <span class="p">}</span>
+
+ <span class="o">//</span> <span class="n">para</span> <span class="n">asignar</span> <span class="n">las</span> <span class="n">habilidades</span> <span class="n">al</span> <span class="n">Formgroup</span> <span class="n">principal</span>
+ <span class="n">validarHabilidades</span><span class="p">(){</span>
+     <span class="o">//</span><span class="n">obtengo</span> <span class="n">los</span> <span class="n">valores</span> <span class="n">de</span> <span class="n">FormGroup</span>
+     <span class="n">const</span> <span class="n">ob</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">checkboxForm</span><span class="o">.</span><span class="n">value</span><span class="p">;</span>
+
+     <span class="o">//</span><span class="n">obtengo</span> <span class="n">el</span> <span class="n">array</span> <span class="n">habForm</span> <span class="n">de</span> <span class="n">ob</span> <span class="n">ostenido</span> <span class="n">de</span> <span class="n">FormGroup</span>
+     <span class="n">const</span> <span class="p">{</span> <span class="n">habiForm</span> <span class="p">}</span> <span class="o">=</span> <span class="n">ob</span><span class="p">;</span>
+
+     <span class="o">//</span><span class="n">para</span> <span class="n">almacenar</span> <span class="n">las</span> <span class="n">habilidades</span>
+     <span class="n">let</span> <span class="n">habilidadesIn</span><span class="p">:</span> <span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+
+     <span class="k">for</span> <span class="p">(</span><span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">habiForm</span><span class="o">.</span><span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+
+     <span class="n">habilidadesIn</span> <span class="o">+=</span> <span class="n">habiForm</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; / &quot;</span><span class="p">;</span> <span class="o">//</span> \<span class="n">n</span>
+
+     <span class="p">}</span>
+     <span class="o">//</span><span class="n">asigno</span> <span class="n">las</span> <span class="n">habilidaesIn</span> <span class="n">al</span> <span class="n">valor</span> <span class="k">del</span> <span class="n">formcontrol</span> <span class="n">habilidaes</span> <span class="n">para</span> <span class="n">que</span> <span class="n">lo</span> <span class="n">registre</span> <span class="n">en</span> <span class="n">la</span> <span class="n">bd</span>
+     <span class="n">this</span><span class="o">.</span><span class="n">editForm</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">habilidades</span><span class="o">.</span><span class="n">setValue</span><span class="p">([</span><span class="n">habilidadesIn</span><span class="p">]);</span>
+
+ <span class="p">}</span>
+
+
+
+
+ <span class="n">_filterMunicipios</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">string</span><span class="p">):</span> <span class="n">string</span><span class="p">[]</span> <span class="p">{</span>
+     <span class="n">const</span> <span class="n">filterValue</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">toLowerCase</span><span class="p">();</span>
+
+     <span class="k">return</span> <span class="n">this</span><span class="o">.</span><span class="n">datosMunicipios</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">option</span> <span class="o">=&gt;</span> <span class="n">option</span><span class="o">.</span><span class="n">toLowerCase</span><span class="p">()</span><span class="o">.</span><span class="n">includes</span><span class="p">(</span><span class="n">filterValue</span><span class="p">));</span>
+ <span class="p">}</span>
+
+
+ <span class="n">_filterDepartamentos</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">string</span><span class="p">):</span> <span class="n">string</span><span class="p">[]</span> <span class="p">{</span>
+     <span class="n">const</span> <span class="n">filterValue</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">toLowerCase</span><span class="p">();</span>
+
+     <span class="k">return</span> <span class="n">this</span><span class="o">.</span><span class="n">datosDepartamentos</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">option</span> <span class="o">=&gt;</span> <span class="n">option</span><span class="o">.</span><span class="n">toLowerCase</span><span class="p">()</span><span class="o">.</span><span class="n">includes</span><span class="p">(</span><span class="n">filterValue</span><span class="p">));</span>
+ <span class="p">}</span>
+
+ <span class="n">getDatosMuniYDeap</span><span class="p">(){</span>
+
+     <span class="o">//</span><span class="n">obtengo</span> <span class="n">los</span> <span class="n">datos</span> <span class="k">del</span> <span class="n">service</span> <span class="n">de</span> <span class="n">departamentos</span> <span class="n">y</span> <span class="n">municipios</span>
+     <span class="n">this</span><span class="o">.</span><span class="n">municipiosService</span><span class="o">.</span><span class="n">getDatos</span><span class="p">()</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">datos</span> <span class="o">=&gt;</span><span class="p">{</span>
+
+     <span class="o">//</span><span class="n">almaceno</span> <span class="n">todos</span> <span class="n">los</span> <span class="n">municipios</span>
+     <span class="n">this</span><span class="o">.</span><span class="n">datosMunicipios</span><span class="o">=</span><span class="n">datos</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">data</span><span class="o">=&gt;</span>
+         <span class="o">//</span> <span class="k">del</span> <span class="nb">map</span> <span class="n">retorna</span> <span class="n">algo</span>
+         <span class="n">data</span><span class="o">.</span><span class="n">municipio</span><span class="p">);</span>
+
+         <span class="n">this</span><span class="o">.</span><span class="n">datosDepartamentos</span><span class="o">=</span><span class="n">datos</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">data</span><span class="o">=&gt;</span>
+         <span class="o">//</span> <span class="k">del</span> <span class="nb">map</span> <span class="n">retorna</span> <span class="n">algo</span>
+         <span class="n">data</span><span class="o">.</span><span class="n">departamento</span><span class="p">);</span>
+
+
+         <span class="o">//</span><span class="n">elimino</span> <span class="n">los</span> <span class="n">departamentos</span> <span class="n">repetidos</span>
+         <span class="n">let</span> <span class="n">NuevosDatosDepartamentos</span><span class="p">:</span><span class="n">string</span><span class="p">[]</span><span class="o">=</span><span class="p">[];</span>
+
+         <span class="k">for</span> <span class="p">(</span><span class="n">let</span> <span class="n">posicion</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">posicion</span> <span class="o">&lt;</span> <span class="n">this</span><span class="o">.</span><span class="n">datosDepartamentos</span><span class="o">.</span><span class="n">length</span><span class="p">;</span> <span class="n">posicion</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+         <span class="n">const</span> <span class="n">element</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">datosDepartamentos</span><span class="p">[</span><span class="n">posicion</span><span class="p">];</span>
+
+         <span class="k">if</span><span class="p">(</span><span class="n">posicion</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+         <span class="p">{</span>
+             <span class="n">NuevosDatosDepartamentos</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">toString</span><span class="p">());</span>
+         <span class="p">}</span>
+         <span class="k">else</span><span class="p">{</span>
+             <span class="k">if</span><span class="p">(</span><span class="n">NuevosDatosDepartamentos</span><span class="o">.</span><span class="n">includes</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">toString</span><span class="p">())</span><span class="o">==</span><span class="n">false</span><span class="p">)</span>
+             <span class="p">{</span>
+             <span class="n">NuevosDatosDepartamentos</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">toString</span><span class="p">());</span>
+             <span class="p">}</span>
+         <span class="p">}</span>
+         <span class="p">}</span>
+
+         <span class="n">this</span><span class="o">.</span><span class="n">datosDepartamentos</span><span class="o">=</span><span class="n">NuevosDatosDepartamentos</span><span class="p">;</span>
+     <span class="p">});</span>
+
+
+
+
+
+
+     <span class="n">this</span><span class="o">.</span><span class="n">filteredMunicipios</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">editForm</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">ciudad</span><span class="o">.</span><span class="n">valueChanges</span>
+     <span class="o">.</span><span class="n">pipe</span><span class="p">(</span>
+         <span class="n">startWith</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
+         <span class="nb">map</span><span class="p">(</span><span class="n">value</span> <span class="o">=&gt;</span> <span class="n">this</span><span class="o">.</span><span class="n">_filterMunicipios</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+     <span class="p">);</span>
+
+
+     <span class="n">this</span><span class="o">.</span><span class="n">filteredDepartamentos</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">editForm</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">departamento</span><span class="o">.</span><span class="n">valueChanges</span>
+     <span class="o">.</span><span class="n">pipe</span><span class="p">(</span>
+     <span class="n">startWith</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
+     <span class="nb">map</span><span class="p">(</span><span class="n">value</span> <span class="o">=&gt;</span> <span class="n">this</span><span class="o">.</span><span class="n">_filterDepartamentos</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+     <span class="p">);</span>
+
+
+ <span class="p">}</span>
+
+ <span class="p">}</span>
+
+
+   <span class="o">//</span><span class="n">Valida</span> <span class="n">la</span> <span class="n">existencia</span> <span class="k">del</span> <span class="n">la</span> <span class="n">C</span><span class="o">.</span><span class="n">C</span> <span class="n">en</span> <span class="n">la</span> <span class="n">bd</span><span class="p">,</span> <span class="n">retorna</span> <span class="n">un</span> <span class="n">boolean</span>
+     <span class="n">ValidarExistenciaCedula</span><span class="p">(</span><span class="n">cedulaIn</span><span class="p">:</span> <span class="n">string</span><span class="p">):</span> <span class="n">boolean</span> <span class="p">{</span>
+
+         <span class="n">let</span> <span class="n">existeCedula</span><span class="p">:</span> <span class="n">boolean</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
+         <span class="n">let</span> <span class="n">respuesta</span><span class="p">:</span> <span class="n">boolean</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+
+
+         <span class="o">//</span><span class="n">Obtengo</span> <span class="n">los</span> <span class="n">correos</span> <span class="n">en</span> <span class="n">un</span> <span class="n">array</span>
+         <span class="k">for</span> <span class="p">(</span><span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">this</span><span class="o">.</span><span class="n">listaRegistros</span><span class="o">.</span><span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+         <span class="n">const</span> <span class="n">element</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">listaRegistros</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+
+         <span class="n">const</span> <span class="p">{</span> <span class="n">cedula</span> <span class="p">}</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">data</span><span class="p">;</span>
+
+         <span class="o">//</span><span class="n">excluyo</span> <span class="n">el</span> <span class="n">documento</span> <span class="n">que</span> <span class="n">se</span> <span class="n">va</span> <span class="n">a</span> <span class="n">editar</span>
+         <span class="k">if</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">id</span><span class="o">!=</span> <span class="n">this</span><span class="o">.</span><span class="n">registroUsuario</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+         <span class="p">{</span>
+             <span class="k">if</span> <span class="p">(</span><span class="n">cedulaIn</span> <span class="o">==</span> <span class="n">cedula</span><span class="p">)</span> <span class="p">{</span>
+             <span class="n">existeCedula</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+             <span class="p">}</span>
+         <span class="p">}</span>
+
+
+
+         <span class="p">}</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">existeCedula</span> <span class="o">==</span> <span class="n">true</span><span class="p">)</span> <span class="p">{</span>
+
+         <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;La cedula ingresada ya está registrado&#39;</span><span class="p">);</span>
+         <span class="o">//</span><span class="n">const</span> <span class="n">data</span><span class="o">=</span><span class="p">{</span> <span class="n">titulo</span><span class="p">:</span><span class="s1">&#39;Advertencia&#39;</span><span class="p">,</span> <span class="n">mensaje</span><span class="p">:</span><span class="s1">&#39;La cedula ingresada ya está registrada&#39;</span><span class="p">};</span>
+         <span class="o">//</span><span class="n">this</span><span class="o">.</span><span class="n">openDialog</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+         <span class="n">respuesta</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+         <span class="p">}</span>
+         <span class="k">else</span> <span class="p">{</span>
+         <span class="n">respuesta</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
+         <span class="p">}</span>
+
+         <span class="k">return</span> <span class="n">respuesta</span><span class="p">;</span>
+
+     <span class="p">}</span>
+
+
+ <span class="n">Y</span> <span class="n">finalmente</span> <span class="n">para</span> <span class="n">guardar</span> <span class="n">los</span> <span class="n">cambios</span> <span class="n">la</span> <span class="n">pagina</span> <span class="n">cuenta</span> <span class="n">con</span> <span class="n">el</span> <span class="n">boton</span> <span class="n">habilitado</span> <span class="n">si</span> <span class="n">se</span> <span class="n">han</span> <span class="n">llenado</span> <span class="n">todos</span> <span class="n">los</span> <span class="n">campos</span> <span class="n">requeridos</span>
+ <span class="n">el</span> <span class="n">cual</span> <span class="n">actualizara</span> <span class="n">la</span> <span class="n">información</span> <span class="n">en</span> <span class="n">la</span> <span class="n">base</span> <span class="n">de</span> <span class="n">datos</span> <span class="n">con</span> <span class="n">el</span> <span class="n">metodo</span> <span class="n">update</span><span class="o">.</span>
+ <span class="p">::</span>
+
+    <span class="n">setDatosFormulario</span><span class="p">(){</span>
+
+         <span class="k">for</span> <span class="p">(</span><span class="n">let</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">this</span><span class="o">.</span><span class="n">listaRegistros</span><span class="o">.</span><span class="n">length</span><span class="p">;</span> <span class="n">index</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+         <span class="n">const</span> <span class="n">element</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">listaRegistros</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
+
+         <span class="n">const</span> <span class="p">{</span> <span class="n">email</span> <span class="p">}</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">data</span><span class="p">;</span>
+
+         <span class="k">if</span><span class="p">(</span><span class="n">email</span><span class="o">==</span><span class="n">this</span><span class="o">.</span><span class="n">UserEmail</span><span class="p">)</span>
+         <span class="p">{</span>
+             <span class="n">this</span><span class="o">.</span><span class="n">registroUsuario</span><span class="o">=</span><span class="n">element</span>
+
+             <span class="k">break</span><span class="p">;</span>
+         <span class="p">}</span>
+
+         <span class="p">};</span>
+
+         <span class="o">//</span><span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span> <span class="n">this</span><span class="o">.</span><span class="n">registroUsuario</span><span class="o">.</span><span class="n">id</span> <span class="p">);</span>
+         <span class="o">//</span><span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;sdsadadas&#39;</span><span class="p">);</span>
+         <span class="o">//</span><span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span> <span class="n">this</span><span class="o">.</span><span class="n">documentId</span> <span class="p">);</span>
+         <span class="o">//</span><span class="n">para</span> <span class="n">el</span> <span class="nb">id</span> <span class="k">del</span> <span class="n">documento</span> <span class="n">a</span> <span class="n">actualizar</span>
+         <span class="n">this</span><span class="o">.</span><span class="n">documentId</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">registroUsuario</span><span class="o">.</span><span class="n">id</span><span class="p">;</span>
+         <span class="n">this</span><span class="o">.</span><span class="n">urlImage</span><span class="o">=</span><span class="n">this</span><span class="o">.</span><span class="n">registroUsuario</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">photoUrl</span><span class="p">;</span>
+         <span class="n">let</span> <span class="n">editSubscribe</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">registroService</span><span class="o">.</span><span class="n">getRegistro</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">documentId</span><span class="p">)</span><span class="o">.</span><span class="n">subscribe</span><span class="p">((</span><span class="n">registro</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+
+
+
+             <span class="n">let</span> <span class="n">myFormattedDate</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">datePipe</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">registro</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">data</span><span class="p">()[</span><span class="s1">&#39;fechaNacimiento&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">seconds</span><span class="o">*</span><span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;dd/MM/yyyy&#39;</span><span class="p">);</span>
+
+
+
+
+
+
+             <span class="n">this</span><span class="o">.</span><span class="n">editForm</span><span class="o">.</span><span class="n">setValue</span><span class="p">({</span>
+
+             <span class="n">photoUrl</span><span class="p">:</span><span class="n">registro</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">data</span><span class="p">()[</span><span class="s1">&#39;photoUrl&#39;</span><span class="p">],</span>
+             <span class="n">nombres</span><span class="p">:</span> <span class="n">registro</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">data</span><span class="p">()[</span><span class="s1">&#39;nombres&#39;</span><span class="p">],</span>
+             <span class="n">apellidos</span><span class="p">:</span> <span class="n">registro</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">data</span><span class="p">()[</span><span class="s1">&#39;apellidos&#39;</span><span class="p">],</span>
+             <span class="n">cedula</span><span class="p">:</span> <span class="n">registro</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">data</span><span class="p">()[</span><span class="s1">&#39;cedula&#39;</span><span class="p">],</span>
+             <span class="n">email</span><span class="p">:</span> <span class="n">registro</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">data</span><span class="p">()[</span><span class="s1">&#39;email&#39;</span><span class="p">],</span>
+             <span class="n">fechaNacimiento</span><span class="p">:</span> <span class="o">/*</span><span class="n">registro</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">data</span><span class="p">()[</span><span class="s1">&#39;fechaNacimiento&#39;</span><span class="p">],</span><span class="o">*/</span><span class="n">myFormattedDate</span><span class="p">,</span>
+             <span class="n">direccion</span><span class="p">:</span> <span class="n">registro</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">data</span><span class="p">()[</span><span class="s1">&#39;direccion&#39;</span><span class="p">],</span>
+             <span class="n">ciudad</span><span class="p">:</span> <span class="n">registro</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">data</span><span class="p">()[</span><span class="s1">&#39;ciudad&#39;</span><span class="p">],</span>
+             <span class="n">departamento</span><span class="p">:</span> <span class="n">registro</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">data</span><span class="p">()[</span><span class="s1">&#39;departamento&#39;</span><span class="p">],</span>
+             <span class="n">pais</span><span class="p">:</span> <span class="n">registro</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">data</span><span class="p">()[</span><span class="s1">&#39;pais&#39;</span><span class="p">],</span>
+             <span class="n">codigoPostal</span><span class="p">:</span> <span class="n">registro</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">data</span><span class="p">()[</span><span class="s1">&#39;codigoPostal&#39;</span><span class="p">],</span>
+             <span class="n">profesion</span><span class="p">:</span> <span class="n">registro</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">data</span><span class="p">()[</span><span class="s1">&#39;profesion&#39;</span><span class="p">],</span>
+             <span class="n">habilidades</span><span class="p">:</span> <span class="n">registro</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">data</span><span class="p">()[</span><span class="s1">&#39;habilidades&#39;</span><span class="p">],</span>
+             <span class="n">descripcion</span><span class="p">:</span> <span class="n">registro</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">data</span><span class="p">()[</span><span class="s1">&#39;descripcion&#39;</span><span class="p">],</span>
+             <span class="p">});</span>
+             <span class="n">editSubscribe</span><span class="o">.</span><span class="n">unsubscribe</span><span class="p">();</span>
+         <span class="p">});</span>
+
+
+
+     <span class="p">}</span>
+
+
+     <span class="n">onUpdate</span><span class="p">(</span><span class="n">form</span><span class="p">){</span>
+
+         <span class="n">this</span><span class="o">.</span><span class="n">editForm</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">enable</span><span class="p">();</span>
+         <span class="n">this</span><span class="o">.</span><span class="n">editForm</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">email</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">UserEmail</span><span class="p">);</span>
+         <span class="o">//</span><span class="n">verifica</span> <span class="n">el</span> <span class="n">resultado</span> <span class="k">del</span> <span class="n">metodo</span> <span class="n">verificar</span> <span class="n">existencia</span> <span class="n">de</span> <span class="n">correo</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">ValidarExistenciaCorreo</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">editForm</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>  <span class="o">==</span> <span class="n">false</span> <span class="o">&amp;&amp;</span>
+             <span class="n">this</span><span class="o">.</span><span class="n">ValidarExistenciaCedula</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">editForm</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;cedula&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="n">false</span> <span class="p">)</span>
+         <span class="p">{</span>
+
+
+
+
+         <span class="n">this</span><span class="o">.</span><span class="n">registroService</span><span class="o">.</span><span class="n">updateRegistro</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">documentId</span><span class="p">,</span> <span class="n">this</span><span class="o">.</span><span class="n">editForm</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+
+             <span class="n">this</span><span class="o">.</span><span class="n">editForm</span><span class="o">.</span><span class="n">disable</span><span class="p">();</span>
+             <span class="n">this</span><span class="o">.</span><span class="n">btnEditarDisabled</span><span class="o">=</span><span class="n">false</span><span class="p">;</span>
+             <span class="n">this</span><span class="o">.</span><span class="n">btnGuardarDisabled</span><span class="o">=</span><span class="n">true</span><span class="p">;</span>
+
+             <span class="o">//</span><span class="n">para</span> <span class="n">actualizar</span> <span class="n">el</span> <span class="n">correo</span> <span class="n">y</span> <span class="n">contraseña</span> <span class="n">pero</span> <span class="n">esta</span> <span class="n">desabilitado</span>
+             <span class="o">//</span><span class="n">this</span><span class="o">.</span><span class="n">afAuth</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">currentUser</span><span class="o">.</span><span class="n">updateEmail</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">editForm</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">email</span><span class="o">.</span><span class="n">value</span><span class="p">);</span>
+             <span class="o">//</span><span class="n">this</span><span class="o">.</span><span class="n">afAuth</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">currentUser</span><span class="o">.</span><span class="n">updatePassword</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">editForm</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">email</span><span class="o">.</span><span class="n">value</span><span class="p">);</span>
+
+         <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;Documento editado exitósamente&#39;</span><span class="p">);</span>
+         <span class="p">},</span> <span class="p">(</span><span class="n">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+             <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">error</span><span class="p">);</span>
+         <span class="p">});</span>
+
+         <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+
+         <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot; no es valido para el registro&quot;</span><span class="p">);</span>
+
+
+         <span class="p">}</span>
+
+
+
+     <span class="p">}</span>
+</pre></div>
+</div>
 </dd>
 </dl>
 </li>
