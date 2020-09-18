@@ -1,5 +1,5 @@
 Sidenav
-*********
+****************
 
 
 .. image :: ../images/sidenavweb.JPG
@@ -15,6 +15,7 @@ Sidenav en versión movil
     el menú lateral izquierdo y el footer. Encargado que en el momento que se necesite hacer la aplicación responsive, oculte los menus.
     El menu lateral izquierdo para la versión responsiva se encuentra oculto y puede hacerse visible al hacer clic en el icono en la parte superior izquierda
     y para el menu central para la versión responsiva se encuentra oculto y puede hacerse visible al hacer clic en el icono ubicado en la parte superior derecha.
+
 
 * Importaciones
     Para este componente se debe importar los módulos del cdk layout de angular denominados BreakpointObserver y Breakpionts para tener en cuenta los puntos

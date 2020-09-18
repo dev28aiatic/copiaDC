@@ -91,11 +91,12 @@
 <li class="toctree-l2"><a class="reference internal" href="registro.html">Registro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="login.html">Iniciar sesión</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mi%20Perfil.html">Perfil</a></li>
+<li class="toctree-l2"><a class="reference internal" href="equipo.html">Equipo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="registros.html">Registros</a></li>
 <li class="toctree-l2"><a class="reference internal" href="video.html">Video</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Contacto</a></li>
 <li class="toctree-l2"><a class="reference internal" href="angularMaterial.html">Angular Material</a></li>
-<li class="toctree-l2"><a class="reference internal" href="usuarioModel.html">Modelo registros.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usuarioModel.html">Modelo registros</a></li>
 <li class="toctree-l2"><a class="reference internal" href="auth.html">Servicio Auth</a></li>
 <li class="toctree-l2"><a class="reference internal" href="contactoService.html">Servicio Contacto</a></li>
 <li class="toctree-l2"><a class="reference internal" href="APIREST.html">Servicio Municipios</a></li>
@@ -192,7 +193,12 @@
 <span class="kn">import</span> <span class="s1">&#39;src/assets/smtp.js&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>Los archivos son generados automáticamente por el Angular CLI.
+</dd>
+</dl>
+</li>
+<li><p>Desarrollo</p>
+<blockquote>
+<div><p>Los archivos son generados automáticamente por el Angular CLI.
 La estructura HMTL del formulario y la página de contacto es la siguiente</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">card</span> <span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="n">mat</span><span class="o">-</span><span class="n">card</span><span class="o">-</span><span class="n">content</span>  <span class="n">fxLayout</span><span class="o">=</span><span class="s2">&quot;column&quot;</span>  <span class="o">&gt;</span>
@@ -316,18 +322,18 @@ height: 200px;
 
 
 //input outline color por defecto
-::ng-deep .mat-form-field-appearance-     outline .mat-form-field-outline {
+::ng-deep .mat-form-field-appearance-   outline .mat-form-field-outline {
 color: gray!important;
 //opacity: 1!important;
 }
 
 //mat-input focused color cunado se activa
-::ng-deep .mat-form-field-appearance-     outline.mat-focused .mat-form-field-    outline-thick {
+::ng-deep .mat-form-field-appearance-   outline.mat-focused .mat-form-field-    outline-thick {
 color: #eb791c!important;
 }
 
 // mat-input error outline color caundo hay error
-::ng-deep .mat-form-field-appearance-     outline.mat-form-field-invalid.mat-form-        field-invalid .mat-form-field-outline-  thick{
+::ng-deep .mat-form-field-appearance-   outline.mat-form-field-invalid.mat-form-        field-invalid .mat-form-field-outline-  thick{
 color: #ff4e36!important;
 opacity: 0.8!important;
 }
@@ -339,7 +345,7 @@ caret-color: orange!important;
 }
 
 // mat-input error carent color
-::ng-deep .mat-form-field-invalid .mat-input-     element, .mat-warn .mat-input-element {
+::ng-deep .mat-form-field-invalid .mat-input-   element, .mat-warn .mat-input-element {
 caret-color: blue!important;
 }
 
@@ -350,19 +356,19 @@ color: gray!important;
 }
 
 // mat-label focused style color del label al minimizarse
-::ng-deep .mat-form-field.mat-focused     .mat-form-field-label {
+::ng-deep .mat-form-field.mat-focused   .mat-form-field-label {
 color: black!important;
 }
 
 // mat-label error style color cuando el campo es imvalido
-::ng-deep .mat-form-field.mat-form-field- invalid .mat-form-field-label {
+::ng-deep .mat-form-field.mat-form-field-       invalid .mat-form-field-label {
 color: red!important;
 }
 </pre></div>
 </div>
 <p>Se definen todas las reglas para nuestro formulario tanto en versión web como en versión responsiva.</p>
 <p>Pasaremos a explicar de manera breve cada uno de las partes que componen el Contacto.Component.ts, este archivo contiene todas importaciones necesarias para crear el formulario y poder trabajar con el Modelo de Contacto, enviar el formulario a la base de datos y usar la Api de Elasticemail para enviar el correo al CEO cada vez que alguien quiera hacer un contacto para discutir sobre nuestros servicios y oportunidades en Mafaldos Project.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="o">//</span><span class="n">para</span> <span class="n">el</span> <span class="n">formGroup</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="n">para</span> <span class="n">el</span> <span class="n">formGroup</span>
 <span class="n">contactForm</span><span class="p">:</span> <span class="n">FormGroup</span><span class="p">;</span>
 
 <span class="n">listaContactos</span><span class="p">;</span>
@@ -414,18 +420,19 @@ color: red!important;
 </pre></div>
 </div>
 <p>Este primero método de get registros, será que el que nos permite obtener los datos de contactos y poderlos almacenar dentro de un documento en firebase</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>errorEmail() {
-  if (this.contactForm.controls.email.hasError(&#39;required&#39;)) {
-    return &#39;Debe ingresar un email&#39;;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  errorEmail() {
+    if (this.contactForm.controls.email.hasError(&#39;required&#39;)) {
+      return &#39;Debe ingresar un email&#39;;
+    }
+    if (this.contactForm.controls.email.hasError(&#39;ms&#39;)) {
+      return &#39;El email ya ha sido registrado&#39;;
+    }
+    return this.contactForm.controls.email.hasError(&#39;pattern&#39;) ? &#39;Email no válido&#39; : &#39;&#39;;
   }
-  if (this.contactForm.controls.email.hasError(&#39;ms&#39;)) {
-    return &#39;El email ya ha sido registrado&#39;;
-  }
-  return this.contactForm.controls.email.hasError(&#39;pattern&#39;) ? &#39;Email no válido&#39; : &#39;&#39;;
-}
+
+En este pequeño método validamos que el dato ingresado en el campo e-mail, se efectivamente un email con su correspondiente formato.
 </pre></div>
 </div>
-<p>En este pequeño método validamos que el dato ingresado en el campo e-mail, se efectivamente un email con su correspondiente formato.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>oncreate(form){
   //contraseña 215745566ED59E05A9845F9B348B9915395B
 
@@ -472,8 +479,7 @@ color: red!important;
 </pre></div>
 </div>
 <p>El método onCreat(form) es donde hacemos el llamado de nuestra API de elasticmail. En este método, observamos que se crean unas variables en donde almacenamos los datos de nuestro formulario previamente creado, seguido de la creación de una variable asunto, la cuál en el correo del CEO será tal cual la caja en dónde se especifíca el asunto del correo y el cuerpo, el cuál recibe dentro de la misma variable Sel estilo que este tendrá cuando el CEO reciba el correo. se crea la variable datos, la cual incializa un objeto de tipo «contact».</p>
-</dd>
-</dl>
+</div></blockquote>
 </li>
 </ul>
 </div>

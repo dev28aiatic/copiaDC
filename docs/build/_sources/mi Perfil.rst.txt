@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 Perfil
-***************
+****************
 
 
 .. image :: ../images/perfilweb.JPG
@@ -23,24 +22,6 @@ Perfil para versión movil
     información de ese usuario en la base de datos. 
     Se importa el servicio de los municipios de colombia para poder utilizar la API para el autocompletado.
     Se importa el servicio de AngularFireStorage para la correcta modificación de la imagen del usuario.
-=======
-Mi Perfil
-***************
-
-Descripción
-----------------------------
-Esta sección requiere haber iniciado sesión dentro de la aplicacion, en esta se muestra la información que el usuario suministro en 
-en su registro, adicional a esto, el usuario puede ver su foto de perfil, la cual inicialmente es determinada por defecto pero es posible 
-cambiarla precionando el icono de cambiar imagen. 
-
-Importaciones
-----------------------------
-Para este componente se debe importar el módulo de Angular Material en el ngModule de perfil.
-Es necesario la importación del Angular FireAuth para conocer el usuario en sesión y el RegistrosService para buscar la 
-información de ese usuario en la base de datos. 
-Se importa el servicio de los municipios de colombia para poder utilizar la API para el autocompletado.
-Se importa el servicio de AngularFireStorage para la correcta modificación de la imagen del usuario.
->>>>>>> origin/rama1Frontv1
     ::
 
         import { RegistrosService } from 'src/app/services/registros.service';

@@ -1,5 +1,5 @@
 Registro
-*********
+****************
 
 .. image :: ../images/registro.JPG
 Pagina de registro para versión web
