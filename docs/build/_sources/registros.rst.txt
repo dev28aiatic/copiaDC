@@ -1,5 +1,5 @@
 Registros
-*********
+****************
 
 
 .. image :: ../images/registrosweb.JPG

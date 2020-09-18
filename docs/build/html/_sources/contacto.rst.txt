@@ -1,5 +1,5 @@
 Contacto
-==================
+****************
 
 
 .. image :: ../images/contacto.JPG
@@ -19,76 +19,76 @@ Contactos en versión movil
 
     .. code-block::
 
-      import { Component, OnInit } from    '@angular/core';
-      import { FormBuilder, FormControl, FormGroup,   Validators } from '@angular/forms';
+        import { Component, OnInit } from    '@angular/core';
+        import { FormBuilder, FormControl, FormGroup,   Validators } from '@angular/forms';
 
-      // servicio para el manejo de la bd de    contactos
-      import {ContactosService} from    'src/app/services/contactos.service'
-      // para el manejo de enviar email del nuevo    contacto
-      import 'src/assets/smtp.js';
+        // servicio para el manejo de la bd de    contactos
+        import {ContactosService} from    'src/app/services/contactos.service'
+        // para el manejo de enviar email del nuevo    contacto
+        import 'src/assets/smtp.js';
 
-    .Desarrollos
-    -------------
+
+* Desarrollo  
 
     Los archivos son generados automáticamente por el Angular CLI.
     La estructura HMTL del formulario y la página de contacto es la siguiente
 
     .. code-block::
       
-      <mat-card >
-      <mat-card-content  fxLayout="column"  >
-        <mat-card-title>Contacto</mat-card-title>
-        <br>
-        <p>Diligencia el siguiente formulario para ponernos en contacto contigo 
-          y atender tu solicitud.
-        </p>
+        <mat-card >
+        <mat-card-content  fxLayout="column"  >
+          <mat-card-title>Contacto</mat-card-title>
+          <br>
+          <p>Diligencia el siguiente formulario para ponernos en contacto contigo 
+            y atender tu solicitud.
+          </p>
 
-        <form (ngSubmit)="oncreate(contactForm.value)" [formGroup]="contactForm" >
+          <form (ngSubmit)="oncreate(contactForm.value)" [formGroup]="contactForm" >
 
-          <div class="contenedor"  >
+            <div class="contenedor"  >
 
-            <label>Nombre Completo</label>
-            <mat-form-field appearance="outline">
-              
-              <input matInput type="text" formControlName="nombreCompleto" placeholder="Pepito Perez">
-              <mat-error *ngIf="contactForm.controls.nombreCompleto.invalid">Ingrese un nombre</mat-error>
-            </mat-form-field>
-
-            <label>Email</label> 
-            <mat-form-field appearance="outline">                
-                <input matInput placeholder="example@example.com" formControlName="email" required>            
-                <mat-error *ngIf="contactForm.controls.email.errors">{{errorEmail()}}</mat-error>
-            </mat-form-field >        
-          
-
-              <label>Motivo</label>
+              <label>Nombre Completo</label>
               <mat-form-field appearance="outline">
-    
-              <mat-select formControlName="motivo" name="Motivos" placeholder="Escoja un motivo">
-                <mat-option *ngFor="let mot of motivos" [value]="mot.value" >
-                  {{mot.value}}
-                </mat-option>
-              </mat-select>
+                
+                <input matInput type="text" formControlName="nombreCompleto" placeholder="Pepito Perez">
+                <mat-error *ngIf="contactForm.controls.nombreCompleto.invalid">Ingrese un nombre</mat-error>
+              </mat-form-field>
 
-              <mat-error *ngIf="contactForm.controls.motivo.invalid">Ingrese una motivo</mat-error>
-            </mat-form-field>  
-
-            <label>Mensaje</label>        
-            <mat-form-field appearance="outline" class="mensaje">
-              <textarea class="tarea" matInput #message maxlength="500" placeholder="Estoy interesado en..."
-                formControlName="mensaje"></textarea>
-              <mat-hint align="end">{{message.value.length}} / 500</mat-hint>
-              <mat-error *ngIf="contactForm.controls.mensaje.invalid">Ingrese una mensaje</mat-error>
-            </mat-form-field>
-
-
+              <label>Email</label> 
+              <mat-form-field appearance="outline">                
+                  <input matInput placeholder="example@example.com" formControlName="email" required>            
+                  <mat-error *ngIf="contactForm.controls.email.errors">{{errorEmail()}}</mat-error>
+              </mat-form-field >        
             
-                <div class="contenedorBoton"><button type="submit" mat-raised-button [disabled]="!contactForm.valid" >Enviar</button></div>
-            
-            </div>
-          </form>
-        </mat-card-content>
-      </mat-card>
+
+                <label>Motivo</label>
+                <mat-form-field appearance="outline">
+      
+                <mat-select formControlName="motivo" name="Motivos" placeholder="Escoja un motivo">
+                  <mat-option *ngFor="let mot of motivos" [value]="mot.value" >
+                    {{mot.value}}
+                  </mat-option>
+                </mat-select>
+
+                <mat-error *ngIf="contactForm.controls.motivo.invalid">Ingrese una motivo</mat-error>
+              </mat-form-field>  
+
+              <label>Mensaje</label>        
+              <mat-form-field appearance="outline" class="mensaje">
+                <textarea class="tarea" matInput #message maxlength="500" placeholder="Estoy interesado en..."
+                  formControlName="mensaje"></textarea>
+                <mat-hint align="end">{{message.value.length}} / 500</mat-hint>
+                <mat-error *ngIf="contactForm.controls.mensaje.invalid">Ingrese una mensaje</mat-error>
+              </mat-form-field>
+
+
+              
+                  <div class="contenedorBoton"><button type="submit" mat-raised-button [disabled]="!contactForm.valid" >Enviar</button></div>
+              
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
     
     Como se puede observar en el código HTML, hacemos la creación de la tabla, con sus respectivos Inputs, su dropdown y la sección de mensaje, junto con las condicionales requeridas para el funcionamiento del correo; y por último el botón de enviar que estará inhabilitado a menos de que todos los campos estén debidamente diligenciados.
 
@@ -96,112 +96,112 @@ Contactos en versión movil
 
     .. code-block::
       
-      mat-card {
-        max-width:80%;
-        text-align: center;
-        margin:auto;
-        margin-top: 5%;
-        margin-bottom: 5%;
-        background-color:#f5e8d3;}
+        mat-card {
+          max-width:80%;
+          text-align: center;
+          margin:auto;
+          margin-top: 5%;
+          margin-bottom: 5%;
+          background-color:#f5e8d3;}
 
-      mat-card-title{  
-        width: 100%;
-        font-size: 30px;  
-        text-align: center;}
-      mat-card-content{
-        width: 100%;}
-      .contenedor{
-        //background-color: #eb791c;
-        margin: auto;
-        margin-top: 20px;
-        width: 80%;}
-
-
-      mat-form-field{
-      
-        width: 80%;
-        margin:3% auto;
-        background-color: #f5e8d3;
-        display: block;
-      }
-
-      
-      label{
-      font-size: 20px;
-        text-align: center;
-        display: block;
-      width: 100%;}
+        mat-card-title{  
+          width: 100%;
+          font-size: 30px;  
+          text-align: center;}
+        mat-card-content{
+          width: 100%;}
+        .contenedor{
+          //background-color: #eb791c;
+          margin: auto;
+          margin-top: 20px;
+          width: 80%;}
 
 
-        button{
-      align-content: center;
-      background-color: orangered; 
-      width: 100%;}
-      button:hover{
-      background-color: grey;}
-      .contenedorBoton{
-      margin:auto;
-      margin-top: 10%;
-      width: 80%;    
-      //background-color: green;}
-
-
-      Input:Focus {
-        color:black;
-      font-size: 18px;}
-      .mensaje{
-        width: 80%;
-        height: 260px;
-        //background-color: #12e412d0;}
-      .tarea{
-      
-      height: 200px;
-        //background-color: #5112e4d0;  }
+        mat-form-field{
         
+          width: 80%;
+          margin:3% auto;
+          background-color: #f5e8d3;
+          display: block;
+        }
 
-      //input outline color por defecto
-      ::ng-deep .mat-form-field-appearance-	outline .mat-form-field-outline {
-      color: gray!important;
-      //opacity: 1!important;
-      }
-
-      //mat-input focused color cunado se activa
-      ::ng-deep .mat-form-field-appearance-	outline.mat-focused .mat-form-field-	outline-thick {
-      color: #eb791c!important;
-      }
-
-      // mat-input error outline color caundo hay error
-      ::ng-deep .mat-form-field-appearance-	outline.mat-form-field-invalid.mat-form-	field-invalid .mat-form-field-outline-	thick{
-      color: #ff4e36!important;
-      opacity: 0.8!important;
-      }
+        
+        label{
+        font-size: 20px;
+          text-align: center;
+          display: block;
+        width: 100%;}
 
 
-      // mat-input carent color para alertas
-      ::ng-deep .mat-input-element {
-      caret-color: orange!important;
-      }
+          button{
+        align-content: center;
+        background-color: orangered; 
+        width: 100%;}
+        button:hover{
+        background-color: grey;}
+        .contenedorBoton{
+        margin:auto;
+        margin-top: 10%;
+        width: 80%;    
+        //background-color: green;}
 
-      // mat-input error carent color
-      ::ng-deep .mat-form-field-invalid .mat-input-	element, .mat-warn .mat-input-element {
-      caret-color: blue!important;
-      }
 
-      // mat-label normal state style color de los label en reposo
-      ::ng-deep .mat-form-field-label {
-      color: gray!important;
-      // color: $mainColor!important;
-      }
+        Input:Focus {
+          color:black;
+        font-size: 18px;}
+        .mensaje{
+          width: 80%;
+          height: 260px;
+          //background-color: #12e412d0;}
+        .tarea{
+        
+        height: 200px;
+          //background-color: #5112e4d0;  }
+          
 
-      // mat-label focused style color del label al minimizarse
-      ::ng-deep .mat-form-field.mat-focused 	.mat-form-field-label {
-      color: black!important;
-      }
+        //input outline color por defecto
+        ::ng-deep .mat-form-field-appearance-	outline .mat-form-field-outline {
+        color: gray!important;
+        //opacity: 1!important;
+        }
 
-      // mat-label error style color cuando el campo es imvalido
-      ::ng-deep .mat-form-field.mat-form-field-	invalid .mat-form-field-label {
-      color: red!important;
-      }
+        //mat-input focused color cunado se activa
+        ::ng-deep .mat-form-field-appearance-	outline.mat-focused .mat-form-field-	outline-thick {
+        color: #eb791c!important;
+        }
+
+        // mat-input error outline color caundo hay error
+        ::ng-deep .mat-form-field-appearance-	outline.mat-form-field-invalid.mat-form-	field-invalid .mat-form-field-outline-	thick{
+        color: #ff4e36!important;
+        opacity: 0.8!important;
+        }
+
+
+        // mat-input carent color para alertas
+        ::ng-deep .mat-input-element {
+        caret-color: orange!important;
+        }
+
+        // mat-input error carent color
+        ::ng-deep .mat-form-field-invalid .mat-input-	element, .mat-warn .mat-input-element {
+        caret-color: blue!important;
+        }
+
+        // mat-label normal state style color de los label en reposo
+        ::ng-deep .mat-form-field-label {
+        color: gray!important;
+        // color: $mainColor!important;
+        }
+
+        // mat-label focused style color del label al minimizarse
+        ::ng-deep .mat-form-field.mat-focused 	.mat-form-field-label {
+        color: black!important;
+        }
+
+        // mat-label error style color cuando el campo es imvalido
+        ::ng-deep .mat-form-field.mat-form-field-	invalid .mat-form-field-label {
+        color: red!important;
+        }
 
 
       
@@ -217,32 +217,32 @@ Contactos en versión movil
     .. code-block::
 
         //para el formGroup
-      contactForm: FormGroup;
+        contactForm: FormGroup;
 
-      listaContactos;
+        listaContactos;
 
-      // para la validacion del email
-      emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+        // para la validacion del email
+        emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
-      // para el selecionar el motivo
-      motivos= [
-        {value: 'Contratos' },
-        {value: 'Proyectos'},
-        {value: 'Cobranzas'}
-      ];
+        // para el selecionar el motivo
+        motivos= [
+          {value: 'Contratos' },
+          {value: 'Proyectos'},
+          {value: 'Cobranzas'}
+        ];
 
-      motivoSeleccionado:string;
+        motivoSeleccionado:string;
 
 
 
-        this.contactForm= this.fb.group({
+          this.contactForm= this.fb.group({
 
-          nombreCompleto: new FormControl('', [Validators.required]),
-          email: new FormControl('', [Validators.required, Validators.required, Validators.pattern(this.emailPattern), /*this.validarEmail*/]),
-          motivo: new FormControl('', [Validators.required]),
-          mensaje: new FormControl('', [Validators.required]),
+            nombreCompleto: new FormControl('', [Validators.required]),
+            email: new FormControl('', [Validators.required, Validators.required, Validators.pattern(this.emailPattern), /*this.validarEmail*/]),
+            motivo: new FormControl('', [Validators.required]),
+            mensaje: new FormControl('', [Validators.required]),
 
-        });
+          });
 
 
 
@@ -251,90 +251,92 @@ Contactos en versión movil
 
     .. code-block::
 
-        getRegistros(){
+          getRegistros(){
 
-        this.contactosService.getContactos().subscribe((rgSnapshot) => {
-          this.listaContactos = [];
-          rgSnapshot.forEach((rgData: any) => {
-            this.listaContactos.push({
-              id: rgData.payload.doc.id,
-              data: rgData.payload.doc.data()
+          this.contactosService.getContactos().subscribe((rgSnapshot) => {
+            this.listaContactos = [];
+            rgSnapshot.forEach((rgData: any) => {
+              this.listaContactos.push({
+                id: rgData.payload.doc.id,
+                data: rgData.payload.doc.data()
 
-            });
-          })
+              });
+            })
 
-          console.log(this.listaContactos);
+            console.log(this.listaContactos);
+            
+
+          });
+
           
-
-        });
-
-        
-      }
+        }
 
     Este primero método de get registros, será que el que nos permite obtener los datos de contactos y poderlos almacenar dentro de un documento en firebase
 
 
     .. code-block::
       
-      errorEmail() {
-        if (this.contactForm.controls.email.hasError('required')) {
-          return 'Debe ingresar un email';
+        errorEmail() {
+          if (this.contactForm.controls.email.hasError('required')) {
+            return 'Debe ingresar un email';
+          }
+          if (this.contactForm.controls.email.hasError('ms')) {
+            return 'El email ya ha sido registrado';
+          }
+          return this.contactForm.controls.email.hasError('pattern') ? 'Email no válido' : '';
         }
-        if (this.contactForm.controls.email.hasError('ms')) {
-          return 'El email ya ha sido registrado';
-        }
-        return this.contactForm.controls.email.hasError('pattern') ? 'Email no válido' : '';
-      }
 
-    En este pequeño método validamos que el dato ingresado en el campo e-mail, se efectivamente un email con su correspondiente formato.
+      En este pequeño método validamos que el dato ingresado en el campo e-mail, se efectivamente un email con su correspondiente formato.
 
 
 
     .. code-block::
       
-      oncreate(form){
-        //contraseña 215745566ED59E05A9845F9B348B9915395B
+        oncreate(form){
+          //contraseña 215745566ED59E05A9845F9B348B9915395B
 
-        this.contactosService.crearContacto(this.contactForm.value).then(() => {
+          this.contactosService.crearContacto(this.contactForm.value).then(() => {
 
-          //toco importar en el archivo angular.json ln 34 y 99
-          //"scripts": ["src/assets/smtp.js"]    
-          //tomado de https://medium.com/javascript-in-plain-english/send-emails-without-a-server-side-code-with-angular-e227c3e62dbd     
-          Email.send({
-          Host : 'smtp.elasticemail.com',
-          Username : 'dev24@aiatic.com',
-          Password : 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-          To : 'ceo@aiatic.com',//ceo@aiatic.com
-          From : 'dev24@aiatic.com',
-          Subject : 'Dc Team Nuevo contacto',
-          Body : `
-                <h1> Nuevo registro de Contacto</h1>
-                <p></p>
-                <h3> Nombre: ${this.contactForm.controls.nombreCompleto.value}</h3>
-                <h3> Correo: ${this.contactForm.controls.email.value}</h3>
-                <h3> Motivo: ${this.contactForm.controls.motivo.value}</h3>
-                <h3> Mensaje</h3>
-                <p>${this.contactForm.controls.mensaje.value}</p> 
-          
-          `
-          }).then( message => {
-            alert(message); 
-          } );
+            //toco importar en el archivo angular.json ln 34 y 99
+            //"scripts": ["src/assets/smtp.js"]    
+            //tomado de https://medium.com/javascript-in-plain-english/send-emails-without-a-server-side-code-with-angular-e227c3e62dbd     
+            Email.send({
+            Host : 'smtp.elasticemail.com',
+            Username : 'dev24@aiatic.com',
+            Password : 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+            To : 'ceo@aiatic.com',//ceo@aiatic.com
+            From : 'dev24@aiatic.com',
+            Subject : 'Dc Team Nuevo contacto',
+            Body : `
+                  <h1> Nuevo registro de Contacto</h1>
+                  <p></p>
+                  <h3> Nombre: ${this.contactForm.controls.nombreCompleto.value}</h3>
+                  <h3> Correo: ${this.contactForm.controls.email.value}</h3>
+                  <h3> Motivo: ${this.contactForm.controls.motivo.value}</h3>
+                  <h3> Mensaje</h3>
+                  <p>${this.contactForm.controls.mensaje.value}</p> 
+            
+            `
+            }).then( message => {
+              alert(message); 
+            } );
 
 
-          this.contactForm.setValue({
+            this.contactForm.setValue({
 
-            nombreCompleto: '', 
-            email: '', 
-            motivo: '',
-            mensaje: ''
-      
-          });
-          
-        }, (error) => {
-          console.error(error);
-        }); 
-      }
+              nombreCompleto: '', 
+              email: '', 
+              motivo: '',
+              mensaje: ''
+        
+            });
+            
+          }, (error) => {
+            console.error(error);
+          }); 
+        }
+    
+    
     El método onCreat(form) es donde hacemos el llamado de nuestra API de elasticmail. En este método, observamos que se crean unas variables en donde almacenamos los datos de nuestro formulario previamente creado, seguido de la creación de una variable asunto, la cuál en el correo del CEO será tal cual la caja en dónde se especifíca el asunto del correo y el cuerpo, el cuál recibe dentro de la misma variable Sel estilo que este tendrá cuando el CEO reciba el correo. se crea la variable datos, la cual incializa un objeto de tipo "contact". 
     
 

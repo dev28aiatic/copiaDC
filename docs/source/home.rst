@@ -13,6 +13,7 @@ Inicio para versión movil
 * Descripción
     En esta sección se muestra información de los desarrolladores. 
 
+
 * Importaciones
     Para este componente se debe importar el módulo de Angular Material para las tarjetas de cada 
     integrante del equipo.
