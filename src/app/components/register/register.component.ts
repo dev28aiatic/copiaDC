@@ -407,7 +407,7 @@ export class RegisterComponent implements OnInit {
 
         
         // se le asigan una foto por defecto
-        this.registerForm.controls.photoUrl.setValue("https://firebasestorage.googleapis.com/v0/b/teamdc-c1083.appspot.com/o/uploads%2FLogo.png?alt=media&token=4c51f16d-bb24-4845-9961-b8145ce65a1b");
+        this.registerForm.controls.photoUrl.setValue("https://firebasestorage.googleapis.com/v0/b/mafaldos-440cc.appspot.com/o/uploads%2Flogomafaldos.png?alt=media&token=79192387-b220-4700-b53d-68bed0ce5ef5");
 
         this.registrosServiceF.crearRegistro(this.registerForm.value).then(() => {
 
