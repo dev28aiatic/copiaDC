@@ -22,7 +22,7 @@ export class CheckGuardGuard implements CanActivate {
 
       }
       else{
-        return false;
+        return true;
       }
 
     }))
