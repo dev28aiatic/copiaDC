@@ -9,9 +9,14 @@ import { first } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
+
+  public userData$: Observable<firebase.User>;
   public user:User;
 
-  constructor(public afAuth: AngularFireAuth) { }
+  constructor(public afAuth: AngularFireAuth) {
+
+    this.userData$=afAuth.authState;
+   }
 
 
   async login(email:string, password:string){
@@ -23,7 +28,7 @@ export class AuthService {
         return result;
       }catch (error) {
       console.log(error);
-    }  
+    }
   }
 
 
@@ -36,8 +41,8 @@ export class AuthService {
       return result;
     }catch(error){console.log(error)}
     }
-    
-    
+
+
   async logout(){
     try{
       await this.afAuth.auth.signOut();
